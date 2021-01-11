@@ -10,7 +10,7 @@ import pathAPI from "../api/pathAPI";
 function HomePage() {
   const [path, setPath] = useState(pathAPI.getPath());
   return (
-    <PathContext.Provider value={{ path: path, setPath: setPath }}>
+    <PathContext.Provider value={{ path, setPath }}>
       <div
         className="container-fluid border overflow-hidden"
         style={{ height: "70vh" }}
