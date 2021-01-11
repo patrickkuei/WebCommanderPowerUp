@@ -5,13 +5,16 @@ import MainView from "./MainView";
 import Toolbar from "./Toolbar";
 
 import { PathContext } from "../contexts/PathContext";
-import { PATH } from "../constants/constans";
+import pathAPI from "../api/pathAPI";
 
 function HomePage() {
-  const [path, setPath] = useState(PATH);
+  const [path, setPath] = useState(pathAPI.getPath());
   return (
     <PathContext.Provider value={{ path: path, setPath: setPath }}>
-      <div className="container-fluid border" style={{ height: "70vh" }}>
+      <div
+        className="container-fluid border overflow-hidden"
+        style={{ height: "70vh" }}
+      >
         <BreadCrumb />
         <div className="row" style={{ height: "90%" }}>
           <LeftNavbar />

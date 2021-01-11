@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import MainViewItem from "./MainViewItem";
 import { PathContext } from "../contexts/PathContext";
-import foldersAPI from "../api/folders";
+import foldersAPI from "../api/foldersAPI";
 
 function MainView() {
   //TODO: get folders data by path here
@@ -23,7 +23,7 @@ function MainView() {
   const folders = foldersAPI.getFoldersByPath(path);
 
   return (
-    <div className="row" style={{ height: "90%" }}>
+    <div className="row overflow-auto" style={{ height: "90%" }}>
       {_folders.map((folder, index) => (
         <MainViewItem key={index} folder={folder} />
       ))}
