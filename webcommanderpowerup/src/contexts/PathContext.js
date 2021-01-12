@@ -1,6 +1,3 @@
 import React from "react";
 
-export const PathContext = React.createContext({
-  path: "",
-  setPath: () => {},
-});
+export const PathContext = React.createContext({});

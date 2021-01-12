@@ -1,16 +1,20 @@
 import React, { useState } from "react";
+
 import BreadCrumb from "./BreadCrumb";
 import LeftNavbar from "./LeftNavbar";
 import MainView from "./MainView";
 import Toolbar from "./Toolbar";
 
 import { PathContext } from "../contexts/PathContext";
-import pathAPI from "../api/pathAPI";
+import fileAPI from "../api/filesAPI";
 
 function HomePage() {
-  const [path, setPath] = useState(pathAPI.getPath());
+  const fileInfo = fileAPI.getFileInfo();
+  const files = fileInfo.files;
+  const [path, setPath] = useState(fileInfo.path);
+
   return (
-    <PathContext.Provider value={{ path, setPath }}>
+    <PathContext.Provider value={{ path, setPath, files }}>
       <div
         className="container-fluid border overflow-hidden"
         style={{ height: "70vh" }}
