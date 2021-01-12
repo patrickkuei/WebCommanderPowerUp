@@ -6,7 +6,6 @@ import { FilesContext } from "../contexts/FilesContext";
 
 function Main() {
   const [selectedFiles, setSelectedFiles] = useState([]);
-  console.log(selectedFiles);
   return (
     <div className="col-10 border">
       <FilesContext.Provider value={{ selectedFiles, setSelectedFiles }}>

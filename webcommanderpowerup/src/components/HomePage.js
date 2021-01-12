@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import BreadCrumb from "./BreadCrumb";
 import LeftNavbar from "./LeftNavbar";
@@ -8,12 +8,21 @@ import fileAPI from "../api/filesAPI";
 import Main from "./Main";
 
 function HomePage() {
-  const fileInfo = fileAPI.getFileInfo();
-  const files = fileInfo.files;
-  const [path, setPath] = useState(fileInfo.path);
+  const [files, setFiles] = useState([]);
+  const [pathArray, setPathArray] = useState([]);
+
+  const initialFilesInfo = () => {
+    const filesInfo = fileAPI.getFilesInfo();
+    setFiles(filesInfo.files);
+    setPathArray(filesInfo.path.split("\\"));
+  };
+
+  useEffect(() => {
+    initialFilesInfo();
+  }, []);
 
   return (
-    <PathContext.Provider value={{ path, setPath, files }}>
+    <PathContext.Provider value={{ pathArray, setPathArray, files }}>
       <div
         className="container-fluid border overflow-hidden"
         style={{ height: "70vh" }}

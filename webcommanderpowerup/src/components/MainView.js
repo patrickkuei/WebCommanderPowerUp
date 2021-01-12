@@ -10,7 +10,7 @@ function MainView() {
   return (
     <div className="row overflow-auto" style={{ height: "90%" }}>
       {files.map((file, index) => (
-        <MainViewItem key={index} file={file} />
+        <MainViewItem key={index.toString() + file} file={file} />
       ))}
     </div>
   );

@@ -3,13 +3,20 @@ import { PathContext } from "../contexts/PathContext";
 
 function BreadCrumb() {
   const pathContext = useContext(PathContext);
-  const { path, setPath } = pathContext;
-  const pathArray = path.split("\\");
+  const { pathArray, setPathArray } = pathContext;
+
+  const handlePathLinkClick = (index) => {
+    setPathArray((prev) => {
+      return prev.slice(0, index + 1);
+    });
+  };
 
   const decoratedPath = pathArray.map((pathPart, index) => {
     return (
-      <li key={index} className="breadcrumb-item">
-        <a href="#">{pathPart}</a>
+      <li key={index.toString() + pathPart} className="breadcrumb-item">
+        <a href="#" onClick={() => handlePathLinkClick(index)}>
+          {pathPart}
+        </a>
       </li>
     );
   });

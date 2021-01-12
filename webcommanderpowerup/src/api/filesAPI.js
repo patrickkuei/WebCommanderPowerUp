@@ -1,5 +1,5 @@
 const api = {
-  getFileInfo: () => {
+  getFilesInfo: () => {
     //TODO: get folders info
     return {
       files: [

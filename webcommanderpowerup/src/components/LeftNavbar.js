@@ -8,7 +8,7 @@ function LeftNavbar() {
 
   const decoratedFolders = files.map((file, index) => {
     return (
-      <li className="nav-item" key={index}>
+      <li className="nav-item" key={index.toString() + file}>
         <a className="nav-link active" aria-current="page" href="#">
           {file}
         </a>
