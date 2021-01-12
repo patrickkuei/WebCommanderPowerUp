@@ -2,11 +2,10 @@ import React, { useState } from "react";
 
 import BreadCrumb from "./BreadCrumb";
 import LeftNavbar from "./LeftNavbar";
-import MainView from "./MainView";
-import Toolbar from "./Toolbar";
 
 import { PathContext } from "../contexts/PathContext";
 import fileAPI from "../api/filesAPI";
+import Main from "./Main";
 
 function HomePage() {
   const fileInfo = fileAPI.getFileInfo();
@@ -22,10 +21,7 @@ function HomePage() {
         <BreadCrumb />
         <div className="row" style={{ height: "90%" }}>
           <LeftNavbar />
-          <div className="col-10 border">
-            <Toolbar />
-            <MainView />
-          </div>
+          <Main />
         </div>
       </div>
     </PathContext.Provider>

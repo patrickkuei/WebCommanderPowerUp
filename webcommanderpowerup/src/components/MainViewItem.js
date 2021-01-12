@@ -1,19 +1,25 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { FilesContext } from "../contexts/FilesContext";
 
 function MainViewItem(props) {
   const { file } = props;
-  const [selectedFiles, setSelectedFiles] = useState([]);
+  const { selectedFiles, setSelectedFiles } = useContext(FilesContext);
 
-  const handleCheckBoxClick = (file) => {
-    setSelectedFiles((prev) => [...prev, file]);
-    console.log(selectedFiles);
+  const handleCheckBoxClick = (e, file) => {
+    if (e.target.checked) {
+      setSelectedFiles((prev) => [...prev, file]);
+    } else {
+      setSelectedFiles((prev) => {
+        return prev.filter((selectedFile) => selectedFile !== file);
+      });
+    }
   };
 
   return (
     // Bootstrap card
     <div className="col-3 card">
       <input
-        onChange={() => handleCheckBoxClick(file)}
+        onChange={(e) => handleCheckBoxClick(e, file)}
         type="checkbox"
         style={{
           position: "absolute",
