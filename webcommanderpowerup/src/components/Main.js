@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import MainView from "./MainView";
 import Toolbar from "./Toolbar";
 
-import { FilesContext } from "../contexts/FilesContext";
+import { SelectedFilesContext } from "../contexts/SelectedFilesContext";
 
 function Main() {
   const [selectedFiles, setSelectedFiles] = useState([]);
   return (
     <div className="col-10 border">
-      <FilesContext.Provider value={{ selectedFiles, setSelectedFiles }}>
+      <SelectedFilesContext.Provider
+        value={{ selectedFiles, setSelectedFiles }}
+      >
         <Toolbar />
         <MainView />
-      </FilesContext.Provider>
+      </SelectedFilesContext.Provider>
     </div>
   );
 }

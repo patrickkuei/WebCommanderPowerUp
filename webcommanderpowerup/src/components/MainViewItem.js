@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import { FilesContext } from "../contexts/FilesContext";
+import { SelectedFilesContext } from "../contexts/SelectedFilesContext";
 
 function MainViewItem(props) {
   const { file } = props;
-  const { selectedFiles, setSelectedFiles } = useContext(FilesContext);
+  const { selectedFiles, setSelectedFiles } = useContext(SelectedFilesContext);
 
   const handleCheckBoxClick = (e, file) => {
     if (e.target.checked) {

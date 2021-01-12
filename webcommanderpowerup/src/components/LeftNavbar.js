@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
 
-import { PathContext } from "../contexts/PathContext";
+import { FilesInfoContext } from "../contexts/FilesInfoContext";
 
 function LeftNavbar() {
-  const pathContext = useContext(PathContext);
-  const { path, setPath, files } = pathContext;
+  const { filesInfo, setFilesInfo } = useContext(FilesInfoContext);
 
-  const decoratedFolders = files.map((file, index) => {
+  const decoratedFolders = filesInfo.files.map((file, index) => {
     return (
       <li className="nav-item" key={index.toString() + file}>
         <a className="nav-link active" aria-current="page" href="#">
@@ -18,8 +17,8 @@ function LeftNavbar() {
 
   return (
     // Bootstrap LeftNavbar
-    <div className="col-2 border">
-      <nav className="navbar navbar-dark bg-dark">
+    <div className="col-2 border" style={{ padding: "0" }}>
+      <nav className="navbar navbar-dark bg-dark" style={{ height: "100%" }}>
         <div className="container-fluid">
           <ul className="navbar-nav">{decoratedFolders}</ul>
         </div>

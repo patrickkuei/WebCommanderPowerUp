@@ -1,15 +1,13 @@
 import React, { useContext } from "react";
 
 import MainViewItem from "./MainViewItem";
-import { PathContext } from "../contexts/PathContext";
+import { FilesInfoContext } from "../contexts/FilesInfoContext";
 
 function MainView() {
-  const pathContext = useContext(PathContext);
-  const { files } = pathContext;
-
+  const { filesInfo, setFilesInfo } = useContext(FilesInfoContext);
   return (
     <div className="row overflow-auto" style={{ height: "90%" }}>
-      {files.map((file, index) => (
+      {filesInfo.files.map((file, index) => (
         <MainViewItem key={index.toString() + file} file={file} />
       ))}
     </div>

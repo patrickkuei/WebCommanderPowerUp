@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { FilesContext } from "../contexts/FilesContext";
+import { SelectedFilesContext } from "../contexts/SelectedFilesContext";
 
 function Toolbar() {
-  const { selectedFiles, setSelectedFiles } = useContext(FilesContext);
+  const { selectedFiles, setSelectedFiles } = useContext(SelectedFilesContext);
 
   const handleCopy = () => {
     console.log(`COPY THESE FILES ${selectedFiles}`);
