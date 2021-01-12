@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 
 function MainViewItem(props) {
   const { file } = props;
+  const [selectedFiles, setSelectedFiles] = useState([]);
+
+  const handleCheckBoxClick = (file) => {
+    setSelectedFiles((prev) => [...prev, file]);
+    console.log(selectedFiles);
+  };
 
   return (
     // Bootstrap card
     <div className="col-3 card">
+      <input
+        onChange={() => handleCheckBoxClick(file)}
+        type="checkbox"
+        style={{
+          position: "absolute",
+          top: "0",
+          left: "0",
+          width: "30px",
+          height: "30px",
+        }}
+      />
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="100px"
