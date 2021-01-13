@@ -19,6 +19,7 @@
         display: block;
         padding: 6px 0 0 0;
         height: 100%;
+        overflow: auto;
 
         .container-fluid {
           padding-left: 8px;
@@ -66,12 +67,15 @@
         width: 30px;
         height: 30px;
       }
-      .main-view-item__picture {
-        display: block;
-        margin: auto;
-      }
-      .main-view-item__picture-name {
-        padding: 0;
+      .main-view-item__content {
+        margin-top: 20%;
+        .main-view-item__content__picture {
+          display: block;
+          margin: auto;
+        }
+        .main-view-item__content__picture-name {
+          padding: 0;
+        }
       }
     }
   }

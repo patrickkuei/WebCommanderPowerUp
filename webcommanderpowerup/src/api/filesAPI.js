@@ -1,5 +1,5 @@
 const api = {
-  getFilesInfo: () => {
+  getFoldersInfo: () => {
     //TODO: get folders info
     return {
       files: [
@@ -49,6 +49,37 @@ const api = {
       ],
       path:
         "C:\\GitRepo\\github\\WebCommanderPowerUp\\webcommanderpowerup\\src",
+    };
+  },
+
+  getFilesByFolderId: (folderId) => {
+    return {
+      files: [
+        {
+          name: "subfolder1",
+          id: "ICEH77Q75M03B1E8",
+        },
+        {
+          name: "subfolder2",
+          id: "WUXY06J41B76S2W8",
+        },
+        {
+          name: "subfolder3",
+          id: "GFGV54N62T08O0J9",
+        },
+        {
+          name: "file1.exe",
+          id: "LVBZ10L47D96Y9X9",
+        },
+        {
+          name: "file2.jpg",
+          id: "JUHV66A35H16Q8R5",
+        },
+        {
+          name: "file4.doc",
+          id: "ICE12SGZ7PZ3B1E8",
+        },
+      ],
     };
   },
 };

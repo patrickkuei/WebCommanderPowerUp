@@ -5,14 +5,14 @@ function BreadCrumb() {
   const { filesInfo, setFilesInfo } = useContext(FilesInfoContext);
 
   const handlePathLinkClick = (index) => {
-    // setFilesInfo((prev) => {
-    //   return {
-    //     isLoaded: prev.isLoaded,
-    //     files: prev.files,
-    //     path: prev.path,
-    //     pathArray: prev.pathArray.slice(0, index + 1),
-    //   };
-    // });
+    setFilesInfo((prev) => {
+      return {
+        isLoaded: prev.isLoaded,
+        files: prev.files,
+        path: prev.path,
+        pathArray: prev.pathArray.slice(0, index + 1),
+      };
+    });
   };
 
   const decoratedPath = filesInfo.pathArray.map((pathPart, index) => {

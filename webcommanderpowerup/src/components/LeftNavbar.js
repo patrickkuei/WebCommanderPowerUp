@@ -3,18 +3,28 @@ import React, { useContext } from "react";
 import { FilesInfoContext } from "../contexts/FilesInfoContext";
 
 function LeftNavbar() {
-  const { filesInfo, setFilesInfo } = useContext(FilesInfoContext);
+  const {
+    filesInfo,
+    setFilesInfo,
+    currentFolderId,
+    setCurrentFolderId,
+  } = useContext(FilesInfoContext);
 
-  const decorateFiles = (files) => {
+  const decorateFolders = (files) => {
     return (
       <ul className="navbar-nav">
-        {files.map((file) => {
+        {files.map((file, index) => {
           return (
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+            <li key={index.toString() + file.name} className="nav-item">
+              <a
+                className="nav-link active"
+                aria-current="page"
+                href="#"
+                onClick={() => handleFolderClick(file.id)}
+              >
                 {file.name}
               </a>
-              {file.subfolders && decorateFiles(file.subfolders)}
+              {file.subfolders && decorateFolders(file.subfolders)}
             </li>
           );
         })}
@@ -22,11 +32,17 @@ function LeftNavbar() {
     );
   };
 
+  const handleFolderClick = (folderId) => {
+    setCurrentFolderId(folderId);
+  };
+
   return (
     // Bootstrap LeftNavbar
     <div className="main__left-bar col-2 border">
       <nav className="main__left-bar__navigation navbar navbar-dark bg-dark">
-        <div className="container-fluid">{decorateFiles(filesInfo.files)}</div>
+        <div className="container-fluid">
+          {decorateFolders(filesInfo.files)}
+        </div>
       </nav>
     </div>
   );
