@@ -9,7 +9,20 @@
     .home-page .main .main__left-bar {
       padding: 0; }
       .home-page .main .main__left-bar .main__left-bar__navigation {
+        display: block;
+        padding: 6px 0 0 0;
         height: 100%; }
+        .home-page .main .main__left-bar .main__left-bar__navigation .container-fluid {
+          padding-left: 8px; }
+          .home-page .main .main__left-bar .main__left-bar__navigation .container-fluid ul {
+            margin-left: 12px; }
+            .home-page .main .main__left-bar .main__left-bar__navigation .container-fluid ul li {
+              line-height: 12px; }
+            .home-page .main .main__left-bar .main__left-bar__navigation .container-fluid ul a {
+              display: block; }
+              .home-page .main .main__left-bar .main__left-bar__navigation .container-fluid ul a:hover {
+                color: black;
+                background-color: #b9e3ff; }
     .home-page .main .main__tool-bar {
       height: 10%; }
       .home-page .main .main__tool-bar .main__tool-bar__button {
