@@ -16,27 +16,24 @@ function Toolbar() {
 
   return (
     // Bootstrap Toolbar
-    <div style={{ height: "10%" }}>
+    <div className="main__tool-bar">
       <button
         type="button"
-        className="btn btn-outline-primary btn-sm"
-        style={{ margin: "6px 10px" }}
+        className="main__tool-bar__button btn btn-outline-primary btn-sm"
         onClick={handleCopy}
       >
         Copy
       </button>
       <button
         type="button"
-        className="btn btn-outline-primary btn-sm"
-        style={{ margin: "6px 10px" }}
+        className="main__tool-bar__button btn btn-outline-primary btn-sm"
         onClick={handlePaste}
       >
         Paste
       </button>
       <button
         type="button"
-        className="btn btn-outline-primary btn-sm"
-        style={{ margin: "6px 10px" }}
+        className="main__tool-bar__button btn btn-outline-primary btn-sm"
         onClick={handleDelete}
       >
         Delete

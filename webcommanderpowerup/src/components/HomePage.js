@@ -33,12 +33,9 @@ function HomePage() {
     <Fragment>
       {filesInfo.isLoaded ? (
         <FilesInfoContext.Provider value={{ filesInfo, setFilesInfo }}>
-          <div
-            className="container-fluid border overflow-hidden"
-            style={{ height: "70vh" }}
-          >
+          <div className="home-page container-fluid border overflow-hidden">
             <BreadCrumb />
-            <div className="row" style={{ height: "90%" }}>
+            <div className="main row">
               <LeftNavbar />
               <Main />
             </div>

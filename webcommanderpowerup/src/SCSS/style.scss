@@ -1,0 +1,73 @@
+.home-page {
+  height: 70vh;
+
+  .breadcrumb-screen {
+    height: 10%;
+
+    .breadcrumb-screen__list {
+      background-color: #ffffff;
+    }
+  }
+
+  .main {
+    height: 90%;
+
+    .main__left-bar {
+      padding: 0;
+
+      .main__left-bar__navigation {
+        height: 100%;
+      }
+    }
+    .main__tool-bar {
+      height: 10%;
+
+      .main__tool-bar__button {
+        margin: 6px 10px;
+      }
+    }
+
+    .main__main-view {
+      height: 90%;
+
+      .card:hover {
+        cursor: pointer;
+        background-color: #d6feff;
+        transition: 0.1s;
+      }
+      .main-view-item__checkbox {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 30px;
+        height: 30px;
+      }
+      .main-view-item__picture {
+        display: block;
+        margin: auto;
+      }
+      .main-view-item__picture-name {
+        padding: 0;
+      }
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
