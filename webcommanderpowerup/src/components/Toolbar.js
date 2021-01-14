@@ -16,7 +16,7 @@ function Toolbar() {
 
   return (
     // Bootstrap Toolbar
-    <div className="main__tool-bar">
+    <div className="main__tool-bar border-bottom row">
       <button
         type="button"
         className="main__tool-bar__button btn btn-outline-primary btn-sm"

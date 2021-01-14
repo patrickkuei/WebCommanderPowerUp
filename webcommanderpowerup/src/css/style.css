@@ -1,52 +1,56 @@
-.home-page {
+.home-page-container {
   height: 70vh; }
-  .home-page .breadcrumb-screen {
-    height: 10%; }
-    .home-page .breadcrumb-screen .breadcrumb-screen__list {
-      background-color: #ffffff; }
-  .home-page .main {
-    height: 90%; }
-    .home-page .main .main__left-bar {
+  .home-page-container .home-page {
+    height: 100%; }
+    .home-page-container .home-page .home-page__left-bar {
       padding: 0; }
-      .home-page .main .main__left-bar .main__left-bar__navigation {
+      .home-page-container .home-page .home-page__left-bar .home-page__left-bar__navigation {
         display: block;
         padding: 6px 0 0 0;
         height: 100%;
         overflow: auto; }
-        .home-page .main .main__left-bar .main__left-bar__navigation .container-fluid {
+        .home-page-container .home-page .home-page__left-bar .home-page__left-bar__navigation .container-fluid {
           padding-left: 8px; }
-          .home-page .main .main__left-bar .main__left-bar__navigation .container-fluid ul {
+          .home-page-container .home-page .home-page__left-bar .home-page__left-bar__navigation .container-fluid ul {
             margin-left: 12px; }
-            .home-page .main .main__left-bar .main__left-bar__navigation .container-fluid ul li {
+            .home-page-container .home-page .home-page__left-bar .home-page__left-bar__navigation .container-fluid ul li {
               line-height: 12px; }
-            .home-page .main .main__left-bar .main__left-bar__navigation .container-fluid ul a {
+            .home-page-container .home-page .home-page__left-bar .home-page__left-bar__navigation .container-fluid ul a {
               display: block; }
-              .home-page .main .main__left-bar .main__left-bar__navigation .container-fluid ul a:hover {
+              .home-page-container .home-page .home-page__left-bar .home-page__left-bar__navigation .container-fluid ul a:hover {
                 color: black;
                 background-color: #b9e3ff; }
-    .home-page .main .main__tool-bar {
-      height: 10%; }
-      .home-page .main .main__tool-bar .main__tool-bar__button {
-        margin: 6px 10px; }
-    .home-page .main .main__main-view {
-      height: 90%; }
-      .home-page .main .main__main-view .card:hover {
-        cursor: pointer;
-        background-color: #d6feff;
-        transition: 0.1s; }
-      .home-page .main .main__main-view .main-view-item__checkbox {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 30px;
-        height: 30px; }
-      .home-page .main .main__main-view .main-view-item__content {
-        margin-top: 20%; }
-        .home-page .main .main__main-view .main-view-item__content .main-view-item__content__picture {
-          display: block;
-          margin: auto; }
-        .home-page .main .main__main-view .main-view-item__content .main-view-item__content__picture-name {
-          padding: 0; }
+    .home-page-container .home-page .home-page__right-div {
+      height: 100%; }
+      .home-page-container .home-page .home-page__right-div .breadcrumb-screen {
+        height: 10%; }
+        .home-page-container .home-page .home-page__right-div .breadcrumb-screen .breadcrumb-screen__list {
+          background-color: #ffffff; }
+      .home-page-container .home-page .home-page__right-div .main__tool-bar {
+        height: 10%; }
+        .home-page-container .home-page .home-page__right-div .main__tool-bar .main__tool-bar__button {
+          margin: 6px 10px; }
+      .home-page-container .home-page .home-page__right-div .main__main-view {
+        height: 80%; }
+        .home-page-container .home-page .home-page__right-div .main__main-view .card {
+          height: 50%; }
+          .home-page-container .home-page .home-page__right-div .main__main-view .card:hover {
+            cursor: pointer;
+            background-color: #d6feff;
+            transition: 0.1s; }
+        .home-page-container .home-page .home-page__right-div .main__main-view .main-view-item__checkbox {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 30px;
+          height: 30px; }
+        .home-page-container .home-page .home-page__right-div .main__main-view .main-view-item__content {
+          margin-top: 20px; }
+          .home-page-container .home-page .home-page__right-div .main__main-view .main-view-item__content .main-view-item__content__picture {
+            display: block;
+            margin: auto; }
+          .home-page-container .home-page .home-page__right-div .main__main-view .main-view-item__content .main-view-item__content__picture-name {
+            padding: 0; }
 
 ::-webkit-scrollbar {
   width: 10px; }

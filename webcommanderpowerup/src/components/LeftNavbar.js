@@ -15,7 +15,7 @@ function LeftNavbar() {
       <ul className="navbar-nav">
         {files.map((file, index) => {
           return (
-            <li key={index.toString() + file.name} className="nav-item">
+            <li key={index.toString() + file.id} className="nav-item">
               <a
                 className="nav-link active"
                 aria-current="page"
@@ -24,7 +24,7 @@ function LeftNavbar() {
               >
                 {file.name}
               </a>
-              {file.subfolders && decorateFolders(file.subfolders)}
+              {file.children && decorateFolders(file.children)}
             </li>
           );
         })}
@@ -38,8 +38,8 @@ function LeftNavbar() {
 
   return (
     // Bootstrap LeftNavbar
-    <div className="main__left-bar col-2 border">
-      <nav className="main__left-bar__navigation navbar navbar-dark bg-dark">
+    <div className="home-page__left-bar col-2 border">
+      <nav className="home-page__left-bar__navigation navbar navbar-dark bg-dark">
         <div className="container-fluid">
           {decorateFolders(filesInfo.files)}
         </div>

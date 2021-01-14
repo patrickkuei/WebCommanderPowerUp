@@ -27,7 +27,7 @@ function BreadCrumb() {
 
   return (
     // Bootstrap breadcrumb
-    <div className="breadcrumb-screen row justify-content-center">
+    <div className="breadcrumb-screen row border-bottom">
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb-screen__list breadcrumb">{decoratedPath}</ol>
       </nav>

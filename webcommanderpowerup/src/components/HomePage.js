@@ -23,9 +23,11 @@ function HomePage() {
     const res = fileAPI.getFoldersInfo();
     setFilesInfo({
       isLoaded: true,
-      files: res.files,
-      path: res.path,
-      pathArray: res.path.split("\\"),
+      files: res.data,
+      path: "",
+      pathArray: "C:\\GitRepo\\github\\WebCommanderPowerUp\\webcommanderpowerup\\src".split(
+        "\\"
+      ),
     });
   };
 
@@ -44,9 +46,8 @@ function HomePage() {
             setCurrentFolderId,
           }}
         >
-          <div className="home-page container-fluid border overflow-hidden">
-            <BreadCrumb />
-            <div className="main row">
+          <div className="home-page-container container-fluid border overflow-hidden">
+            <div className="home-page row">
               <LeftNavbar />
               <Main />
             </div>
