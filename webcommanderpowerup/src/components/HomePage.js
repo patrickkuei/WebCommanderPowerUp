@@ -11,23 +11,15 @@ function HomePage() {
   const [filesInfo, setFilesInfo] = useState({
     isLoaded: false,
     files: [],
-    path: "",
-    pathArray: [],
   });
 
   const [currentFolderId, setCurrentFolderId] = useState("root");
-
-  console.log(currentFolderId);
 
   const initialFoldersInfo = () => {
     const res = fileAPI.getFoldersInfo();
     setFilesInfo({
       isLoaded: true,
       files: res.data,
-      path: "",
-      pathArray: "C:\\GitRepo\\github\\WebCommanderPowerUp\\webcommanderpowerup\\src".split(
-        "\\"
-      ),
     });
   };
 

@@ -1,21 +1,12 @@
 import React, { useContext } from "react";
 import { FilesInfoContext } from "../contexts/FilesInfoContext";
 
-function BreadCrumb() {
-  const { filesInfo, setFilesInfo } = useContext(FilesInfoContext);
+function BreadCrumb(props) {
+  const { pathArray, setPathArray } = props;
 
-  const handlePathLinkClick = (index) => {
-    setFilesInfo((prev) => {
-      return {
-        isLoaded: prev.isLoaded,
-        files: prev.files,
-        path: prev.path,
-        pathArray: prev.pathArray.slice(0, index + 1),
-      };
-    });
-  };
+  const handlePathLinkClick = (index) => {};
 
-  const decoratedPath = filesInfo.pathArray.map((pathPart, index) => {
+  const decoratedPath = pathArray.map((pathPart, index) => {
     return (
       <li key={index.toString() + pathPart} className="breadcrumb-item">
         <a href="#" onClick={() => handlePathLinkClick(index)}>

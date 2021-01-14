@@ -7,26 +7,29 @@ function MainViewItem(props) {
   const { selectedFiles, setSelectedFiles } = useContext(SelectedFilesContext);
   const { currentFolderId, setCurrentFolderId } = useContext(FilesInfoContext);
 
-  const handleCheckBoxClick = (e, file) => {
+  const handleCheckBoxClick = (e, fileId) => {
     if (e.target.checked) {
-      setSelectedFiles((prev) => [...prev, file]);
+      setSelectedFiles((prev) => [...prev, fileId]);
     } else {
       setSelectedFiles((prev) => {
-        return prev.filter((selectedFile) => selectedFile !== file);
+        return prev.filter((selectedFile) => selectedFile !== fileId);
       });
     }
   };
 
-  const handleFolderCardClick = (folderId) => {
+  const handleFolderCardDbClick = (folderId) => {
     setCurrentFolderId(folderId);
   };
 
   return (
     // Bootstrap card
-    <div className="col-3 card" onClick={() => handleFolderCardClick(file.id)}>
+    <div
+      className="col-3 card"
+      onDoubleClick={() => handleFolderCardDbClick(file.id)}
+    >
       <input
         className="main-view-item__checkbox"
-        onChange={(e) => handleCheckBoxClick(e, file)}
+        onChange={(e) => handleCheckBoxClick(e, file.id)}
         type="checkbox"
       />
       <div className="main-view-item__content">
