@@ -1,6 +1,6 @@
 const api = {
   getFoldersInfo: () => {
-    console.log("get folders information");
+    // console.log("get folders information");
     //TODO: get folders info
     return {
       data: [
@@ -52,7 +52,7 @@ const api = {
   },
 
   getFilesByFolderId: (folderId) => {
-    console.log("get files by folder id and this id is:" + folderId);
+    // console.log("get files by folder id and this id is:" + folderId);
 
     return {
       data: {

@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
+import { FILE_ACTIONS } from "../action/FileAction";
 
 import { FilesInfoContext } from "../contexts/FilesInfoContext";
 
 function LeftNavbar() {
-  const { foldersInfo, setCurrentFolderInfo, setIdPathArray } = useContext(
+  const { foldersInfo, currentFolderDispatch, setIdPathArray } = useContext(
     FilesInfoContext
   );
 
@@ -34,11 +35,9 @@ function LeftNavbar() {
   };
 
   const handleFolderClick = (folderId, e) => {
-    setCurrentFolderInfo((prev) => {
-      return {
-        ...prev,
-        currentFolderId: folderId,
-      };
+    currentFolderDispatch({
+      type: FILE_ACTIONS.TO_OTHER_FOLDER,
+      payload: folderId,
     });
 
     setIdPathArray(e.target.dataset.idpath.split("/"));

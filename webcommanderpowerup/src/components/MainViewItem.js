@@ -1,13 +1,14 @@
 import React, { useContext, useState } from "react";
 import { SelectedFilesContext } from "../contexts/SelectedFilesContext";
 import { FilesInfoContext } from "../contexts/FilesInfoContext";
+import { FILE_ACTIONS } from "../action/FileAction";
 
 function MainViewItem(props) {
   const { file } = props;
   const { selectedFiles, setSelectedFiles } = useContext(SelectedFilesContext);
   const {
-    currentFolderInfo,
-    setCurrentFolderInfo,
+    currentFolderState,
+    currentFolderDispatch,
     idPathArray,
     setIdPathArray,
   } = useContext(FilesInfoContext);
@@ -24,11 +25,9 @@ function MainViewItem(props) {
 
   const handleFolderCardDbClick = (folderId) => {
     setIdPathArray([...idPathArray, folderId]);
-    setCurrentFolderInfo((prev) => {
-      return {
-        ...prev,
-        currentFolderId: folderId,
-      };
+    currentFolderDispatch({
+      type: FILE_ACTIONS.OPEN_FOLDER,
+      payload: folderId,
     });
   };
 

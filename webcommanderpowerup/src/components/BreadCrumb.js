@@ -1,22 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { FILE_ACTIONS } from "../action/FileAction";
 import { FilesInfoContext } from "../contexts/FilesInfoContext";
 
 function BreadCrumb() {
-  const { currentFolderInfo, setCurrentFolderInfo, idPathArray } = useContext(
+  const { currentFolderState, currentFolderDispatch, idPathArray } = useContext(
     FilesInfoContext
   );
 
-  const handlePathLinkClick = (index) => {
-    setCurrentFolderInfo((prev) => {
-      return {
-        ...prev,
-        pathArray: prev.pathArray.slice(0, index + 1),
-        currentFolderId: idPathArray[index],
-      };
-    });
-  };
-
-  const decoratedPath = currentFolderInfo.pathArray.map((pathPart, index) => {
+  const decoratedPath = currentFolderState.pathArray.map((pathPart, index) => {
     return (
       <li key={index.toString() + pathPart} className="breadcrumb-item">
         <a href="#" onClick={() => handlePathLinkClick(index)}>
@@ -26,6 +17,20 @@ function BreadCrumb() {
     );
   });
 
+  const handlePathLinkClick = (index) => {
+    const targetPath = {
+      index: index,
+      idPathArray: idPathArray,
+    };
+    currentFolderDispatch({
+      type: FILE_ACTIONS.TO_PREV_FOLDER,
+      payload: targetPath,
+    });
+  };
+
+  useEffect(() => {
+    console.log("asdasd");
+  }, []);
   return (
     // Bootstrap breadcrumb
     <div className="breadcrumb-screen row border-bottom">

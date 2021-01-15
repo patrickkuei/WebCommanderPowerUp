@@ -5,8 +5,8 @@ import MainViewItem from "./MainViewItem";
 import { FilesInfoContext } from "../contexts/FilesInfoContext";
 
 function MainView(props) {
-  const { currentFolderInfo } = useContext(FilesInfoContext);
-  const { childrenFiles } = currentFolderInfo;
+  const { currentFolderState } = useContext(FilesInfoContext);
+  const { childrenFiles } = currentFolderState;
   return (
     <div className="main__main-view row border-bottom overflow-auto">
       {childrenFiles.map((file) => (

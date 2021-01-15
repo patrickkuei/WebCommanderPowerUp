@@ -1,22 +1,18 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, useReducer, Fragment } from "react";
 
 import { FilesInfoContext } from "../contexts/FilesInfoContext";
 
 import LeftNavbar from "./LeftNavbar";
 import Main from "./Main";
 
-import filesAPI from "../api/filesAPI";
+import filesAPI from "../api/FilesAPI";
+import { fileReducer } from "../reducers/FileReducer";
+import { FILE_ACTIONS } from "../action/FileAction";
 
 function HomePage() {
   const [foldersInfo, setFoldersInfo] = useState({
     isLoaded: false,
     folders: [],
-  });
-
-  const [currentFolderInfo, setCurrentFolderInfo] = useState({
-    currentFolderId: "C10CB365-44AA-4946-B8C5-FD4C8D007863",
-    pathArray: [],
-    childrenFiles: [],
   });
 
   const [idPathArray, setIdPathArray] = useState([
@@ -31,16 +27,22 @@ function HomePage() {
     });
   };
 
+  const initialCurrentFolder = {
+    folderId: "C10CB365-44AA-4946-B8C5-FD4C8D007863",
+    pathArray: [],
+    childrenFiles: [],
+  };
+
+  const [currentFolderState, currentFolderDispatch] = useReducer(
+    fileReducer,
+    initialCurrentFolder
+  );
+
   const fetchFolderFiles = () => {
-    const { data } = filesAPI.getFilesByFolderId(
-      currentFolderInfo.currentFolderId
-    );
-    setCurrentFolderInfo((prev) => {
-      return {
-        ...prev,
-        pathArray: data.fullPath.split("\\"),
-        childrenFiles: data.children,
-      };
+    const { data } = filesAPI.getFilesByFolderId(currentFolderState.folderId);
+    currentFolderDispatch({
+      type: FILE_ACTIONS.FETCH_FOLDER_FILES,
+      payload: data,
     });
   };
 
@@ -55,8 +57,10 @@ function HomePage() {
 
   useEffect(() => {
     fetchFolderFiles();
-  }, [currentFolderInfo.currentFolderId]);
+  }, [currentFolderState.folderId]);
 
+  // console.log("currentFolderState", currentFolderState.folderId);
+  // console.log("idPathArray", idPathArray);
   return (
     <Fragment>
       {foldersInfo.isLoaded ? (
@@ -64,8 +68,8 @@ function HomePage() {
           value={{
             foldersInfo,
             setFoldersInfo,
-            currentFolderInfo,
-            setCurrentFolderInfo,
+            currentFolderState,
+            currentFolderDispatch,
             idPathArray,
             setIdPathArray,
           }}
