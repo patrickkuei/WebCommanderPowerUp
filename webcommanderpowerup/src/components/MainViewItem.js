@@ -5,7 +5,12 @@ import { FilesInfoContext } from "../contexts/FilesInfoContext";
 function MainViewItem(props) {
   const { file } = props;
   const { selectedFiles, setSelectedFiles } = useContext(SelectedFilesContext);
-  const { currentFolderId, setCurrentFolderId } = useContext(FilesInfoContext);
+  const {
+    currentFolderInfo,
+    setCurrentFolderInfo,
+    idPathArray,
+    setIdPathArray,
+  } = useContext(FilesInfoContext);
 
   const handleCheckBoxClick = (e, fileId) => {
     if (e.target.checked) {
@@ -18,7 +23,13 @@ function MainViewItem(props) {
   };
 
   const handleFolderCardDbClick = (folderId) => {
-    setCurrentFolderId(folderId);
+    setIdPathArray([...idPathArray, folderId]);
+    setCurrentFolderInfo((prev) => {
+      return {
+        ...prev,
+        currentFolderId: folderId,
+      };
+    });
   };
 
   return (

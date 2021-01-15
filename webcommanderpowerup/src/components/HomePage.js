@@ -1,41 +1,73 @@
 import React, { useState, useEffect, Fragment } from "react";
 
 import { FilesInfoContext } from "../contexts/FilesInfoContext";
-import fileAPI from "../api/filesAPI";
 
-import BreadCrumb from "./BreadCrumb";
 import LeftNavbar from "./LeftNavbar";
 import Main from "./Main";
 
+import filesAPI from "../api/filesAPI";
+
 function HomePage() {
-  const [filesInfo, setFilesInfo] = useState({
+  const [foldersInfo, setFoldersInfo] = useState({
     isLoaded: false,
-    files: [],
+    folders: [],
   });
 
-  const [currentFolderId, setCurrentFolderId] = useState("root");
+  const [currentFolderInfo, setCurrentFolderInfo] = useState({
+    currentFolderId: "C10CB365-44AA-4946-B8C5-FD4C8D007863",
+    pathArray: [],
+    childrenFiles: [],
+  });
 
-  const initialFoldersInfo = () => {
-    const res = fileAPI.getFoldersInfo();
-    setFilesInfo({
+  const [idPathArray, setIdPathArray] = useState([
+    "C10CB365-44AA-4946-B8C5-FD4C8D007863",
+  ]);
+
+  const fetchFolders = () => {
+    const { data } = filesAPI.getFoldersInfo();
+    setFoldersInfo({
       isLoaded: true,
-      files: res.data,
+      folders: data,
     });
   };
 
+  const fetchFolderFiles = () => {
+    const { data } = filesAPI.getFilesByFolderId(
+      currentFolderInfo.currentFolderId
+    );
+    setCurrentFolderInfo((prev) => {
+      return {
+        ...prev,
+        pathArray: data.fullPath.split("\\"),
+        childrenFiles: data.children,
+      };
+    });
+  };
+
+  const initialize = () => {
+    fetchFolders();
+    fetchFolderFiles();
+  };
+
   useEffect(() => {
-    initialFoldersInfo();
+    initialize();
   }, []);
+
+  useEffect(() => {
+    fetchFolderFiles();
+  }, [currentFolderInfo.currentFolderId]);
 
   return (
     <Fragment>
-      {filesInfo.isLoaded ? (
+      {foldersInfo.isLoaded ? (
         <FilesInfoContext.Provider
           value={{
-            filesInfo,
-            setFilesInfo,
-            currentFolderId,
-            setCurrentFolderId,
+            foldersInfo,
+            setFoldersInfo,
+            currentFolderInfo,
+            setCurrentFolderInfo,
+            idPathArray,
+            setIdPathArray,
           }}
         >
           <div className="home-page-container container-fluid border overflow-hidden">

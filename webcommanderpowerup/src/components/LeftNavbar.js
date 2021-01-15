@@ -3,28 +3,29 @@ import React, { useContext } from "react";
 import { FilesInfoContext } from "../contexts/FilesInfoContext";
 
 function LeftNavbar() {
-  const {
-    filesInfo,
-    setFilesInfo,
-    currentFolderId,
-    setCurrentFolderId,
-  } = useContext(FilesInfoContext);
+  const { foldersInfo, setCurrentFolderInfo, setIdPathArray } = useContext(
+    FilesInfoContext
+  );
 
-  const decorateFolders = (files) => {
+  const decorateFolders = (files, array) => {
     return (
       <ul className="navbar-nav">
-        {files.map((file, index) => {
+        {files.map((file) => {
+          const resultArr = [...array];
+          resultArr.push(file.id);
+
           return (
-            <li key={index.toString() + file.id} className="nav-item">
+            <li key={file.id} className="nav-item">
               <a
                 className="nav-link active"
                 aria-current="page"
                 href="#"
-                onClick={() => handleFolderClick(file.id)}
+                data-idpath={resultArr.join("/")}
+                onClick={(e) => handleFolderClick(file.id, e)}
               >
                 {file.name}
               </a>
-              {file.children && decorateFolders(file.children)}
+              {file.children && decorateFolders(file.children, resultArr)}
             </li>
           );
         })}
@@ -32,8 +33,15 @@ function LeftNavbar() {
     );
   };
 
-  const handleFolderClick = (folderId) => {
-    setCurrentFolderId(folderId);
+  const handleFolderClick = (folderId, e) => {
+    setCurrentFolderInfo((prev) => {
+      return {
+        ...prev,
+        currentFolderId: folderId,
+      };
+    });
+
+    setIdPathArray(e.target.dataset.idpath.split("/"));
   };
 
   return (
@@ -41,7 +49,7 @@ function LeftNavbar() {
     <div className="home-page__left-bar col-2 border">
       <nav className="home-page__left-bar__navigation navbar navbar-dark bg-dark">
         <div className="container-fluid">
-          {decorateFolders(filesInfo.files)}
+          {decorateFolders(foldersInfo.folders, [])}
         </div>
       </nav>
     </div>

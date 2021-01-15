@@ -1,5 +1,6 @@
 const api = {
   getFoldersInfo: () => {
+    console.log("get folders information");
     //TODO: get folders info
     return {
       data: [
@@ -51,13 +52,15 @@ const api = {
   },
 
   getFilesByFolderId: (folderId) => {
+    console.log("get files by folder id and this id is:" + folderId);
+
     return {
       data: {
         id: "71634557-86BB-4300-87D0-4EC50C1C7BB3",
         type: 1,
         name: "New Folder",
         size: 1801647842,
-        fullPath: "C:\\Folder0\\New Folder",
+        fullPath: "桌面:\\jspp\\output\\20210107_b",
         children: [
           {
             id: "43AC5825-6184-437C-A536-2C70E4D4F56A",
