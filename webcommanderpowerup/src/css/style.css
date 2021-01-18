@@ -20,36 +20,38 @@
               .home-page-container .home-page .home-page__left-bar .home-page__left-bar__navigation .container-fluid ul a:hover {
                 color: black;
                 background-color: #b9e3ff; }
-    .home-page-container .home-page .home-page__right-div {
+    .home-page-container .home-page .home-page__folder-view {
       height: 100%; }
-      .home-page-container .home-page .home-page__right-div .breadcrumb-screen {
+      .home-page-container .home-page .home-page__folder-view .breadcrumb-screen {
         height: 10%; }
-        .home-page-container .home-page .home-page__right-div .breadcrumb-screen .breadcrumb-screen__list {
+        .home-page-container .home-page .home-page__folder-view .breadcrumb-screen .breadcrumb-screen__list {
           background-color: #ffffff; }
-      .home-page-container .home-page .home-page__right-div .main__tool-bar {
+      .home-page-container .home-page .home-page__folder-view .tool-bar {
         height: 10%; }
-        .home-page-container .home-page .home-page__right-div .main__tool-bar .main__tool-bar__button {
+        .home-page-container .home-page .home-page__folder-view .tool-bar .tool-bar__button {
           margin: 6px 10px; }
-      .home-page-container .home-page .home-page__right-div .main__main-view {
+      .home-page-container .home-page .home-page__folder-view .folder-list {
         height: 80%; }
-        .home-page-container .home-page .home-page__right-div .main__main-view .card {
+        .home-page-container .home-page .home-page__folder-view .folder-list .card {
           height: 50%; }
-          .home-page-container .home-page .home-page__right-div .main__main-view .card:hover {
+          .home-page-container .home-page .home-page__folder-view .folder-list .card:hover {
             cursor: pointer;
             background-color: #d6feff;
             transition: 0.1s; }
-        .home-page-container .home-page .home-page__right-div .main__main-view .main-view-item__checkbox {
+        .home-page-container .home-page .home-page__folder-view .folder-list .table-hover td {
+          cursor: pointer; }
+        .home-page-container .home-page .home-page__folder-view .folder-list .folder__checkbox {
           position: absolute;
           top: 0;
           left: 0;
           width: 30px;
           height: 30px; }
-        .home-page-container .home-page .home-page__right-div .main__main-view .main-view-item__content {
+        .home-page-container .home-page .home-page__folder-view .folder-list .folder__content {
           margin-top: 20px; }
-          .home-page-container .home-page .home-page__right-div .main__main-view .main-view-item__content .main-view-item__content__picture {
+          .home-page-container .home-page .home-page__folder-view .folder-list .folder__content .folder__content__picture {
             display: block;
             margin: auto; }
-          .home-page-container .home-page .home-page__right-div .main__main-view .main-view-item__content .main-view-item__content__picture-name {
+          .home-page-container .home-page .home-page__folder-view .folder-list .folder__content .folder__content__picture-name {
             padding: 0; }
 
 ::-webkit-scrollbar {

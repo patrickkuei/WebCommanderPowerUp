@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { SelectedFilesContext } from "../contexts/SelectedFilesContext";
 
-function Toolbar() {
+function Toolbar(props) {
+  const { isDetail, setIsDetail } = props;
   const { selectedFiles, setSelectedFiles } = useContext(SelectedFilesContext);
   const [disabled, setDisabled] = useState(true);
 
@@ -15,37 +16,54 @@ function Toolbar() {
     console.log(`DELETE THESE FILES ${selectedFiles}`);
   };
 
+  const handleDetailSwitch = () => {
+    setIsDetail((prev) => !prev);
+  };
+
   useEffect(() => {
     setDisabled(!selectedFiles.length > 0);
   }, [selectedFiles]);
 
   return (
     // Bootstrap Toolbar
-    <div className="main__tool-bar border-bottom row">
-      <button
-        type="button"
-        className="main__tool-bar__button btn btn-outline-primary btn-sm"
-        onClick={handleCopy}
-        disabled={disabled}
-      >
-        Copy
-      </button>
-      <button
-        type="button"
-        className="main__tool-bar__button btn btn-outline-primary btn-sm"
-        onClick={handlePaste}
-        disabled={disabled}
-      >
-        Paste
-      </button>
-      <button
-        type="button"
-        className="main__tool-bar__button btn btn-outline-primary btn-sm"
-        onClick={handleDelete}
-        disabled={disabled}
-      >
-        Delete
-      </button>
+    <div className="tool-bar border-bottom row">
+      <div className="col-12">
+        <button
+          type="button"
+          className="tool-bar__button btn btn-outline-primary btn-sm"
+          onClick={handleCopy}
+          disabled={disabled}
+        >
+          Copy
+        </button>
+        <button
+          type="button"
+          className="tool-bar__button btn btn-outline-primary btn-sm"
+          onClick={handlePaste}
+          disabled={disabled}
+        >
+          Paste
+        </button>
+        <button
+          type="button"
+          className="tool-bar__button btn btn-outline-primary btn-sm"
+          onClick={handleDelete}
+          disabled={disabled}
+        >
+          Delete
+        </button>
+        <button
+          type="button"
+          className={
+            isDetail
+              ? "tool-bar__button btn-sm btn btn-primary float-right"
+              : "tool-bar__button btn-sm btn btn-outline-primary float-right"
+          }
+          onClick={handleDetailSwitch}
+        >
+          detail
+        </button>
+      </div>
     </div>
   );
 }

@@ -1,23 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
-import MainView from "./MainView";
+import FolderList from "./FolderList";
 import Toolbar from "./Toolbar";
 import BreadCrumb from "./BreadCrumb";
 import { SelectedFilesContext } from "../contexts/SelectedFilesContext";
 
-function Main() {
+function FolderView() {
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [isDetail, setIsDetail] = useState(false);
 
   return (
-    <div className="home-page__right-div col-10">
+    <div className="home-page__folder-view col-10">
       <SelectedFilesContext.Provider
         value={{ selectedFiles, setSelectedFiles }}
       >
         <BreadCrumb />
-        <Toolbar />
-        <MainView />
+        <Toolbar isDetail={isDetail} setIsDetail={setIsDetail} />
+        <FolderList isDetail={isDetail} />
       </SelectedFilesContext.Provider>
     </div>
   );
 }
 
-export default Main;
+export default FolderView;

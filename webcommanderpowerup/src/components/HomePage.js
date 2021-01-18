@@ -3,7 +3,7 @@ import React, { useState, useEffect, Fragment } from "react";
 import { FilesInfoContext } from "../contexts/FilesInfoContext";
 
 import LeftNavbar from "./LeftNavbar";
-import Main from "./Main";
+import FolderView from "./FolderView";
 
 import filesAPI from "../api/filesAPI";
 
@@ -73,7 +73,7 @@ function HomePage() {
           <div className="home-page-container container-fluid border overflow-hidden">
             <div className="home-page row">
               <LeftNavbar />
-              <Main />
+              <FolderView />
             </div>
           </div>
         </FilesInfoContext.Provider>

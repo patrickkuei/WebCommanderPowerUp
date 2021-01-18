@@ -34,7 +34,7 @@
       }
     }
 
-    .home-page__right-div {
+    .home-page__folder-view {
       height: 100%;
 
       .breadcrumb-screen {
@@ -44,14 +44,14 @@
           background-color: #ffffff;
         }
       }
-      .main__tool-bar {
+      .tool-bar {
         height: 10%;
 
-        .main__tool-bar__button {
+        .tool-bar__button {
           margin: 6px 10px;
         }
       }
-      .main__main-view {
+      .folder-list {
         height: 80%;
 
         .card {
@@ -62,20 +62,24 @@
             transition: 0.1s;
           }
         }
-        .main-view-item__checkbox {
+        .table-hover td {
+          cursor: pointer;
+        }
+
+        .folder__checkbox {
           position: absolute;
           top: 0;
           left: 0;
           width: 30px;
           height: 30px;
         }
-        .main-view-item__content {
+        .folder__content {
           margin-top: 20px;
-          .main-view-item__content__picture {
+          .folder__content__picture {
             display: block;
             margin: auto;
           }
-          .main-view-item__content__picture-name {
+          .folder__content__picture-name {
             padding: 0;
           }
         }
