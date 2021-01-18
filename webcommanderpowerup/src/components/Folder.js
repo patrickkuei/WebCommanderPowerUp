@@ -64,7 +64,7 @@ function Folder(props) {
         </td>
         <td scope="row">{file.name}</td>
         <td>{typeName.toUpperCase()}</td>
-        <td>{file.size.toLocaleString()}</td>
+        <td>{file.size.toLocaleString()} KB</td>
       </tr>
     );
   }
