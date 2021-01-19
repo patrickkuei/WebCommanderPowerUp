@@ -9,7 +9,7 @@ function FolderView() {
   const [isDetail, setIsDetail] = useState(false);
 
   return (
-    <div className="home-page__folder-view col-10">
+    <div className="folder-view col-10 h-100">
       <SelectedFilesContext.Provider
         value={{ selectedFiles, setSelectedFiles }}
       >

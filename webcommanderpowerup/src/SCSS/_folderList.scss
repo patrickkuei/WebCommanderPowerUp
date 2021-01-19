@@ -1,0 +1,33 @@
+.folder-list {
+  height: 80%;
+
+  .card {
+    height: 50%;
+    &:hover {
+      cursor: pointer;
+      background-color: #d6feff;
+      transition: 0.1s;
+    }
+  }
+  .table-hover td {
+    cursor: pointer;
+  }
+
+  .folder__checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+  }
+  .folder__content {
+    margin-top: 20px;
+    .folder__content__picture {
+      display: block;
+      margin: auto;
+    }
+    .folder__content__picture-name {
+      padding: 0;
+    }
+  }
+}

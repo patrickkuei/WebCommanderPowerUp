@@ -4,9 +4,9 @@ import { FilesInfoContext } from "../contexts/FilesInfoContext";
 
 import LeftNavbar from "./LeftNavbar";
 import FolderView from "./FolderView";
+import LoadingPage from "./LoadingPage";
 
 import filesAPI from "../api/filesAPI";
-import LoadingPage from "./LoadingPage";
 
 function HomePage() {
   const [foldersInfo, setFoldersInfo] = useState({
@@ -60,7 +60,7 @@ function HomePage() {
 
   return (
     <Fragment>
-      {foldersInfo.isLoaded ? (
+      {!foldersInfo.isLoaded ? (
         <FilesInfoContext.Provider
           value={{
             foldersInfo,
@@ -72,7 +72,7 @@ function HomePage() {
           }}
         >
           <div className="home-page-container container-fluid border overflow-hidden">
-            <div className="home-page row">
+            <div className="row h-100">
               <LeftNavbar />
               <FolderView />
             </div>

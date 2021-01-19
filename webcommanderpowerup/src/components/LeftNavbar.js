@@ -46,8 +46,8 @@ function LeftNavbar() {
 
   return (
     // Bootstrap LeftNavbar
-    <div className="home-page__left-bar col-2 border">
-      <nav className="home-page__left-bar__navigation navbar navbar-dark bg-dark">
+    <div className="left-bar col-2 border">
+      <nav className="left-bar__navigation navbar navbar-dark bg-dark">
         <div className="container-fluid">
           {decorateFolders(foldersInfo.folders, [])}
         </div>
