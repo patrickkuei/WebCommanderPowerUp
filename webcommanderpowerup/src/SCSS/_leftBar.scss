@@ -1,0 +1,30 @@
+.home-page__left-bar {
+  padding: 0;
+
+  .home-page__left-bar__navigation {
+    display: block;
+    padding: 6px 0 0 0;
+    height: 100%;
+    overflow: auto;
+
+    .container-fluid {
+      padding-left: 8px;
+
+      ul {
+        margin-left: 12px;
+
+        li {
+          line-height: 12px;
+        }
+
+        a {
+          display: block;
+          &:hover {
+            color: rgb(0, 0, 0);
+            background-color: rgb(185, 227, 255);
+          }
+        }
+      }
+    }
+  }
+}

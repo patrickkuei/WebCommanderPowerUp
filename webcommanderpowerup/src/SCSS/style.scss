@@ -1,91 +1,13 @@
+@import "leftBar.scss";
+@import "folderView.scss";
+@import "loadingPage.scss";
+
 .home-page-container {
   height: 70vh;
+}
 
-  .home-page {
-    height: 100%;
-    .home-page__left-bar {
-      padding: 0;
-
-      .home-page__left-bar__navigation {
-        display: block;
-        padding: 6px 0 0 0;
-        height: 100%;
-        overflow: auto;
-
-        .container-fluid {
-          padding-left: 8px;
-
-          ul {
-            margin-left: 12px;
-
-            li {
-              line-height: 12px;
-            }
-
-            a {
-              display: block;
-              &:hover {
-                color: rgb(0, 0, 0);
-                background-color: rgb(185, 227, 255);
-              }
-            }
-          }
-        }
-      }
-    }
-
-    .home-page__folder-view {
-      height: 100%;
-
-      .breadcrumb-screen {
-        height: 10%;
-
-        .breadcrumb-screen__list {
-          background-color: #ffffff;
-        }
-      }
-      .tool-bar {
-        height: 10%;
-
-        .tool-bar__button {
-          margin: 6px 10px;
-        }
-      }
-      .folder-list {
-        height: 80%;
-
-        .card {
-          height: 50%;
-          &:hover {
-            cursor: pointer;
-            background-color: #d6feff;
-            transition: 0.1s;
-          }
-        }
-        .table-hover td {
-          cursor: pointer;
-        }
-
-        .folder__checkbox {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 30px;
-          height: 30px;
-        }
-        .folder__content {
-          margin-top: 20px;
-          .folder__content__picture {
-            display: block;
-            margin: auto;
-          }
-          .folder__content__picture-name {
-            padding: 0;
-          }
-        }
-      }
-    }
-  }
+.home-page {
+  height: 100%;
 }
 
 ::-webkit-scrollbar {

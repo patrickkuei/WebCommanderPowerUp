@@ -1,58 +1,67 @@
+.home-page__left-bar {
+  padding: 0; }
+  .home-page__left-bar .home-page__left-bar__navigation {
+    display: block;
+    padding: 6px 0 0 0;
+    height: 100%;
+    overflow: auto; }
+    .home-page__left-bar .home-page__left-bar__navigation .container-fluid {
+      padding-left: 8px; }
+      .home-page__left-bar .home-page__left-bar__navigation .container-fluid ul {
+        margin-left: 12px; }
+        .home-page__left-bar .home-page__left-bar__navigation .container-fluid ul li {
+          line-height: 12px; }
+        .home-page__left-bar .home-page__left-bar__navigation .container-fluid ul a {
+          display: block; }
+          .home-page__left-bar .home-page__left-bar__navigation .container-fluid ul a:hover {
+            color: black;
+            background-color: #b9e3ff; }
+
+.home-page {
+  height: 100%; }
+
+.home-page__folder-view {
+  height: 100%; }
+  .home-page__folder-view .breadcrumb-screen {
+    height: 10%; }
+    .home-page__folder-view .breadcrumb-screen .breadcrumb-screen__list {
+      background-color: #ffffff; }
+  .home-page__folder-view .tool-bar {
+    height: 10%; }
+    .home-page__folder-view .tool-bar .tool-bar__button {
+      margin: 6px 10px; }
+  .home-page__folder-view .folder-list {
+    height: 80%; }
+    .home-page__folder-view .folder-list .card {
+      height: 50%; }
+      .home-page__folder-view .folder-list .card:hover {
+        cursor: pointer;
+        background-color: #d6feff;
+        transition: 0.1s; }
+    .home-page__folder-view .folder-list .table-hover td {
+      cursor: pointer; }
+    .home-page__folder-view .folder-list .folder__checkbox {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30px;
+      height: 30px; }
+    .home-page__folder-view .folder-list .folder__content {
+      margin-top: 20px; }
+      .home-page__folder-view .folder-list .folder__content .folder__content__picture {
+        display: block;
+        margin: auto; }
+      .home-page__folder-view .folder-list .folder__content .folder__content__picture-name {
+        padding: 0; }
+
+.loading-page-container {
+  height: 70vh; }
+
 .home-page-container {
   height: 70vh; }
-  .home-page-container .home-page {
-    height: 100%; }
-    .home-page-container .home-page .home-page__left-bar {
-      padding: 0; }
-      .home-page-container .home-page .home-page__left-bar .home-page__left-bar__navigation {
-        display: block;
-        padding: 6px 0 0 0;
-        height: 100%;
-        overflow: auto; }
-        .home-page-container .home-page .home-page__left-bar .home-page__left-bar__navigation .container-fluid {
-          padding-left: 8px; }
-          .home-page-container .home-page .home-page__left-bar .home-page__left-bar__navigation .container-fluid ul {
-            margin-left: 12px; }
-            .home-page-container .home-page .home-page__left-bar .home-page__left-bar__navigation .container-fluid ul li {
-              line-height: 12px; }
-            .home-page-container .home-page .home-page__left-bar .home-page__left-bar__navigation .container-fluid ul a {
-              display: block; }
-              .home-page-container .home-page .home-page__left-bar .home-page__left-bar__navigation .container-fluid ul a:hover {
-                color: black;
-                background-color: #b9e3ff; }
-    .home-page-container .home-page .home-page__folder-view {
-      height: 100%; }
-      .home-page-container .home-page .home-page__folder-view .breadcrumb-screen {
-        height: 10%; }
-        .home-page-container .home-page .home-page__folder-view .breadcrumb-screen .breadcrumb-screen__list {
-          background-color: #ffffff; }
-      .home-page-container .home-page .home-page__folder-view .tool-bar {
-        height: 10%; }
-        .home-page-container .home-page .home-page__folder-view .tool-bar .tool-bar__button {
-          margin: 6px 10px; }
-      .home-page-container .home-page .home-page__folder-view .folder-list {
-        height: 80%; }
-        .home-page-container .home-page .home-page__folder-view .folder-list .card {
-          height: 50%; }
-          .home-page-container .home-page .home-page__folder-view .folder-list .card:hover {
-            cursor: pointer;
-            background-color: #d6feff;
-            transition: 0.1s; }
-        .home-page-container .home-page .home-page__folder-view .folder-list .table-hover td {
-          cursor: pointer; }
-        .home-page-container .home-page .home-page__folder-view .folder-list .folder__checkbox {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 30px;
-          height: 30px; }
-        .home-page-container .home-page .home-page__folder-view .folder-list .folder__content {
-          margin-top: 20px; }
-          .home-page-container .home-page .home-page__folder-view .folder-list .folder__content .folder__content__picture {
-            display: block;
-            margin: auto; }
-          .home-page-container .home-page .home-page__folder-view .folder-list .folder__content .folder__content__picture-name {
-            padding: 0; }
+
+.home-page {
+  height: 100%; }
 
 ::-webkit-scrollbar {
   width: 10px; }
