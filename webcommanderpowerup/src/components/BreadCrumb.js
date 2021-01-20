@@ -10,13 +10,12 @@ function BreadCrumb() {
     setCurrentFolderInfo((prev) => {
       return {
         ...prev,
-        pathArray: prev.pathArray.slice(0, index + 1),
         currentFolderId: idPathArray[index],
       };
     });
   };
 
-  const decoratedPath = currentFolderInfo.pathArray.map((pathPart, index) => {
+  const renderedPath = currentFolderInfo.pathArray.map((pathPart, index) => {
     return (
       <li key={index.toString() + pathPart} className="breadcrumb-item">
         <a href="#" onClick={() => handlePathLinkClick(index)}>
@@ -30,7 +29,7 @@ function BreadCrumb() {
     // Bootstrap breadcrumb
     <div className="breadcrumb-screen row border-bottom">
       <nav aria-label="breadcrumb">
-        <ol className="breadcrumb-screen__list breadcrumb">{decoratedPath}</ol>
+        <ol className="breadcrumb-screen__list breadcrumb">{renderedPath}</ol>
       </nav>
     </div>
   );

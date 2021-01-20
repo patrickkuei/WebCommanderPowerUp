@@ -13,7 +13,6 @@ function HomePage() {
     isLoaded: false,
     folders: [],
   });
-
   const [currentFolderInfo, setCurrentFolderInfo] = useState({
     currentFolderId: "C10CB365-44AA-4946-B8C5-FD4C8D007863",
     pathArray: [],
@@ -60,7 +59,7 @@ function HomePage() {
 
   return (
     <Fragment>
-      {!foldersInfo.isLoaded ? (
+      {foldersInfo.isLoaded ? (
         <FilesInfoContext.Provider
           value={{
             foldersInfo,
