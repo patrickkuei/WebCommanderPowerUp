@@ -7,7 +7,7 @@ function LeftNavbar() {
     FilesInfoContext
   );
 
-  const decorateFolders = (files, array) => {
+  const renderFolders = (files, array) => {
     return (
       <ul className="navbar-nav">
         {files.map((file) => {
@@ -25,7 +25,7 @@ function LeftNavbar() {
               >
                 {file.name}
               </a>
-              {file.children && decorateFolders(file.children, resultArr)}
+              {file.children && renderFolders(file.children, resultArr)}
             </li>
           );
         })}
@@ -49,7 +49,7 @@ function LeftNavbar() {
     <div className="left-bar col-2 border">
       <nav className="left-bar__navigation navbar navbar-dark bg-dark">
         <div className="container-fluid">
-          {decorateFolders(foldersInfo.folders, [])}
+          {renderFolders(foldersInfo.folders, [])}
         </div>
       </nav>
     </div>
