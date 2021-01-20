@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
+import PropTypes from "prop-types";
 
 import Folder from "./Folder";
 
@@ -9,6 +10,10 @@ function FolderList(props) {
   const { childrenFiles } = currentFolderInfo;
   const { isDetail } = props;
 
+  FolderList.propTypes = {
+    isDetail: PropTypes.bool,
+  };
+
   return (
     <div className="folder-list row border-bottom overflow-auto">
       {!isDetail ? (
@@ -16,7 +21,7 @@ function FolderList(props) {
           <Folder key={file.id} file={file} isDetail={isDetail} />
         ))
       ) : (
-        <table class="table table-hover">
+        <table className="table table-hover">
           <thead>
             <tr>
               <th>#</th>

@@ -6,7 +6,7 @@ export default function LoadingBreadCrumb() {
 
   for (let i = 0; i < 3; i++) {
     listArray.push(
-      <li className="breadcrumb-item">
+      <li key={i} className="breadcrumb-item">
         <ContentLoader
           speed={3}
           width={70}

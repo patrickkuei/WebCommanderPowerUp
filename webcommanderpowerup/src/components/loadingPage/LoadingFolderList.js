@@ -6,7 +6,7 @@ export default function LoadingFolderList() {
 
   for (let i = 0; i < 8; i++) {
     cardList.push(
-      <div className="col-3 card">
+      <div key={i} className="col-3 card">
         <div className="folder__content">
           <svg
             xmlns="http://www.w3.org/2000/svg"

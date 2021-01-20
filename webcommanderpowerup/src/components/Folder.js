@@ -1,4 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
+import PropTypes from "prop-types";
+
 import { SelectedFilesContext } from "../contexts/SelectedFilesContext";
 import { FilesInfoContext } from "../contexts/FilesInfoContext";
 import { useIcon } from "../constants/icons";
@@ -31,6 +33,11 @@ function Folder(props) {
         currentFolderId: folderId,
       };
     });
+  };
+
+  Folder.propTypes = {
+    file: PropTypes.object,
+    isDetail: PropTypes.bool,
   };
 
   if (!isDetail) {

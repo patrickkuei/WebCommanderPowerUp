@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
+import PropTypes from "prop-types";
+
 import { SelectedFilesContext } from "../contexts/SelectedFilesContext";
 
 function Toolbar(props) {
   const { isDetail, setIsDetail } = props;
-  const { selectedFiles, setSelectedFiles } = useContext(SelectedFilesContext);
+  const { selectedFiles } = useContext(SelectedFilesContext);
   const [disabled, setDisabled] = useState(true);
 
   const handleCopy = () => {
@@ -23,6 +25,11 @@ function Toolbar(props) {
   useEffect(() => {
     setDisabled(!selectedFiles.length > 0);
   }, [selectedFiles]);
+
+  Toolbar.propTypes = {
+    isDetail: PropTypes.bool,
+    setIsDetail: PropTypes.func,
+  };
 
   return (
     // Bootstrap Toolbar
