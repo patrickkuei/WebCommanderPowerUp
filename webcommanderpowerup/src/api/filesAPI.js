@@ -60,21 +60,21 @@ const api = {
         type: 1,
         name: "New Folder",
         size: 1801647842,
-        fullPath: "桌面:\\jspp\\output\\20210107_b",
+
         children: [
           {
             id: "43AC5825-6184-437C-A536-2C70E4D4F56A",
             type: 1,
             name: "configs",
             size: 696,
-            fullPath: "C:\\Folder0\\New Folder\\configs",
+
             children: [
               {
                 id: "51C87985-C9C0-4ABD-9737-4F8E14B19CF0",
                 type: 3,
                 name: "nai may.jpg",
                 size: 696,
-                fullPath: "C:\\Folder0\\New Folder\\configs\\nai may.jpg",
+
                 children: [],
               },
             ],
@@ -84,14 +84,14 @@ const api = {
             type: 1,
             name: "configs",
             size: 696,
-            fullPath: "C:\\Folder0\\New Folder\\configs",
+
             children: [
               {
                 id: "51C87985-C9C0-4ABD-9737-4F8E14B19CF0",
                 type: 3,
                 name: "nai may.jpg",
                 size: 696,
-                fullPath: "C:\\Folder0\\New Folder\\configs\\nai may.jpg",
+
                 children: [],
               },
             ],
@@ -101,14 +101,14 @@ const api = {
             type: 1,
             name: "configs",
             size: 696,
-            fullPath: "C:\\Folder0\\New Folder\\configs",
+
             children: [
               {
                 id: "51C87985-C9C0-4ABD-9737-4F8E14B19CF0",
                 type: 3,
                 name: "nai may.jpg",
                 size: 696,
-                fullPath: "C:\\Folder0\\New Folder\\configs\\nai may.jpg",
+
                 children: [],
               },
             ],
@@ -118,14 +118,14 @@ const api = {
             type: 1,
             name: "configs",
             size: 696,
-            fullPath: "C:\\Folder0\\New Folder\\configs",
+
             children: [
               {
                 id: "51C87985-C9C0-4ABD-9737-4F8E14B19CF0",
                 type: 3,
                 name: "nai may.jpg",
                 size: 696,
-                fullPath: "C:\\Folder0\\New Folder\\configs\\nai may.jpg",
+
                 children: [],
               },
             ],
@@ -135,14 +135,14 @@ const api = {
             type: 1,
             name: "configs",
             size: 696,
-            fullPath: "C:\\Folder0\\New Folder\\configs",
+
             children: [
               {
                 id: "51C87985-C9C0-4ABD-9737-4F8E14B19CF0",
                 type: 3,
                 name: "nai may.jpg",
                 size: 696,
-                fullPath: "C:\\Folder0\\New Folder\\configs\\nai may.jpg",
+
                 children: [],
               },
             ],
@@ -152,14 +152,14 @@ const api = {
             type: 1,
             name: "configs",
             size: 696,
-            fullPath: "C:\\Folder0\\New Folder\\configs",
+
             children: [
               {
                 id: "51C87985-C9C0-4ABD-9737-4F8E14B19CF0",
                 type: 3,
                 name: "nai may.jpg",
                 size: 696,
-                fullPath: "C:\\Folder0\\New Folder\\configs\\nai may.jpg",
+
                 children: [],
               },
             ],
@@ -169,14 +169,14 @@ const api = {
             type: 1,
             name: "configs",
             size: 696,
-            fullPath: "C:\\Folder0\\New Folder\\configs",
+
             children: [
               {
                 id: "51C87985-C9C0-4ABD-9737-4F8E14B19CF0",
                 type: 3,
                 name: "nai may.jpg",
                 size: 696,
-                fullPath: "C:\\Folder0\\New Folder\\configs\\nai may.jpg",
+
                 children: [],
               },
             ],
@@ -186,14 +186,14 @@ const api = {
             type: 1,
             name: "configs",
             size: 696,
-            fullPath: "C:\\Folder0\\New Folder\\configs",
+
             children: [
               {
                 id: "51C87985-C9C0-4ABD-9737-4F8E14B19CF0",
                 type: 3,
                 name: "nai may.jpg",
                 size: 696,
-                fullPath: "C:\\Folder0\\New Folder\\configs\\nai may.jpg",
+
                 children: [],
               },
             ],
@@ -203,14 +203,14 @@ const api = {
             type: 1,
             name: "configs",
             size: 696,
-            fullPath: "C:\\Folder0\\New Folder\\configs",
+
             children: [
               {
                 id: "51C87985-C9C0-4ABD-9737-4F8E14B19CF0",
                 type: 3,
                 name: "nai may.jpg",
                 size: 696,
-                fullPath: "C:\\Folder0\\New Folder\\configs\\nai may.jpg",
+
                 children: [],
               },
             ],
@@ -220,14 +220,14 @@ const api = {
             type: 1,
             name: "configs",
             size: 696,
-            fullPath: "C:\\Folder0\\New Folder\\configs",
+
             children: [
               {
                 id: "51C87985-C9C0-4ABD-9737-4F8E14B19CF0",
                 type: 3,
                 name: "nai may.jpg",
                 size: 696,
-                fullPath: "C:\\Folder0\\New Folder\\configs\\nai may.jpg",
+
                 children: [],
               },
             ],
@@ -237,14 +237,14 @@ const api = {
             type: 1,
             name: "configs",
             size: 696,
-            fullPath: "C:\\Folder0\\New Folder\\configs",
+
             children: [
               {
                 id: "51C87985-C9C0-4ABD-9737-4F8E14B19CF0",
                 type: 3,
                 name: "nai may.jpg",
                 size: 696,
-                fullPath: "C:\\Folder0\\New Folder\\configs\\nai may.jpg",
+
                 children: [],
               },
             ],
@@ -254,14 +254,14 @@ const api = {
             type: 1,
             name: "configs",
             size: 696,
-            fullPath: "C:\\Folder0\\New Folder\\configs",
+
             children: [
               {
                 id: "51C87985-C9C0-4ABD-9737-4F8E14B19CF0",
                 type: 3,
                 name: "nai may.jpg",
                 size: 696,
-                fullPath: "C:\\Folder0\\New Folder\\configs\\nai may.jpg",
+
                 children: [],
               },
             ],
@@ -271,14 +271,14 @@ const api = {
             type: 1,
             name: "configs",
             size: 696,
-            fullPath: "C:\\Folder0\\New Folder\\configs",
+
             children: [
               {
                 id: "51C87985-C9C0-4ABD-9737-4F8E14B19CF0",
                 type: 3,
                 name: "nai may.jpg",
                 size: 696,
-                fullPath: "C:\\Folder0\\New Folder\\configs\\nai may.jpg",
+
                 children: [],
               },
             ],
@@ -288,14 +288,14 @@ const api = {
             type: 1,
             name: "configs",
             size: 696,
-            fullPath: "C:\\Folder0\\New Folder\\configs",
+
             children: [
               {
                 id: "51C87985-C9C0-4ABD-9737-4F8E14B19CF0",
                 type: 3,
                 name: "nai may.jpg",
                 size: 696,
-                fullPath: "C:\\Folder0\\New Folder\\configs\\nai may.jpg",
+
                 children: [],
               },
             ],
@@ -305,7 +305,7 @@ const api = {
             type: 2,
             name: "sog_club.txt",
             size: 36,
-            fullPath: "C:\\Folder0\\New Folder\\sog_club.txt",
+
             children: [],
           },
           {
@@ -313,7 +313,7 @@ const api = {
             type: 3,
             name: "pormhud.mp4",
             size: 1801647110,
-            fullPath: "C:\\Folder0\\New Folder\\pormhud.mp4",
+
             children: [],
           },
         ],

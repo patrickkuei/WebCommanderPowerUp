@@ -7,12 +7,14 @@ function LeftNavbar() {
     FilesInfoContext
   );
 
-  const renderFolders = (files, array) => {
+  const renderFolders = (files, idArray, nameArray) => {
     return (
       <ul className="navbar-nav">
         {files.map((file) => {
-          const resultArr = [...array];
-          resultArr.push(file.id);
+          const resultIdArr = [...idArray];
+          const resultNameArr = [...nameArray];
+          resultIdArr.push([file.id]);
+          resultNameArr.push([file.name]);
 
           return (
             <li key={file.id} className="nav-item">
@@ -20,12 +22,14 @@ function LeftNavbar() {
                 className="nav-link active"
                 aria-current="page"
                 href="#"
-                data-idpath={resultArr.join("/")}
+                data-idpath={resultIdArr.join("/")}
+                data-namepath={resultNameArr.join("/")}
                 onClick={(e) => handleFolderClick(file.id, e)}
               >
                 {file.name}
               </a>
-              {file.children && renderFolders(file.children, resultArr)}
+              {file.children &&
+                renderFolders(file.children, resultIdArr, resultNameArr)}
             </li>
           );
         })}
@@ -37,6 +41,7 @@ function LeftNavbar() {
     setCurrentFolderInfo((prev) => {
       return {
         ...prev,
+        pathArray: e.target.dataset.namepath.split("/"),
         currentFolderId: folderId,
       };
     });
@@ -49,7 +54,7 @@ function LeftNavbar() {
     <div className="left-bar col-2 border">
       <nav className="left-bar__navigation navbar navbar-dark bg-dark">
         <div className="container-fluid">
-          {renderFolders(foldersInfo.folders, [])}
+          {renderFolders(foldersInfo.folders, [], [])}
         </div>
       </nav>
     </div>

@@ -25,11 +25,12 @@ function Folder(props) {
     }
   };
 
-  const handleFolderCardDbClick = (folderId) => {
+  const handleFolderCardDbClick = (folderId, folderName) => {
     setIdPathArray([...idPathArray, folderId]);
     setCurrentFolderInfo((prev) => {
       return {
         ...prev,
+        pathArray: [...prev.pathArray, folderName],
         currentFolderId: folderId,
       };
     });
@@ -45,7 +46,7 @@ function Folder(props) {
       // Bootstrap card
       <div
         className="col-3 card"
-        onDoubleClick={() => handleFolderCardDbClick(file.id)}
+        onDoubleClick={() => handleFolderCardDbClick(file.id, file.name)}
       >
         <input
           className="folder__checkbox"

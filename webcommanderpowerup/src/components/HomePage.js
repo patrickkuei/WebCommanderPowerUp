@@ -15,7 +15,7 @@ function HomePage() {
   });
   const [currentFolderInfo, setCurrentFolderInfo] = useState({
     currentFolderId: "C10CB365-44AA-4946-B8C5-FD4C8D007863",
-    pathArray: [],
+    pathArray: ["桌面"],
     childrenFiles: [],
   });
 
@@ -38,7 +38,6 @@ function HomePage() {
     setCurrentFolderInfo((prev) => {
       return {
         ...prev,
-        pathArray: data.fullPath.split("\\"),
         childrenFiles: data.children,
       };
     });
