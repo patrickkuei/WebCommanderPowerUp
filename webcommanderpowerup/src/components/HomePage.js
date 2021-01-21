@@ -7,45 +7,46 @@ import FolderView from "./FolderView";
 import LoadingPage from "./LoadingPage";
 
 import filesAPI from "../api/filesAPI";
+import axios from "axios";
 
 function HomePage() {
+  const [isLoaded, setIsLoaded] = useState(false);
   const [foldersInfo, setFoldersInfo] = useState({
-    isLoaded: false,
     folders: [],
   });
   const [currentFolderInfo, setCurrentFolderInfo] = useState({
-    currentFolderId: "C10CB365-44AA-4946-B8C5-FD4C8D007863",
-    pathArray: ["桌面"],
+    currentFolderId: "root",
+    pathArray: ["我的電腦"],
     childrenFiles: [],
   });
 
-  const [idPathArray, setIdPathArray] = useState([
-    "C10CB365-44AA-4946-B8C5-FD4C8D007863",
-  ]);
+  const [idPathArray, setIdPathArray] = useState(["root"]);
 
-  const fetchFolders = () => {
-    const { data } = filesAPI.getFoldersInfo();
+  const fetchFolders = async () => {
+    const { data } = await filesAPI.getFoldersInfo();
     setFoldersInfo({
-      isLoaded: true,
       folders: data,
     });
   };
 
-  const fetchFolderFiles = () => {
-    const { data } = filesAPI.getFilesByFolderId(
+  const fetchFolderFiles = async () => {
+    const { data } = await filesAPI.getFilesByFolderId(
       currentFolderInfo.currentFolderId
     );
-    setCurrentFolderInfo((prev) => {
-      return {
-        ...prev,
-        childrenFiles: data.children,
-      };
-    });
+    data &&
+      setCurrentFolderInfo(() => {
+        return {
+          currentFolderId: data.id,
+          pathArray: [data.name],
+          childrenFiles: data.children,
+        };
+      });
   };
 
   const initialize = () => {
     fetchFolders();
     fetchFolderFiles();
+    setIsLoaded(true);
   };
 
   useEffect(() => {
@@ -58,7 +59,7 @@ function HomePage() {
 
   return (
     <Fragment>
-      {foldersInfo.isLoaded ? (
+      {isLoaded ? (
         <FilesInfoContext.Provider
           value={{
             foldersInfo,
