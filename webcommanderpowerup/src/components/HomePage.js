@@ -7,14 +7,14 @@ import FolderView from "./FolderView";
 import LoadingPage from "./LoadingPage";
 
 import filesAPI from "../api/filesAPI";
-import axios from "axios";
 
 function HomePage() {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [folderHierarchy, setFolderHierarchy] = useState({
+    isLoading: true,
     folders: [],
   });
   const [currentFolder, setCurrentFolder] = useState({
+    isLoading: true,
     id: "root",
     children: [],
   });
@@ -26,6 +26,7 @@ function HomePage() {
     const { data } = await filesAPI.getFolderHierarchy();
 
     setFolderHierarchy({
+      isLoading: false,
       folders: data,
     });
   };
@@ -33,19 +34,18 @@ function HomePage() {
   const fetchFolderFiles = async () => {
     const { data } = await filesAPI.getFilesById(currentFolder.id);
 
-    data &&
-      setCurrentFolder(() => {
-        return {
-          id: data.id,
-          children: data.children,
-        };
-      });
+    setCurrentFolder(() => {
+      return {
+        isLoading: false,
+        id: data.id,
+        children: data.children,
+      };
+    });
   };
 
   const initialize = () => {
     fetchFolderHierarchy();
     fetchFolderFiles();
-    setIsLoaded(true);
   };
 
   useEffect(() => {
@@ -53,12 +53,17 @@ function HomePage() {
   }, []);
 
   useEffect(() => {
+    setCurrentFolder((prev) => {
+      return { ...prev, isLoading: true };
+    });
     fetchFolderFiles();
   }, [currentFolder.id]);
 
   return (
     <Fragment>
-      {isLoaded ? (
+      {folderHierarchy.isLoading && currentFolder.isLoading ? (
+        <LoadingPage />
+      ) : (
         <FilesInfoContext.Provider
           value={{
             folderHierarchy,
@@ -76,8 +81,6 @@ function HomePage() {
             </div>
           </div>
         </FilesInfoContext.Provider>
-      ) : (
-        <LoadingPage />
       )}
     </Fragment>
   );
