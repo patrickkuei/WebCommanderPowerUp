@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { FilesInfoContext } from "../contexts/FilesInfoContext";
 
 function LeftNavbar() {
-  const { foldersInfo, setCurrentFolderInfo, setIdPathArray } = useContext(
+  const { folderHierarchy, setCurrentFolder, setPathArray } = useContext(
     FilesInfoContext
   );
 
@@ -37,16 +37,27 @@ function LeftNavbar() {
     );
   };
 
-  const handleFolderClick = (folderId, e) => {
-    setCurrentFolderInfo((prev) => {
+  const handleFolderClick = (clickedFolderId, e) => {
+    setCurrentFolder((prev) => {
       return {
         ...prev,
-        pathArray: e.target.dataset.namepath.split("/"),
-        currentFolderId: folderId,
+        id: clickedFolderId,
       };
     });
 
-    setIdPathArray(e.target.dataset.idpath.split("/"));
+    setPathArray(getNewPathArray(e));
+  };
+
+  const getNewPathArray = (e) => {
+    const result = [];
+    const idArray = e.target.dataset.idpath.split("/");
+    const nameArray = e.target.dataset.namepath.split("/");
+
+    for (let i = 0; i < idArray.length; i++) {
+      result.push({ id: idArray[i], name: nameArray[i] });
+    }
+
+    return result;
   };
 
   return (
@@ -54,7 +65,7 @@ function LeftNavbar() {
     <div className="left-bar col-2 border">
       <nav className="left-bar__navigation navbar navbar-dark bg-dark">
         <div className="container-fluid">
-          {renderFolders(foldersInfo.folders, [], [])}
+          {renderFolders(folderHierarchy.folders, [], [])}
         </div>
       </nav>
     </div>

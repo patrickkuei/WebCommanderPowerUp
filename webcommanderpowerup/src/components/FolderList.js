@@ -6,8 +6,8 @@ import Folder from "./Folder";
 import { FilesInfoContext } from "../contexts/FilesInfoContext";
 
 function FolderList(props) {
-  const { currentFolderInfo } = useContext(FilesInfoContext);
-  const { childrenFiles } = currentFolderInfo;
+  const { currentFolder } = useContext(FilesInfoContext);
+  const { children } = currentFolder;
   const { isDetail } = props;
 
   FolderList.propTypes = {
@@ -17,7 +17,7 @@ function FolderList(props) {
   return (
     <div className="folder-list row border-bottom overflow-auto">
       {!isDetail ? (
-        childrenFiles.map((file) => (
+        children.map((file) => (
           <Folder key={file.id} file={file} isDetail={isDetail} />
         ))
       ) : (
@@ -31,7 +31,7 @@ function FolderList(props) {
             </tr>
           </thead>
           <tbody>
-            {childrenFiles.map((file) => (
+            {children.map((file) => (
               <Folder key={file.id} file={file} isDetail={isDetail} />
             ))}
           </tbody>

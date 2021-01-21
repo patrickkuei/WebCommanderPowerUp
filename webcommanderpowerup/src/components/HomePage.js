@@ -11,40 +11,39 @@ import axios from "axios";
 
 function HomePage() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [foldersInfo, setFoldersInfo] = useState({
+  const [folderHierarchy, setFolderHierarchy] = useState({
     folders: [],
   });
-  const [currentFolderInfo, setCurrentFolderInfo] = useState({
-    currentFolderId: "root",
-    pathArray: ["我的電腦"],
-    childrenFiles: [],
+  const [currentFolder, setCurrentFolder] = useState({
+    id: "root",
+    children: [],
   });
+  const [pathArray, setPathArray] = useState([
+    { id: "root", name: "我的電腦" },
+  ]);
 
-  const [idPathArray, setIdPathArray] = useState(["root"]);
+  const fetchFolderHierarchy = async () => {
+    const { data } = await filesAPI.getFolderHierarchy();
 
-  const fetchFolders = async () => {
-    const { data } = await filesAPI.getFoldersInfo();
-    setFoldersInfo({
+    setFolderHierarchy({
       folders: data,
     });
   };
 
   const fetchFolderFiles = async () => {
-    const { data } = await filesAPI.getFilesByFolderId(
-      currentFolderInfo.currentFolderId
-    );
+    const { data } = await filesAPI.getFilesById(currentFolder.id);
+
     data &&
-      setCurrentFolderInfo(() => {
+      setCurrentFolder(() => {
         return {
-          currentFolderId: data.id,
-          pathArray: [data.name],
-          childrenFiles: data.children,
+          id: data.id,
+          children: data.children,
         };
       });
   };
 
   const initialize = () => {
-    fetchFolders();
+    fetchFolderHierarchy();
     fetchFolderFiles();
     setIsLoaded(true);
   };
@@ -55,19 +54,19 @@ function HomePage() {
 
   useEffect(() => {
     fetchFolderFiles();
-  }, [currentFolderInfo.currentFolderId]);
+  }, [currentFolder.id]);
 
   return (
     <Fragment>
       {isLoaded ? (
         <FilesInfoContext.Provider
           value={{
-            foldersInfo,
-            setFoldersInfo,
-            currentFolderInfo,
-            setCurrentFolderInfo,
-            idPathArray,
-            setIdPathArray,
+            folderHierarchy,
+            setFolderHierarchy,
+            currentFolder,
+            setCurrentFolder,
+            pathArray,
+            setPathArray,
           }}
         >
           <div className="home-page-container container-fluid border overflow-hidden">

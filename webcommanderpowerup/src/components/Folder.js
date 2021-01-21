@@ -9,9 +9,7 @@ import { useTypeName } from "../constants/typeName";
 function Folder(props) {
   const { file, isDetail } = props;
   const { setSelectedFiles } = useContext(SelectedFilesContext);
-  const { setCurrentFolderInfo, idPathArray, setIdPathArray } = useContext(
-    FilesInfoContext
-  );
+  const { setCurrentFolder, setPathArray } = useContext(FilesInfoContext);
   const typeName = useTypeName(file.type);
   const icon = useIcon(typeName);
 
@@ -26,12 +24,11 @@ function Folder(props) {
   };
 
   const handleFolderCardDbClick = (folderId, folderName) => {
-    setIdPathArray([...idPathArray, folderId]);
-    setCurrentFolderInfo((prev) => {
+    setPathArray((prev) => [...prev, { id: folderId, name: folderName }]);
+    setCurrentFolder((prev) => {
       return {
         ...prev,
-        pathArray: [...prev.pathArray, folderName],
-        currentFolderId: folderId,
+        id: folderId,
       };
     });
   };
