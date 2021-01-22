@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { useFilesContext } from "../contexts";
+import filesAPI from "../api/filesAPI";
 
 function LeftNavbar() {
-  const { folderHierarchy, setCurrentFolder, setPathArray } = useFilesContext();
+  const { setCurrentFolder, setPathArray } = useFilesContext();
+
+  const [folderHierarchy, setFolderHierarchy] = useState({
+    isLoading: true,
+    folders: [],
+  });
+
+  const fetchFolderHierarchy = async () => {
+    const { data } = await filesAPI.getFolderHierarchy();
+
+    setFolderHierarchy({
+      isLoading: false,
+      folders: data,
+    });
+  };
+
+  useEffect(() => {
+    fetchFolderHierarchy();
+  }, []);
 
   const renderFolders = (files, idArray, nameArray) => {
     return (
