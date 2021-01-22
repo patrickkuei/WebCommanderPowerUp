@@ -2,13 +2,18 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import { useSelectedFilesContext, useFilesContext } from "../contexts";
+import filesAPI from "../api/filesAPI";
 
 function Toolbar(props) {
   const { isDetail, setIsDetail } = props;
   const { selectedFiles } = useSelectedFilesContext();
-  const { currentFolder } = useFilesContext();
+  const { currentFolder, setCurrentFolder } = useFilesContext();
 
-  const [disabled, setDisabled] = useState(true);
+  const [btnDisabled, setBtnDisabled] = useState(true);
+
+  const handleDetailSwitch = () => {
+    setIsDetail((prev) => !prev);
+  };
 
   const handleCopy = () => {
     console.log(`COPY THESE FILES ${selectedFiles}`);
@@ -17,15 +22,26 @@ function Toolbar(props) {
     console.log("paste");
   };
   const handleDelete = () => {
-    console.log(`DELETE THESE FILES ${selectedFiles}`);
+    if (selectedFiles.length === 1) {
+      deleteFile(selectedFiles[0]);
+    } else {
+      console.log("can only delete single file");
+    }
   };
 
-  const handleDetailSwitch = () => {
-    setIsDetail((prev) => !prev);
+  const deleteFile = async (fileId) => {
+    const deleteResult = await filesAPI.deleteFileById(fileId);
+    console.log("deleteResult", deleteResult);
+    setCurrentFolder((prev) => {
+      return {
+        ...prev,
+        children: prev.children.filter((file) => file.id !== fileId),
+      };
+    });
   };
 
   useEffect(() => {
-    setDisabled(!selectedFiles.length > 0 && currentFolder.isLoading);
+    setBtnDisabled(!selectedFiles.length > 0 && currentFolder.isLoading);
   }, [selectedFiles]);
 
   Toolbar.propTypes = {
@@ -40,7 +56,7 @@ function Toolbar(props) {
           type="button"
           className="tool-bar__button btn btn-outline-primary btn-sm"
           onClick={handleCopy}
-          disabled={disabled}
+          disabled={btnDisabled}
         >
           Copy
         </button>
@@ -48,7 +64,7 @@ function Toolbar(props) {
           type="button"
           className="tool-bar__button btn btn-outline-primary btn-sm"
           onClick={handlePaste}
-          disabled={disabled}
+          disabled={btnDisabled}
         >
           Paste
         </button>
@@ -56,7 +72,7 @@ function Toolbar(props) {
           type="button"
           className="tool-bar__button btn btn-outline-primary btn-sm"
           onClick={handleDelete}
-          disabled={disabled}
+          disabled={btnDisabled}
         >
           Delete
         </button>

@@ -9,7 +9,7 @@ function LeftNavbar() {
 
   const [folderHierarchy, setFolderHierarchy] = useState({
     isLoading: true,
-    folders: [],
+    root: {},
   });
 
   const fetchFolderHierarchy = async () => {
@@ -17,7 +17,7 @@ function LeftNavbar() {
 
     setFolderHierarchy({
       isLoading: false,
-      folders: data,
+      root: data,
     });
   };
 
@@ -25,32 +25,30 @@ function LeftNavbar() {
     fetchFolderHierarchy();
   }, []);
 
-  const renderFolders = (files, idArray, nameArray) => {
+  const renderFolders = (folder, idArray, nameArray) => {
+    const resultIdArr = [...idArray];
+    const resultNameArr = [...nameArray];
+    resultIdArr.push([folder.id]);
+    resultNameArr.push([folder.name]);
+
     return (
       <ul className="navbar-nav">
-        {files.map((file) => {
-          const resultIdArr = [...idArray];
-          const resultNameArr = [...nameArray];
-          resultIdArr.push([file.id]);
-          resultNameArr.push([file.name]);
-
-          return (
-            <li key={file.id} className="nav-item">
-              <button
-                type="button"
-                class="btn btn-dark"
-                data-idpath={resultIdArr.join("/")}
-                data-namepath={resultNameArr.join("/")}
-                onClick={(e) => handleFolderClick(file.id, e)}
-                disabled={currentFolder.isLoading}
-              >
-                {file.name}
-              </button>
-              {file.children &&
-                renderFolders(file.children, resultIdArr, resultNameArr)}
-            </li>
-          );
-        })}
+        <li key={folder.id} className="nav-item">
+          <button
+            type="button"
+            class="btn btn-dark"
+            data-idpath={resultIdArr.join("/")}
+            data-namepath={resultNameArr.join("/")}
+            onClick={(e) => handleFolderClick(folder.id, e)}
+            disabled={currentFolder.isLoading}
+          >
+            {folder.name}
+          </button>
+          {folder.children &&
+            folder.children.map((child) =>
+              renderFolders(child, resultIdArr, resultNameArr)
+            )}
+        </li>
       </ul>
     );
   };
@@ -84,7 +82,7 @@ function LeftNavbar() {
     return (
       <nav className="left-bar__navigation navbar navbar-dark bg-dark">
         <div className="container-fluid">
-          {renderFolders(folderHierarchy.folders, [], [])}
+          {renderFolders(folderHierarchy.root, [], [])}
         </div>
       </nav>
     );
