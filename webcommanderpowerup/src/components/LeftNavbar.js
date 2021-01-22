@@ -62,13 +62,11 @@ function LeftNavbar() {
 
   return (
     // Bootstrap LeftNavbar
-    <div className="left-bar col-2 border">
-      <nav className="left-bar__navigation navbar navbar-dark bg-dark">
-        <div className="container-fluid">
-          {renderFolders(folderHierarchy.folders, [], [])}
-        </div>
-      </nav>
-    </div>
+    <nav className="left-bar__navigation navbar navbar-dark bg-dark">
+      <div className="container-fluid">
+        {renderFolders(folderHierarchy.folders, [], [])}
+      </div>
+    </nav>
   );
 }
 

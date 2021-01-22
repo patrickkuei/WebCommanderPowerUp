@@ -33,7 +33,7 @@ function Toolbar(props) {
 
   return (
     // Bootstrap Toolbar
-    <div className="tool-bar border-bottom row">
+    <div className="tool-bar row">
       <div className="col-12">
         <button
           type="button"

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import FolderList from "./FolderList";
+import LeftNavbar from "./LeftNavbar";
 import Toolbar from "./Toolbar";
-import BreadCrumb from "./BreadCrumb";
 import { SelectedFilesContext } from "../contexts/SelectedFilesContext";
 
 function FolderView() {
@@ -9,13 +9,17 @@ function FolderView() {
   const [isDetail, setIsDetail] = useState(false);
 
   return (
-    <div className="folder-view col-10 h-100">
+    <div className="folder-view row">
       <SelectedFilesContext.Provider
         value={{ selectedFiles, setSelectedFiles }}
       >
-        <BreadCrumb />
-        <Toolbar isDetail={isDetail} setIsDetail={setIsDetail} />
-        <FolderList isDetail={isDetail} />
+        <div className="left-bar col-2">
+          <LeftNavbar />
+        </div>
+        <div className="col-10">
+          <Toolbar isDetail={isDetail} setIsDetail={setIsDetail} />
+          <FolderList isDetail={isDetail} />
+        </div>
       </SelectedFilesContext.Provider>
     </div>
   );

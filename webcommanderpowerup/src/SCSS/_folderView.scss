@@ -1,3 +1,7 @@
-@import "breadCrumb.scss";
+@import "leftBar.scss";
 @import "toolBar.scss";
 @import "folderList.scss";
+
+.folder-view {
+  height: 90%;
+}

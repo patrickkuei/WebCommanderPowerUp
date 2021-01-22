@@ -1,3 +1,11 @@
+.breadcrumb-screen {
+  height: 10%; }
+  .breadcrumb-screen .breadcrumb-screen__list {
+    background-color: #ffffff; }
+  .breadcrumb-screen .breadcrumb {
+    margin: 0;
+    padding: 0; }
+
 .left-bar {
   padding: 0; }
   .left-bar .left-bar__navigation {
@@ -17,19 +25,13 @@
             color: black;
             background-color: #b9e3ff; }
 
-.breadcrumb-screen {
-  height: 10%; }
-  .breadcrumb-screen .breadcrumb-screen__list {
-    background-color: #ffffff;
-    height: 24px; }
-
 .tool-bar {
   height: 10%; }
   .tool-bar .tool-bar__button {
     margin: 6px 10px; }
 
 .folder-list {
-  height: 80%; }
+  height: 90%; }
   .folder-list .card {
     height: 50%; }
     .folder-list .card:hover {
@@ -51,6 +53,9 @@
       margin: auto; }
     .folder-list .folder__content .folder__content__picture-name {
       padding: 0; }
+
+.folder-view {
+  height: 90%; }
 
 .loading-tool-bar {
   height: 10%; }

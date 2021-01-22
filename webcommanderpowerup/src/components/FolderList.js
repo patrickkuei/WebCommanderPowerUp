@@ -15,7 +15,7 @@ function FolderList(props) {
   };
 
   return (
-    <div className="folder-list row border-bottom overflow-auto">
+    <div className="folder-list row border overflow-auto">
       {!isDetail ? (
         children.map((file) => (
           <Folder key={file.id} file={file} isDetail={isDetail} />
