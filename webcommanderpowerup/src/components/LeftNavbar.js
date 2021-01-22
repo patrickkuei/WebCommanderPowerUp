@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 
-import { FilesInfoContext } from "../contexts/FilesInfoContext";
+import { useFilesContext } from "../contexts";
 
 function LeftNavbar() {
-  const { folderHierarchy, setCurrentFolder, setPathArray } = useContext(
-    FilesInfoContext
-  );
+  const { folderHierarchy, setCurrentFolder, setPathArray } = useFilesContext();
 
   const renderFolders = (files, idArray, nameArray) => {
     return (

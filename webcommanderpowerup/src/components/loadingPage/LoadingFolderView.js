@@ -1,5 +1,5 @@
 import React from "react";
-import ContentLoader from "react-content-loader";
+
 import LoadingBreadCrumb from "./LoadingBreadCrumb";
 import LoadingFolderList from "./LoadingFolderList";
 import LoadingToolBar from "./LoadingToolBar";

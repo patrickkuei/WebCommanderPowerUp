@@ -1,8 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
+
 import FolderList from "./FolderList";
 import LeftNavbar from "./LeftNavbar";
 import Toolbar from "./Toolbar";
-import { SelectedFilesContext } from "../contexts/SelectedFilesContext";
+
+import { SelectedFileProvider } from "../contexts";
 
 function FolderView() {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -10,9 +12,7 @@ function FolderView() {
 
   return (
     <div className="folder-view row">
-      <SelectedFilesContext.Provider
-        value={{ selectedFiles, setSelectedFiles }}
-      >
+      <SelectedFileProvider value={{ selectedFiles, setSelectedFiles }}>
         <div className="left-bar col-2">
           <LeftNavbar />
         </div>
@@ -20,7 +20,7 @@ function FolderView() {
           <Toolbar isDetail={isDetail} setIsDetail={setIsDetail} />
           <FolderList isDetail={isDetail} />
         </div>
-      </SelectedFilesContext.Provider>
+      </SelectedFileProvider>
     </div>
   );
 }

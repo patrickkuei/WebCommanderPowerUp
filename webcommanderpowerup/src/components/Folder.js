@@ -1,15 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-import { SelectedFilesContext } from "../contexts/SelectedFilesContext";
-import { FilesInfoContext } from "../contexts/FilesInfoContext";
+import { useFilesContext, useSelectedFilesContext } from "../contexts";
 import { useIcon } from "../constants/icons";
 import { useTypeName } from "../constants/typeName";
 
 function Folder(props) {
   const { file, isDetail } = props;
-  const { setSelectedFiles } = useContext(SelectedFilesContext);
-  const { setCurrentFolder, setPathArray } = useContext(FilesInfoContext);
+  const { setSelectedFiles } = useSelectedFilesContext();
+  const { setCurrentFolder, setPathArray } = useFilesContext();
   const typeName = useTypeName(file.type);
   const icon = useIcon(typeName);
 

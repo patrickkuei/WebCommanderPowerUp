@@ -1,11 +1,10 @@
 import React, { useState, useEffect, Fragment } from "react";
 
-import { FilesInfoContext } from "../contexts/FilesInfoContext";
-
 import FolderView from "./FolderView";
 import BreadCrumb from "./BreadCrumb";
 import LoadingPage from "./LoadingPage";
 
+import { FilesProvider } from "../contexts";
 import filesAPI from "../api/filesAPI";
 
 function HomePage() {
@@ -53,9 +52,6 @@ function HomePage() {
   }, []);
 
   useEffect(() => {
-    setCurrentFolder((prev) => {
-      return { ...prev, isLoading: true };
-    });
     fetchFolderFiles();
   }, [currentFolder.id]);
 
@@ -64,7 +60,7 @@ function HomePage() {
       {folderHierarchy.isLoading && currentFolder.isLoading ? (
         <LoadingPage />
       ) : (
-        <FilesInfoContext.Provider
+        <FilesProvider
           value={{
             folderHierarchy,
             setFolderHierarchy,
@@ -78,7 +74,7 @@ function HomePage() {
             <BreadCrumb />
             <FolderView />
           </div>
-        </FilesInfoContext.Provider>
+        </FilesProvider>
       )}
     </Fragment>
   );

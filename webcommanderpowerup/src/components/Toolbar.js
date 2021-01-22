@@ -1,11 +1,11 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import { SelectedFilesContext } from "../contexts/SelectedFilesContext";
+import { useSelectedFilesContext } from "../contexts";
 
 function Toolbar(props) {
   const { isDetail, setIsDetail } = props;
-  const { selectedFiles } = useContext(SelectedFilesContext);
+  const { selectedFiles } = useSelectedFilesContext();
   const [disabled, setDisabled] = useState(true);
 
   const handleCopy = () => {

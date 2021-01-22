@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import Folder from "./Folder";
 
-import { FilesInfoContext } from "../contexts/FilesInfoContext";
+import { useFilesContext } from "../contexts";
 
 function FolderList(props) {
-  const { currentFolder } = useContext(FilesInfoContext);
+  const { currentFolder } = useFilesContext();
   const { children } = currentFolder;
   const { isDetail } = props;
 

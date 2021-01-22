@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
-import { FilesInfoContext } from "../contexts/FilesInfoContext";
+import React from "react";
+
+import { useFilesContext } from "../contexts";
 
 function BreadCrumb() {
-  const { setCurrentFolder, pathArray, setPathArray } = useContext(
-    FilesInfoContext
-  );
+  const { setCurrentFolder, pathArray, setPathArray } = useFilesContext();
 
   const handlePathLinkClick = (index) => {
     setCurrentFolder((prev) => {
