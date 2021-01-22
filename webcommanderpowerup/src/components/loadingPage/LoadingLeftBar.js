@@ -5,10 +5,11 @@ import ContentLoader from "react-content-loader";
 export default function LoadingLeftBar() {
   return (
     <ContentLoader
+      className="bg-dark"
       speed={3}
-      width={222}
+      width={255}
       height={505}
-      viewBox="0 0 222 505"
+      viewBox="0 0 255 505"
       backgroundColor="#dedede"
       foregroundColor="#7f7d9b"
     >

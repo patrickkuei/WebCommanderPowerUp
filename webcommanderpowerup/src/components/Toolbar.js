@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import { useSelectedFilesContext } from "../contexts";
+import { useSelectedFilesContext, useFilesContext } from "../contexts";
 
 function Toolbar(props) {
   const { isDetail, setIsDetail } = props;
   const { selectedFiles } = useSelectedFilesContext();
+  const { currentFolder } = useFilesContext();
+
   const [disabled, setDisabled] = useState(true);
 
   const handleCopy = () => {
@@ -23,7 +25,7 @@ function Toolbar(props) {
   };
 
   useEffect(() => {
-    setDisabled(!selectedFiles.length > 0);
+    setDisabled(!selectedFiles.length > 0 && currentFolder.isLoading);
   }, [selectedFiles]);
 
   Toolbar.propTypes = {
@@ -32,7 +34,6 @@ function Toolbar(props) {
   };
 
   return (
-    // Bootstrap Toolbar
     <div className="tool-bar row">
       <div className="col-12">
         <button
@@ -67,6 +68,7 @@ function Toolbar(props) {
               : "tool-bar__button btn-sm btn btn-outline-primary float-right"
           }
           onClick={handleDetailSwitch}
+          disabled={currentFolder.isLoading}
         >
           detail
         </button>

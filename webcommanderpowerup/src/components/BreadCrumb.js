@@ -3,7 +3,12 @@ import React from "react";
 import { useFilesContext } from "../contexts";
 
 function BreadCrumb() {
-  const { setCurrentFolder, pathArray, setPathArray } = useFilesContext();
+  const {
+    currentFolder,
+    setCurrentFolder,
+    pathArray,
+    setPathArray,
+  } = useFilesContext();
 
   const handlePathLinkClick = (index) => {
     setCurrentFolder((prev) => {
@@ -17,15 +22,19 @@ function BreadCrumb() {
   const renderedPath = pathArray.map((pathPart, index) => {
     return (
       <li key={pathPart.id} className="breadcrumb-item">
-        <a href="#" onClick={() => handlePathLinkClick(index)}>
+        <button
+          type="button"
+          class="btn btn-outline-dark btn-sm"
+          onClick={() => handlePathLinkClick(index)}
+          disabled={currentFolder.isLoading}
+        >
           {pathPart.name}
-        </a>
+        </button>
       </li>
     );
   });
 
   return (
-    // Bootstrap breadcrumb
     <div className="breadcrumb-screen row align-items-center justify-content-center border-bottom">
       <div className="col-8 border rounded shadow-sm">
         <nav aria-label="breadcrumb">

@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 
 import { useFilesContext } from "../contexts";
 import filesAPI from "../api/filesAPI";
+import LoadingLeftBar from "./loadingPage/LoadingLeftBar";
 
 function LeftNavbar() {
-  const { setCurrentFolder, setPathArray } = useFilesContext();
+  const { currentFolder, setCurrentFolder, setPathArray } = useFilesContext();
 
   const [folderHierarchy, setFolderHierarchy] = useState({
     isLoading: true,
@@ -35,16 +36,16 @@ function LeftNavbar() {
 
           return (
             <li key={file.id} className="nav-item">
-              <a
-                className="nav-link active"
-                aria-current="page"
-                href="#"
+              <button
+                type="button"
+                class="btn btn-dark"
                 data-idpath={resultIdArr.join("/")}
                 data-namepath={resultNameArr.join("/")}
                 onClick={(e) => handleFolderClick(file.id, e)}
+                disabled={currentFolder.isLoading}
               >
                 {file.name}
-              </a>
+              </button>
               {file.children &&
                 renderFolders(file.children, resultIdArr, resultNameArr)}
             </li>
@@ -77,14 +78,17 @@ function LeftNavbar() {
     return result;
   };
 
-  return (
-    // Bootstrap LeftNavbar
-    <nav className="left-bar__navigation navbar navbar-dark bg-dark">
-      <div className="container-fluid">
-        {renderFolders(folderHierarchy.folders, [], [])}
-      </div>
-    </nav>
-  );
+  if (folderHierarchy.isLoading) {
+    return <LoadingLeftBar />;
+  } else {
+    return (
+      <nav className="left-bar__navigation navbar navbar-dark bg-dark">
+        <div className="container-fluid">
+          {renderFolders(folderHierarchy.folders, [], [])}
+        </div>
+      </nav>
+    );
+  }
 }
 
 export default LeftNavbar;

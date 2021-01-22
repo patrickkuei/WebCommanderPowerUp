@@ -39,7 +39,6 @@ function Folder(props) {
 
   if (!isDetail) {
     return (
-      // Bootstrap card
       <div
         className="col-3 card"
         onDoubleClick={() => handleFolderCardDbClick(file.id, file.name)}

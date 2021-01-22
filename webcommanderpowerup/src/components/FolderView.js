@@ -1,18 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import FolderList from "./FolderList";
 import LeftNavbar from "./LeftNavbar";
 import Toolbar from "./Toolbar";
 
-import { SelectedFileProvider } from "../contexts";
+import { SelectedFileProvider, useFilesContext } from "../contexts";
 
 function FolderView() {
-  const [selectedFiles, setSelectedFiles] = useState([]);
   const [isDetail, setIsDetail] = useState(false);
 
   return (
     <div className="folder-view row">
-      <SelectedFileProvider value={{ selectedFiles, setSelectedFiles }}>
+      <SelectedFileProvider>
         <div className="left-bar col-2">
           <LeftNavbar />
         </div>
