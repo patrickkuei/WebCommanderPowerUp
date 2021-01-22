@@ -62,6 +62,9 @@
   .loading-tool-bar .loading-tool-bar__button {
     margin: 6px 10px; }
 
+.loading-folder-view {
+  height: 90%; }
+
 .loading-page-container {
   height: 500px; }
 

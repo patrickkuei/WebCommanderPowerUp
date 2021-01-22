@@ -5,7 +5,7 @@ import ContentLoader from "react-content-loader";
 export default function LoadingBreadCrumb() {
   const listArray = [];
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 1; i++) {
     listArray.push(
       <li key={i} className="breadcrumb-item">
         <ContentLoader
@@ -23,10 +23,12 @@ export default function LoadingBreadCrumb() {
   }
 
   return (
-    <div className="breadcrumb-screen border-bottom row border">
-      <nav aria-label="breadcrumb">
-        <ol className="breadcrumb-screen__list breadcrumb">{listArray}</ol>
-      </nav>
+    <div className="breadcrumb-screen row align-items-center justify-content-center">
+      <div className="col-8 border rounded shadow-sm">
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb-screen__list breadcrumb">{listArray}</ol>
+        </nav>
+      </div>
     </div>
   );
 }

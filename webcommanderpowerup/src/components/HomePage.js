@@ -57,7 +57,7 @@ function HomePage() {
 
   return (
     <Fragment>
-      {folderHierarchy.isLoading && currentFolder.isLoading ? (
+      {!folderHierarchy.isLoading && currentFolder.isLoading ? (
         <LoadingPage />
       ) : (
         <FilesProvider

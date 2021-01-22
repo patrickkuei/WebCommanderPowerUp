@@ -1,15 +1,13 @@
 import React from "react";
 
+import LoadingBreadCrumb from "./loadingPage/LoadingBreadCrumb";
 import LoadingFolderView from "./loadingPage/LoadingFolderView";
-import LoadingLeftBar from "./loadingPage/LoadingLeftBar";
 
 function LoadingPage() {
   return (
     <div className="loading-page-container container-fluid border">
-      <div className="row h-100">
-        <LoadingLeftBar />
-        <LoadingFolderView />
-      </div>
+      <LoadingBreadCrumb />
+      <LoadingFolderView />
     </div>
   );
 }
