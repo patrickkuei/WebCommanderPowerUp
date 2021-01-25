@@ -6,7 +6,11 @@ import filesAPI from "../api/filesAPI";
 
 function Toolbar(props) {
   const { isDetail, setIsDetail } = props;
-  const { selectedFiles } = useSelectedFilesContext();
+  const {
+    selectedFiles,
+    setSelectedFiles,
+    resetSelecetedFiles,
+  } = useSelectedFilesContext();
   const { currentFolder, setCurrentFolder } = useFilesContext();
 
   const [btnDisabled, setBtnDisabled] = useState(true);
@@ -16,22 +20,45 @@ function Toolbar(props) {
   };
 
   const handleCopy = () => {
-    console.log(`COPY THESE FILES ${selectedFiles}`);
+    selectedFiles.map((file) => console.log("file", file));
   };
   const handlePaste = () => {
-    console.log("paste");
+    pasteFiles();
+    resetSelecetedFiles();
   };
+
+  const pasteFiles = async () => {
+    const items = [];
+    const folders = [];
+    let tempSelectedFiles = [...selectedFiles];
+
+    while (tempSelectedFiles.length > 0) {
+      if (tempSelectedFiles[0].type === 1) {
+        folders.push(tempSelectedFiles.shift());
+      } else {
+        items.push(tempSelectedFiles.shift());
+      }
+    }
+    const newFiles = await filesAPI.pasteFilesById(
+      currentFolder,
+      items,
+      folders
+    );
+  };
+
   const handleDelete = () => {
     if (selectedFiles.length === 1) {
-      deleteFile(selectedFiles[0]);
+      deleteFile(selectedFiles[0].id);
     } else {
       console.log("can only delete single file");
     }
+
+    resetSelecetedFiles();
   };
 
   const deleteFile = async (fileId) => {
-    const deleteResult = await filesAPI.deleteFileById(fileId);
-    console.log("deleteResult", deleteResult);
+    await filesAPI.deleteFileById(fileId);
+
     setCurrentFolder((prev) => {
       return {
         ...prev,

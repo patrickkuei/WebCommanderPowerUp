@@ -7,17 +7,20 @@ import { useTypeName } from "../constants/typeName";
 
 function Folder(props) {
   const { file, isDetail } = props;
-  const { setSelectedFiles } = useSelectedFilesContext();
+  const { setSelectedFiles, resetSelecetedFiles } = useSelectedFilesContext();
   const { setCurrentFolder, setPathArray } = useFilesContext();
   const typeName = useTypeName(file.type);
   const icon = useIcon(typeName);
 
-  const handleCheckBoxClick = (e, fileId) => {
+  const handleCheckBoxClick = (e, fileId, fileName, fileType) => {
     if (e.target.checked) {
-      setSelectedFiles((prev) => [...prev, fileId]);
+      setSelectedFiles((prev) => [
+        ...prev,
+        { id: fileId, name: fileName, type: fileType },
+      ]);
     } else {
       setSelectedFiles((prev) => {
-        return prev.filter((selectedFile) => selectedFile !== fileId);
+        return prev.filter((selectedFile) => selectedFile.id !== fileId);
       });
     }
   };
@@ -30,6 +33,7 @@ function Folder(props) {
         id: folderId,
       };
     });
+    resetSelecetedFiles();
   };
 
   Folder.propTypes = {
@@ -45,7 +49,9 @@ function Folder(props) {
       >
         <input
           className="folder__checkbox"
-          onChange={(e) => handleCheckBoxClick(e, file.id)}
+          onChange={(e) =>
+            handleCheckBoxClick(e, file.id, file.name, file.type)
+          }
           type="checkbox"
         />
         <div className="folder__content">

@@ -10,8 +10,28 @@ const api = {
     return axios.get(`${BASE_URL}/items/${folderId}`);
   },
 
+  pasteFilesById: (parentItemId, items, folders) => {
+    return axios({
+      url: `${BASE_URL}/items/`,
+      method: "POST",
+      transformRequest: [
+        ...axios.defaults.transformRequest,
+        (data) => ({ payload: data }),
+      ],
+      data: {
+        parentItemId: parentItemId,
+        items: items,
+        folders: folders,
+      },
+    });
+  },
+
   deleteFileById: (fileId) => {
-    return axios.delete(`${BASE_URL}/items/${fileId}`);
+    return axios({
+      url: `${BASE_URL}/items/`,
+      method: "DELETE",
+      params: { id: fileId },
+    });
   },
 };
 export default api;

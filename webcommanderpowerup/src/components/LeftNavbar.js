@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import { useFilesContext } from "../contexts";
+import { useFilesContext, useSelectedFilesContext } from "../contexts";
 import filesAPI from "../api/filesAPI";
 import LoadingLeftBar from "./loadingPage/LoadingLeftBar";
 
 function LeftNavbar() {
   const { currentFolder, setCurrentFolder, setPathArray } = useFilesContext();
-
+  const { resetSelecetedFiles } = useSelectedFilesContext();
   const [folderHierarchy, setFolderHierarchy] = useState({
     isLoading: true,
     root: {},
@@ -62,6 +62,7 @@ function LeftNavbar() {
     });
 
     setPathArray(getNewPathArray(e));
+    resetSelecetedFiles();
   };
 
   const getNewPathArray = (e) => {

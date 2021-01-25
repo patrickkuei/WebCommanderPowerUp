@@ -3,9 +3,11 @@ export const useTypeName = (typeNum) => {
     case 1:
       return "folder";
     case 2:
-      return "txt";
+      return "doc";
     case 3:
-      return "mp4";
+      return "media";
+    case 4:
+      return "archive";
     default:
       return "file";
   }
