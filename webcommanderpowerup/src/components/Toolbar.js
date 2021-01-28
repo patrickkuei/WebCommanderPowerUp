@@ -10,6 +10,12 @@ function Toolbar(props) {
     selectedFiles,
     setSelectedFiles,
     resetSelecetedFiles,
+    setDefaultCheck,
+    copiedFiles,
+    setCopiedFiles,
+    resetCopiedFiles,
+    isCopied,
+    setisCopied,
   } = useSelectedFilesContext();
   const { currentFolder, setCurrentFolder } = useFilesContext();
 
@@ -20,11 +26,11 @@ function Toolbar(props) {
   };
 
   const handleCopy = () => {
-    selectedFiles.map((file) => console.log("file", file));
+    setCopiedFiles([...selectedFiles]);
+    resetSelecetedFiles();
   };
   const handlePaste = () => {
-    pasteFiles();
-    resetSelecetedFiles();
+    resetCopiedFiles();
   };
 
   const pasteFiles = async () => {
@@ -67,9 +73,17 @@ function Toolbar(props) {
     });
   };
 
+  const handleReset = () => {
+    resetSelecetedFiles();
+  };
+
   useEffect(() => {
-    setBtnDisabled(!selectedFiles.length > 0 && currentFolder.isLoading);
-  }, [selectedFiles]);
+    setBtnDisabled(currentFolder.isLoading || selectedFiles.length === 0);
+  }, [selectedFiles.length, currentFolder.isLoading]);
+
+  useEffect(() => {
+    setisCopied(copiedFiles.length > 0);
+  }, [copiedFiles.length]);
 
   Toolbar.propTypes = {
     isDetail: PropTypes.bool,
@@ -81,7 +95,11 @@ function Toolbar(props) {
       <div className="col-12">
         <button
           type="button"
-          className="tool-bar__button btn btn-outline-primary btn-sm"
+          className={
+            isCopied
+              ? "tool-bar__button btn btn-primary btn-sm"
+              : "tool-bar__button btn btn-outline-primary btn-sm"
+          }
           onClick={handleCopy}
           disabled={btnDisabled}
         >
@@ -91,7 +109,7 @@ function Toolbar(props) {
           type="button"
           className="tool-bar__button btn btn-outline-primary btn-sm"
           onClick={handlePaste}
-          disabled={btnDisabled}
+          disabled={!isCopied}
         >
           Paste
         </button>
@@ -102,6 +120,14 @@ function Toolbar(props) {
           disabled={btnDisabled}
         >
           Delete
+        </button>
+        <button
+          type="button"
+          className="tool-bar__button btn btn-outline-primary btn-sm"
+          onClick={handleReset}
+          disabled={btnDisabled}
+        >
+          Reset Select
         </button>
         <button
           type="button"

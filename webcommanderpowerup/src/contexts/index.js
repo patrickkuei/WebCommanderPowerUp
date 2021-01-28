@@ -31,12 +31,28 @@ export const useSelectedFilesContext = () => useContext(SelectedFilesContext);
 
 export function SelectedFileProvider(props) {
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [copiedFiles, setCopiedFiles] = useState([]);
+  const [isCopied, setisCopied] = useState(false);
+
   const resetSelecetedFiles = () => {
     setSelectedFiles([]);
   };
+  const resetCopiedFiles = () => {
+    setCopiedFiles([]);
+  };
+
   return (
     <SelectedFilesContext.Provider
-      value={{ selectedFiles, setSelectedFiles, resetSelecetedFiles }}
+      value={{
+        selectedFiles,
+        setSelectedFiles,
+        resetSelecetedFiles,
+        copiedFiles,
+        setCopiedFiles,
+        resetCopiedFiles,
+        isCopied,
+        setisCopied,
+      }}
     >
       {props.children}
     </SelectedFilesContext.Provider>

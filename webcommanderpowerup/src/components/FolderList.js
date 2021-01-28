@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
-import Folder from "./Folder";
+import File from "./File";
 
-import { useFilesContext } from "../contexts";
+import { useFilesContext, useSelectedFilesContext } from "../contexts";
 import LoadingFolderList from "./loadingPage/LoadingFolderList";
 import filesAPI from "../api/filesAPI";
 
 function FolderList(props) {
   const { currentFolder, setCurrentFolder } = useFilesContext();
+  const { selectedFiles } = useSelectedFilesContext();
   const { children } = currentFolder;
   const { isDetail } = props;
 
@@ -22,6 +23,17 @@ function FolderList(props) {
         children: data.children,
       };
     });
+  };
+
+  const getDefaultCheck = (fileId) => {
+    let defaultCheck = false;
+    for (let i = 0; i < selectedFiles.length; i++) {
+      if (fileId === selectedFiles[i].id) {
+        defaultCheck = true;
+        break;
+      }
+    }
+    return defaultCheck;
   };
 
   useEffect(() => {
@@ -38,9 +50,17 @@ function FolderList(props) {
     return (
       <div className="folder-list row border overflow-auto">
         {!isDetail ? (
-          children.map((file) => (
-            <Folder key={file.id} file={file} isDetail={isDetail} />
-          ))
+          children.map((file) => {
+            const defaultCheck = getDefaultCheck(file.id);
+            return (
+              <File
+                key={file.id}
+                file={file}
+                isDetail={isDetail}
+                defaultCheck={defaultCheck}
+              />
+            );
+          })
         ) : (
           <table className="table table-hover">
             <thead>
@@ -53,7 +73,7 @@ function FolderList(props) {
             </thead>
             <tbody>
               {children.map((file) => (
-                <Folder key={file.id} file={file} isDetail={isDetail} />
+                <File key={file.id} file={file} isDetail={isDetail} />
               ))}
             </tbody>
           </table>

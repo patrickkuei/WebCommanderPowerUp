@@ -5,9 +5,9 @@ import { useFilesContext, useSelectedFilesContext } from "../contexts";
 import { useIcon } from "../constants/icons";
 import { useTypeName } from "../constants/typeName";
 
-function Folder(props) {
-  const { file, isDetail } = props;
-  const { setSelectedFiles, resetSelecetedFiles } = useSelectedFilesContext();
+function File(props) {
+  const { file, isDetail, defaultCheck } = props;
+  const { setSelectedFiles } = useSelectedFilesContext();
   const { setCurrentFolder, setPathArray } = useFilesContext();
   const typeName = useTypeName(file.type);
   const icon = useIcon(typeName);
@@ -25,18 +25,19 @@ function Folder(props) {
     }
   };
 
-  const handleFolderCardDbClick = (folderId, folderName) => {
-    setPathArray((prev) => [...prev, { id: folderId, name: folderName }]);
-    setCurrentFolder((prev) => {
-      return {
-        ...prev,
-        id: folderId,
-      };
-    });
-    resetSelecetedFiles();
+  const handleFolderCardDbClick = (e, folderId, folderName) => {
+    if (typeName === "folder") {
+      setPathArray((prev) => [...prev, { id: folderId, name: folderName }]);
+      setCurrentFolder((prev) => {
+        return {
+          ...prev,
+          id: folderId,
+        };
+      });
+    }
   };
 
-  Folder.propTypes = {
+  File.propTypes = {
     file: PropTypes.object,
     isDetail: PropTypes.bool,
   };
@@ -45,14 +46,16 @@ function Folder(props) {
     return (
       <div
         className="col-3 card"
-        onDoubleClick={() => handleFolderCardDbClick(file.id, file.name)}
+        onDoubleClick={(e) => handleFolderCardDbClick(e, file.id, file.name)}
       >
         <input
           className="folder__checkbox"
+          onDoubleClick={(e) => e.stopPropagation()}
           onChange={(e) =>
             handleCheckBoxClick(e, file.id, file.name, file.type)
           }
           type="checkbox"
+          defaultChecked={defaultCheck}
         />
         <div className="folder__content">
           {icon}
@@ -79,4 +82,4 @@ function Folder(props) {
   }
 }
 
-export default Folder;
+export default File;
