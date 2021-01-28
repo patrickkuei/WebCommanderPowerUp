@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import FolderList from "./FolderList";
+import FileList from "./FileList";
 import LeftNavbar from "./LeftNavbar";
 import Toolbar from "./Toolbar";
 
@@ -17,7 +17,7 @@ function FolderView() {
         </div>
         <div className="col-10">
           <Toolbar isDetail={isDetail} setIsDetail={setIsDetail} />
-          <FolderList isDetail={isDetail} />
+          <FileList isDetail={isDetail} />
         </div>
       </SelectedFileProvider>
     </div>

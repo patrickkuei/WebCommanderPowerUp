@@ -6,7 +6,7 @@ import { useIcon } from "../constants/icons";
 import { useTypeName } from "../constants/typeName";
 
 function File(props) {
-  const { file, isDetail, defaultCheck } = props;
+  const { file, isDetail, isChecked } = props;
   const { setSelectedFiles } = useSelectedFilesContext();
   const { setCurrentFolder, setPathArray } = useFilesContext();
   const typeName = useTypeName(file.type);
@@ -50,12 +50,12 @@ function File(props) {
       >
         <input
           className="folder__checkbox"
+          type="checkbox"
+          checked={isChecked}
           onDoubleClick={(e) => e.stopPropagation()}
           onChange={(e) =>
             handleCheckBoxClick(e, file.id, file.name, file.type)
           }
-          type="checkbox"
-          defaultChecked={defaultCheck}
         />
         <div className="folder__content">
           {icon}
@@ -70,8 +70,9 @@ function File(props) {
       <tr onDoubleClick={() => handleFolderCardDbClick(file.id)}>
         <td>
           <input
-            onChange={(e) => handleCheckBoxClick(e, file.id)}
             type="checkbox"
+            checked={isChecked}
+            onChange={(e) => handleCheckBoxClick(e, file.id)}
           />
         </td>
         <td scope="row">{file.name}</td>

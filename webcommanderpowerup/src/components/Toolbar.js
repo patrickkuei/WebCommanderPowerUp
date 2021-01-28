@@ -58,7 +58,6 @@ function Toolbar(props) {
     } else {
       console.log("can only delete single file");
     }
-
     resetSelecetedFiles();
   };
 

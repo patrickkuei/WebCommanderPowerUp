@@ -7,7 +7,7 @@ import { useFilesContext, useSelectedFilesContext } from "../contexts";
 import LoadingFolderList from "./loadingPage/LoadingFolderList";
 import filesAPI from "../api/filesAPI";
 
-function FolderList(props) {
+function FileList(props) {
   const { currentFolder, setCurrentFolder } = useFilesContext();
   const { selectedFiles } = useSelectedFilesContext();
   const { children } = currentFolder;
@@ -25,22 +25,22 @@ function FolderList(props) {
     });
   };
 
-  const getDefaultCheck = (fileId) => {
-    let defaultCheck = false;
+  const getChecked = (fileId) => {
+    let checked = false;
     for (let i = 0; i < selectedFiles.length; i++) {
       if (fileId === selectedFiles[i].id) {
-        defaultCheck = true;
+        checked = true;
         break;
       }
     }
-    return defaultCheck;
+    return checked;
   };
 
   useEffect(() => {
     fetchFolderFiles();
   }, [currentFolder.id]);
 
-  FolderList.propTypes = {
+  FileList.propTypes = {
     isDetail: PropTypes.bool,
   };
 
@@ -51,13 +51,13 @@ function FolderList(props) {
       <div className="folder-list row border overflow-auto">
         {!isDetail ? (
           children.map((file) => {
-            const defaultCheck = getDefaultCheck(file.id);
+            const isChecked = getChecked(file.id);
             return (
               <File
                 key={file.id}
                 file={file}
                 isDetail={isDetail}
-                defaultCheck={defaultCheck}
+                isChecked={isChecked}
               />
             );
           })
@@ -72,9 +72,17 @@ function FolderList(props) {
               </tr>
             </thead>
             <tbody>
-              {children.map((file) => (
-                <File key={file.id} file={file} isDetail={isDetail} />
-              ))}
+              {children.map((file) => {
+                const isChecked = getChecked(file.id);
+                return (
+                  <File
+                    key={file.id}
+                    file={file}
+                    isDetail={isDetail}
+                    isChecked={isChecked}
+                  />
+                );
+              })}
             </tbody>
           </table>
         )}
@@ -83,4 +91,4 @@ function FolderList(props) {
   }
 }
 
-export default FolderList;
+export default FileList;
