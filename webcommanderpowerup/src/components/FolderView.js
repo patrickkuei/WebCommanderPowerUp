@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import FileList from "./FileList";
 import LeftNavbar from "./LeftNavbar";
 import Toolbar from "./Toolbar";
 
-import { SelectedFileProvider, useFilesContext } from "../contexts";
+import { SelectedFileProvider } from "../contexts";
 
 function FolderView() {
   const [isDetail, setIsDetail] = useState(false);

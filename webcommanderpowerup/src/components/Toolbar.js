@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
+import CreateFileDialog from "./CreateFileDialog";
+
 import { useSelectedFilesContext, useFilesContext } from "../contexts";
 import filesAPI from "../api/filesAPI";
 
@@ -18,9 +20,10 @@ function Toolbar(props) {
   const { currentFolder, setCurrentFolder } = useFilesContext();
 
   const [btnDisabled, setBtnDisabled] = useState(true);
+  const [isShowed, setIsShowed] = useState(false);
 
   const handleCreateClick = () => {
-    console.log("create file!!!");
+    setIsShowed(true);
   };
 
   const handleCopyClick = () => {
@@ -138,6 +141,8 @@ function Toolbar(props) {
           detail
         </button>
       </div>
+
+      <CreateFileDialog isShowed={isShowed} setIsShowed={setIsShowed} />
     </div>
   );
 }

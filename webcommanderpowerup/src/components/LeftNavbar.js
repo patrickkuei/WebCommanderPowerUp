@@ -36,7 +36,7 @@ function LeftNavbar() {
         <li key={folder.id} className="nav-item">
           <button
             type="button"
-            class="btn btn-dark"
+            className="btn btn-dark"
             data-idpath={resultIdArr.join("/")}
             data-namepath={resultNameArr.join("/")}
             onClick={(e) => handleFolderClick(folder.id, e)}

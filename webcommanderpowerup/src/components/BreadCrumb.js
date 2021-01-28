@@ -24,7 +24,7 @@ function BreadCrumb() {
       <li key={pathPart.id} className="breadcrumb-item">
         <button
           type="button"
-          class="btn btn-outline-dark btn-sm"
+          className="btn btn-outline-dark btn-sm"
           onClick={() => handlePathLinkClick(index)}
           disabled={currentFolder.isLoading}
         >
