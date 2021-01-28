@@ -8,9 +8,7 @@ function Toolbar(props) {
   const { isDetail, setIsDetail } = props;
   const {
     selectedFiles,
-    setSelectedFiles,
     resetSelecetedFiles,
-    setDefaultCheck,
     copiedFiles,
     setCopiedFiles,
     resetCopiedFiles,
@@ -21,38 +19,26 @@ function Toolbar(props) {
 
   const [btnDisabled, setBtnDisabled] = useState(true);
 
-  const handleDetailSwitch = () => {
-    setIsDetail((prev) => !prev);
+  const handleCreateClick = () => {
+    console.log("create file!!!");
   };
 
-  const handleCopy = () => {
-    setCopiedFiles([...selectedFiles]);
+  const handleCopyClick = () => {
+    const selectedFileIds = selectedFiles.map((file) => file.id);
+    setCopiedFiles([...selectedFileIds]);
     resetSelecetedFiles();
   };
-  const handlePaste = () => {
+  const handlePasteClick = () => {
+    pasteFiles(copiedFiles);
+    console.log("copiedFiles", copiedFiles);
     resetCopiedFiles();
   };
 
-  const pasteFiles = async () => {
-    const items = [];
-    const folders = [];
-    let tempSelectedFiles = [...selectedFiles];
-
-    while (tempSelectedFiles.length > 0) {
-      if (tempSelectedFiles[0].type === 1) {
-        folders.push(tempSelectedFiles.shift());
-      } else {
-        items.push(tempSelectedFiles.shift());
-      }
-    }
-    const newFiles = await filesAPI.pasteFilesById(
-      currentFolder,
-      items,
-      folders
-    );
+  const pasteFiles = async (files) => {
+    await filesAPI.pasteFilesById(currentFolder, files);
   };
 
-  const handleDelete = () => {
+  const handleDeleteClick = () => {
     if (selectedFiles.length === 1) {
       deleteFile(selectedFiles[0].id);
     } else {
@@ -72,8 +58,12 @@ function Toolbar(props) {
     });
   };
 
-  const handleReset = () => {
+  const handleResetClick = () => {
     resetSelecetedFiles();
+  };
+
+  const handleDetailSwitch = () => {
+    setIsDetail((prev) => !prev);
   };
 
   useEffect(() => {
@@ -93,13 +83,20 @@ function Toolbar(props) {
     <div className="tool-bar row">
       <div className="col-12">
         <button
+          className="tool-bar__button btn btn-outline-primary btn-sm"
+          disabled={!btnDisabled}
+          onClick={handleCreateClick}
+        >
+          Create
+        </button>
+        <button
           type="button"
           className={
             isCopied
               ? "tool-bar__button btn btn-primary btn-sm"
               : "tool-bar__button btn btn-outline-primary btn-sm"
           }
-          onClick={handleCopy}
+          onClick={handleCopyClick}
           disabled={btnDisabled}
         >
           Copy
@@ -107,7 +104,7 @@ function Toolbar(props) {
         <button
           type="button"
           className="tool-bar__button btn btn-outline-primary btn-sm"
-          onClick={handlePaste}
+          onClick={handlePasteClick}
           disabled={!isCopied}
         >
           Paste
@@ -115,7 +112,7 @@ function Toolbar(props) {
         <button
           type="button"
           className="tool-bar__button btn btn-outline-primary btn-sm"
-          onClick={handleDelete}
+          onClick={handleDeleteClick}
           disabled={btnDisabled}
         >
           Delete
@@ -123,7 +120,7 @@ function Toolbar(props) {
         <button
           type="button"
           className="tool-bar__button btn btn-outline-primary btn-sm"
-          onClick={handleReset}
+          onClick={handleResetClick}
           disabled={btnDisabled}
         >
           Reset Select

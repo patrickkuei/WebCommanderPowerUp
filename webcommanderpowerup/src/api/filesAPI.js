@@ -10,7 +10,9 @@ const api = {
     return axios.get(`${BASE_URL}/items/${folderId}`);
   },
 
-  pasteFilesById: (parentItemId, items, folders) => {
+  createFileByData: () => {},
+
+  pasteFilesById: (folder, files) => {
     return axios({
       url: `${BASE_URL}/items/`,
       method: "POST",
@@ -19,9 +21,8 @@ const api = {
         (data) => ({ payload: data }),
       ],
       data: {
-        parentItemId: parentItemId,
-        items: items,
-        folders: folders,
+        targetFolder: folder,
+        files: files,
       },
     });
   },
