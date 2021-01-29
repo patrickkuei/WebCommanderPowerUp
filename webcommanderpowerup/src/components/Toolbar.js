@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import CreateFileDialog from "./CreateFileDialog";
-
 import { useSelectedFilesContext, useFilesContext } from "../contexts";
-import filesAPI from "../api/filesAPI";
+import CreateButton from "./CreateButton";
+import CopyButton from "./CopyButton";
+import PasteButton from "./PasteButton";
+import DeleteButton from "./DeleteButton";
+import ResetSelectButton from "./ResetSelectButton";
 
 function Toolbar(props) {
   const { isDetail, setIsDetail } = props;
@@ -12,60 +14,11 @@ function Toolbar(props) {
     selectedFiles,
     resetSelecetedFiles,
     copiedFiles,
-    setCopiedFiles,
-    resetCopiedFiles,
-    isCopied,
     setisCopied,
   } = useSelectedFilesContext();
-  const { currentFolder, setCurrentFolder } = useFilesContext();
+  const { currentFolder } = useFilesContext();
 
   const [btnDisabled, setBtnDisabled] = useState(true);
-  const [isShowed, setIsShowed] = useState(false);
-
-  const handleCreateClick = () => {
-    setIsShowed(true);
-    console.log("currentFolder", currentFolder);
-  };
-
-  const handleCopyClick = () => {
-    const selectedFileIds = selectedFiles.map((file) => file.id);
-    setCopiedFiles([...selectedFileIds]);
-    resetSelecetedFiles();
-  };
-
-  const handlePasteClick = () => {
-    pasteFiles(copiedFiles);
-    console.log("copiedFiles", copiedFiles);
-    resetCopiedFiles();
-  };
-
-  const pasteFiles = async (files) => {
-    await filesAPI.pasteFilesById(currentFolder, files);
-  };
-
-  const handleDeleteClick = () => {
-    if (selectedFiles.length === 1) {
-      deleteFile(selectedFiles[0].id);
-    } else {
-      console.log("can only delete single file");
-    }
-    resetSelecetedFiles();
-  };
-
-  const deleteFile = async (fileId) => {
-    await filesAPI.deleteFileById(fileId);
-
-    setCurrentFolder((prev) => {
-      return {
-        ...prev,
-        children: prev.children.filter((file) => file.id !== fileId),
-      };
-    });
-  };
-
-  const handleResetClick = () => {
-    resetSelecetedFiles();
-  };
 
   const handleDetailSwitch = () => {
     setIsDetail((prev) => !prev);
@@ -87,49 +40,14 @@ function Toolbar(props) {
   return (
     <div className="tool-bar row">
       <div className="col-12">
-        <button
-          className="tool-bar__button btn btn-outline-primary btn-sm"
-          disabled={!btnDisabled}
-          onClick={handleCreateClick}
-        >
-          Create
-        </button>
-        <button
-          type="button"
-          className={
-            isCopied
-              ? "tool-bar__button btn btn-primary btn-sm"
-              : "tool-bar__button btn btn-outline-primary btn-sm"
-          }
-          onClick={handleCopyClick}
-          disabled={btnDisabled}
-        >
-          Copy
-        </button>
-        <button
-          type="button"
-          className="tool-bar__button btn btn-outline-primary btn-sm"
-          onClick={handlePasteClick}
-          disabled={!isCopied}
-        >
-          Paste
-        </button>
-        <button
-          type="button"
-          className="tool-bar__button btn btn-outline-primary btn-sm"
-          onClick={handleDeleteClick}
-          disabled={btnDisabled}
-        >
-          Delete
-        </button>
-        <button
-          type="button"
-          className="tool-bar__button btn btn-outline-primary btn-sm"
-          onClick={handleResetClick}
-          disabled={btnDisabled}
-        >
-          Reset Select
-        </button>
+        <CreateButton btnDisabled={btnDisabled} />
+        <CopyButton btnDisabled={btnDisabled} />
+        <PasteButton />
+        <DeleteButton btnDisabled={btnDisabled} />
+        <ResetSelectButton
+          resetSelecetedFiles={resetSelecetedFiles}
+          btnDisabled={btnDisabled}
+        />
         <button
           type="button"
           className={
@@ -143,8 +61,6 @@ function Toolbar(props) {
           detail
         </button>
       </div>
-
-      <CreateFileDialog isShowed={isShowed} setIsShowed={setIsShowed} />
     </div>
   );
 }
