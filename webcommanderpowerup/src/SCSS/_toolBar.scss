@@ -15,5 +15,24 @@
     overflow: hidden;
     outline: 0;
     display: block;
+    
+    .nav-tabs{
+      padding-bottom: 0;
+      .nav-tab{
+        border: none !important;
+      }
+      .nav-link:hover{
+        cursor: pointer;
+      }
+    }
+
+    [class*="col-"]{
+      padding: 0;
+  }
+
+    .form-control:focus {
+      outline: none;
+      box-shadow: none;
+    }
   }
 }

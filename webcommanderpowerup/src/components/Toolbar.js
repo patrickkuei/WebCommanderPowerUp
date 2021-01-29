@@ -24,6 +24,7 @@ function Toolbar(props) {
 
   const handleCreateClick = () => {
     setIsShowed(true);
+    console.log("currentFolder", currentFolder);
   };
 
   const handleCopyClick = () => {
@@ -31,6 +32,7 @@ function Toolbar(props) {
     setCopiedFiles([...selectedFileIds]);
     resetSelecetedFiles();
   };
+
   const handlePasteClick = () => {
     pasteFiles(copiedFiles);
     console.log("copiedFiles", copiedFiles);

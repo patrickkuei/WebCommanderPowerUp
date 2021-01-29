@@ -39,6 +39,17 @@
     overflow: hidden;
     outline: 0;
     display: block; }
+    .tool-bar .show-modal .nav-tabs {
+      padding-bottom: 0; }
+      .tool-bar .show-modal .nav-tabs .nav-tab {
+        border: none !important; }
+      .tool-bar .show-modal .nav-tabs .nav-link:hover {
+        cursor: pointer; }
+    .tool-bar .show-modal [class*="col-"] {
+      padding: 0; }
+    .tool-bar .show-modal .form-control:focus {
+      outline: none;
+      box-shadow: none; }
 
 .folder-list {
   height: 90%; }
