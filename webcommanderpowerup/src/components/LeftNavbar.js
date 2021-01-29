@@ -32,7 +32,7 @@ function LeftNavbar() {
     resultNameArr.push([folder.name]);
 
     return (
-      <ul className="navbar-nav">
+      <ul key={folder.id} className="navbar-nav">
         <li key={folder.id} className="nav-item">
           <button
             type="button"

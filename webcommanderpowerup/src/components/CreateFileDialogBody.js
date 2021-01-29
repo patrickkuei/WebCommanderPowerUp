@@ -13,7 +13,7 @@ export default function CreateFileDialogBody(props) {
   };
 
   const checkFolderNameValidation = (text) => {
-    const reg = /.*[\\\/:\*\?"<>\|].*/;
+    const reg = /.*[\/:*?"<>|].*/;
     return text.length > 0 && !reg.test(text);
   };
 
@@ -27,21 +27,21 @@ export default function CreateFileDialogBody(props) {
   return isFolder ? (
     <div className="modal-body">
       <form>
-        <div class="mb-3">
-          <label for="new-folder-name" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="new-folder-name" className="form-label">
             The Name of New Folder You Want to Create
           </label>
           <div className="col-6">
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="newFolderName"
               value={newFolderState.value}
               onChange={(e) => handleFolderNameInput(e)}
             />
           </div>
           {newFolderState.value.length > 0 && !newFolderState.isValid ? (
-            <p class="text-danger">
+            <p className="text-danger">
               A file name can't contain any of the following characters:
               <br />
               <span>\ / : * ? " &#060;&#062; |</span>
@@ -55,11 +55,11 @@ export default function CreateFileDialogBody(props) {
   ) : (
     <div className="modal-body">
       <form>
-        <div class="mb-3">
-          <label for="new-folder-name" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="new-folder-name" className="form-label">
             Choose File(s) You Want to Add
           </label>
-          <input type="file" class="form-control-file" ref={newFileRef} />
+          <input type="file" className="form-control-file" ref={newFileRef} />
         </div>
       </form>
     </div>

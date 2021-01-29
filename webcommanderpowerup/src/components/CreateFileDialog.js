@@ -29,7 +29,7 @@ function CreateFileDialog(props) {
     setIsShowed: PropTypes.func,
   };
   return (
-    <div className={isShowed ? "show-modal modal" : "modal"} tabindex="-1">
+    <div className={isShowed ? "show-modal modal" : "modal"} tabIndex="-1">
       <div className="modal-dialog">
         <div className="modal-content shadow">
           <div className="modal-header">

@@ -20,19 +20,19 @@ export default function CreateFileDialogTabs(props) {
   };
   return (
     <div className="modal-header nav-tabs">
-      <ul class="nav nav-tab">
-        <li class="nav-item">
+      <ul className="nav nav-tab">
+        <li className="nav-item">
           <a
-            class={isFolder ? "nav-link active" : "nav-link"}
+            className={isFolder ? "nav-link active" : "nav-link"}
             aria-current="page"
             onClick={handleFolderTabClick}
           >
             Folder
           </a>
         </li>
-        <li class="nav-item">
+        <li className="nav-item">
           <a
-            class={!isFolder ? "nav-link active" : "nav-link"}
+            className={!isFolder ? "nav-link active" : "nav-link"}
             onClick={handleFileTabClick}
           >
             File
