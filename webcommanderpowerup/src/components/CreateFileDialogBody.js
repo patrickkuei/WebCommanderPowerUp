@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import PropTypes from "prop-types";
+import { useCreateFilesContext } from "../contexts";
 
 export default function CreateFileDialogBody(props) {
-  const { isFolder, newFolderState, setNewFolderState, newFileRef } = props;
+  const { isFolder } = props;
+
+  const {
+    newFolderState,
+    setNewFolderState,
+    newFiles,
+    setNewFiles,
+    newFilesRef,
+  } = useCreateFilesContext();
 
   const handleFolderNameInput = (e) => {
     const isFolderNameValid = checkFolderNameValidation(e.target.value);
@@ -17,11 +27,21 @@ export default function CreateFileDialogBody(props) {
     return text.length > 0 && !reg.test(text);
   };
 
+  const handleFilesUpload = (e) => {
+    const files = [];
+
+    for (let i = 0; i < e.target.files.length; i++) {
+      files.push({
+        id: uuidv4(),
+        name: e.target.files[i].name,
+        size: e.target.files[i].size,
+      });
+    }
+    setNewFiles(files);
+  };
+
   CreateFileDialogBody.propTypes = {
     isFolder: PropTypes.bool,
-    newFolderState: PropTypes.object,
-    setNewFolderState: PropTypes.func,
-    newFileRef: PropTypes.object,
   };
 
   return isFolder ? (
@@ -59,7 +79,27 @@ export default function CreateFileDialogBody(props) {
           <label htmlFor="new-folder-name" className="form-label">
             Choose File(s) You Want to Add
           </label>
-          <input type="file" className="form-control-file" ref={newFileRef} />
+          {newFiles.length === 0 ? (
+            <div>No File Chosen</div>
+          ) : (
+            <div>
+              <ul>
+                {newFiles.map((file) => (
+                  <li key={file.id}>
+                    {file.name} ({file.size} bytes)
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <input
+            multiple
+            type="file"
+            className="form-control-file"
+            onChange={handleFilesUpload}
+            ref={newFilesRef}
+          />
         </div>
       </form>
     </div>

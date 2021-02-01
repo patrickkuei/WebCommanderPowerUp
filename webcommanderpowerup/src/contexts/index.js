@@ -1,7 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 
 import { FilesInfoContext } from "../contexts/FilesInfoContext";
 import { SelectedFilesContext } from "../contexts/SelectedFilesContext";
+import { CreateFilesContext } from "./CreateFilesContext";
 
 export const useFilesContext = () => useContext(FilesInfoContext);
 
@@ -56,5 +57,44 @@ export function SelectedFileProvider(props) {
     >
       {props.children}
     </SelectedFilesContext.Provider>
+  );
+}
+
+export const useCreateFilesContext = () => useContext(CreateFilesContext);
+
+export function CreateFilesProvider(props) {
+  const [newFolderState, setNewFolderState] = useState({
+    isValid: false,
+    value: "",
+  });
+  const [newFiles, setNewFiles] = useState([]);
+
+  const newFilesRef = useRef(null);
+
+  const resetNewFolderState = () => {
+    setNewFolderState({
+      isValid: false,
+      value: "",
+    });
+  };
+  const resetFile = () => {
+    setNewFiles([]);
+    newFilesRef.current.value = "";
+  };
+
+  return (
+    <CreateFilesContext.Provider
+      value={{
+        newFolderState,
+        setNewFolderState,
+        newFiles,
+        setNewFiles,
+        newFilesRef,
+        resetNewFolderState,
+        resetFile,
+      }}
+    >
+      {props.children}
+    </CreateFilesContext.Provider>
   );
 }

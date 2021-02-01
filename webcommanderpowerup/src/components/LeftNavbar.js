@@ -62,6 +62,7 @@ function LeftNavbar() {
     });
 
     setPathArray(getNewPathArray(e));
+    resetSelecetedFiles();
   };
 
   const getNewPathArray = (e) => {
