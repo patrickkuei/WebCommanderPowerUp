@@ -25,12 +25,13 @@ function File(props) {
     }
   };
 
-  const handleFolderCardDbClick = (e, folderId, folderName) => {
+  const handleFolderCardDbClick = (folderId, folderName) => {
     if (typeName === "folder") {
       setPathArray((prev) => [...prev, { id: folderId, name: folderName }]);
       setCurrentFolder((prev) => {
         return {
           ...prev,
+          isLoading: true,
           id: folderId,
         };
       });
@@ -46,7 +47,7 @@ function File(props) {
     return (
       <div
         className="col-3 card"
-        onDoubleClick={(e) => handleFolderCardDbClick(e, file.id, file.name)}
+        onDoubleClick={() => handleFolderCardDbClick(file.id, file.name)}
       >
         <input
           className="folder__checkbox"
@@ -67,7 +68,7 @@ function File(props) {
     );
   } else {
     return (
-      <tr onDoubleClick={() => handleFolderCardDbClick(file.id)}>
+      <tr onDoubleClick={() => handleFolderCardDbClick(file.id, file.name)}>
         <td>
           <input
             type="checkbox"
