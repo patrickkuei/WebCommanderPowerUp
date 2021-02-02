@@ -21,6 +21,31 @@ function LeftNavbar() {
     });
   };
 
+  const handleFolderClick = (clickedFolderId, e) => {
+    setCurrentFolder((prev) => {
+      return {
+        ...prev,
+        isLoading: true,
+        id: clickedFolderId,
+      };
+    });
+
+    setPathArray(getNewPathArray(e));
+    resetSelecetedFiles();
+  };
+
+  const getNewPathArray = (e) => {
+    const result = [];
+    const idArray = e.target.dataset.idpath.split("/");
+    const nameArray = e.target.dataset.namepath.split("/");
+
+    for (let i = 0; i < idArray.length; i++) {
+      result.push({ id: idArray[i], name: nameArray[i] });
+    }
+
+    return result;
+  };
+
   useEffect(() => {
     fetchFolderHierarchy();
   }, []);
@@ -51,31 +76,6 @@ function LeftNavbar() {
         </li>
       </ul>
     );
-  };
-
-  const handleFolderClick = (clickedFolderId, e) => {
-    setCurrentFolder((prev) => {
-      return {
-        ...prev,
-        isLoading: true,
-        id: clickedFolderId,
-      };
-    });
-
-    setPathArray(getNewPathArray(e));
-    resetSelecetedFiles();
-  };
-
-  const getNewPathArray = (e) => {
-    const result = [];
-    const idArray = e.target.dataset.idpath.split("/");
-    const nameArray = e.target.dataset.namepath.split("/");
-
-    for (let i = 0; i < idArray.length; i++) {
-      result.push({ id: idArray[i], name: nameArray[i] });
-    }
-
-    return result;
   };
 
   if (folderHierarchy.isLoading) {
