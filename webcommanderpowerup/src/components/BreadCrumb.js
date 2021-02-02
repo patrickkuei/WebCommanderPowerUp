@@ -14,6 +14,7 @@ function BreadCrumb() {
     setCurrentFolder((prev) => {
       return {
         ...prev,
+        isLoading: true,
         id: pathArray[index].id,
       };
     });
