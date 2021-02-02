@@ -8,7 +8,7 @@ import { useTypeName } from "../constants/typeName";
 function File(props) {
   const { file, isDetail, isChecked } = props;
   const { setSelectedFiles } = useSelectedFilesContext();
-  const { setCurrentFolder, setPathArray } = useFilesContext();
+  const { fetchFolderFiles, setPathArray } = useFilesContext();
   const typeName = useTypeName(file.type);
   const icon = useIcon(typeName);
 
@@ -27,14 +27,8 @@ function File(props) {
 
   const handleFolderCardDbClick = (folderId, folderName) => {
     if (typeName === "folder") {
+      fetchFolderFiles(folderId);
       setPathArray((prev) => [...prev, { id: folderId, name: folderName }]);
-      setCurrentFolder((prev) => {
-        return {
-          ...prev,
-          isLoading: true,
-          id: folderId,
-        };
-      });
     }
   };
 

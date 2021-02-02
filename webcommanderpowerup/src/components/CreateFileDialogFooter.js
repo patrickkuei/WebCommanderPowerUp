@@ -28,7 +28,6 @@ export default function CreateFileDialogFooter(props) {
           size: newFilesRef.current.files[i].size,
         });
       }
-      console.log("newFilesRef", newFilesRef.current.files);
       createFile(currentFolder.id, newFiles, []);
       resetFile();
     }

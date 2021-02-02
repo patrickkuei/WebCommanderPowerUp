@@ -5,19 +5,13 @@ import { useFilesContext } from "../contexts";
 function BreadCrumb() {
   const {
     currentFolder,
-    setCurrentFolder,
     pathArray,
     setPathArray,
+    fetchFolderFiles,
   } = useFilesContext();
 
   const handlePathLinkClick = (index) => {
-    setCurrentFolder((prev) => {
-      return {
-        ...prev,
-        isLoading: true,
-        id: pathArray[index].id,
-      };
-    });
+    fetchFolderFiles(pathArray[index].id);
     setPathArray((prev) => prev.slice(0, index + 1));
   };
   const renderedPath = pathArray.map((pathPart, index) => {

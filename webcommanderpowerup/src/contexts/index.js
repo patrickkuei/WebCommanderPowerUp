@@ -3,20 +3,38 @@ import React, { useState, useContext, useRef } from "react";
 import { FilesInfoContext } from "../contexts/FilesInfoContext";
 import { SelectedFilesContext } from "../contexts/SelectedFilesContext";
 import { CreateFilesContext } from "./CreateFilesContext";
+import filesAPI from "../api/filesAPI";
 
 export const useFilesContext = () => useContext(FilesInfoContext);
 
 export function FilesProvider(props) {
   const [currentFolder, setCurrentFolder] = useState({
     isLoading: true,
-    id: "root",
+    id: "",
     children: [],
   });
   const [pathArray, setPathArray] = useState([{ id: "root", name: "root" }]);
 
+  const fetchFolderFiles = async (id) => {
+    setCurrentFolder((prev) => {
+      return { ...prev, isLoading: true };
+    });
+
+    const { data } = await filesAPI.getFilesById(id);
+
+    setCurrentFolder(() => {
+      return {
+        isLoading: false,
+        id: data.id,
+        children: data.children,
+      };
+    });
+  };
+
   return (
     <FilesInfoContext.Provider
       value={{
+        fetchFolderFiles,
         currentFolder,
         setCurrentFolder,
         pathArray,

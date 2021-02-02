@@ -5,7 +5,7 @@ import filesAPI from "../api/filesAPI";
 import LoadingLeftBar from "./loadingPage/LoadingLeftBar";
 
 function LeftNavbar() {
-  const { currentFolder, setCurrentFolder, setPathArray } = useFilesContext();
+  const { currentFolder, fetchFolderFiles, setPathArray } = useFilesContext();
   const { resetSelecetedFiles } = useSelectedFilesContext();
   const [folderHierarchy, setFolderHierarchy] = useState({
     isLoading: true,
@@ -14,7 +14,6 @@ function LeftNavbar() {
 
   const fetchFolderHierarchy = async () => {
     const { data } = await filesAPI.getFolderHierarchy();
-
     setFolderHierarchy({
       isLoading: false,
       root: data,
@@ -22,14 +21,7 @@ function LeftNavbar() {
   };
 
   const handleFolderClick = (clickedFolderId, e) => {
-    setCurrentFolder((prev) => {
-      return {
-        ...prev,
-        isLoading: true,
-        id: clickedFolderId,
-      };
-    });
-
+    fetchFolderFiles(clickedFolderId);
     setPathArray(getNewPathArray(e));
     resetSelecetedFiles();
   };
@@ -42,7 +34,6 @@ function LeftNavbar() {
     for (let i = 0; i < idArray.length; i++) {
       result.push({ id: idArray[i], name: nameArray[i] });
     }
-
     return result;
   };
 

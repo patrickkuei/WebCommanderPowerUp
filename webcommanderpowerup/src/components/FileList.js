@@ -5,27 +5,14 @@ import File from "./File";
 
 import { useFilesContext, useSelectedFilesContext } from "../contexts";
 import LoadingFolderList from "./loadingPage/LoadingFolderList";
-import filesAPI from "../api/filesAPI";
 
 function FileList(props) {
-  const { currentFolder, setCurrentFolder } = useFilesContext();
+  const { currentFolder, fetchFolderFiles } = useFilesContext();
   const { selectedFiles } = useSelectedFilesContext();
   const { children } = currentFolder;
   const { isDetail } = props;
 
-  const fetchFolderFiles = async () => {
-    const { data } = await filesAPI.getFilesById(currentFolder.id);
-
-    setCurrentFolder(() => {
-      return {
-        isLoading: false,
-        id: data.id,
-        children: data.children,
-      };
-    });
-  };
-
-  const getChecked = (fileId) => {
+  const getInputChecked = (fileId) => {
     let checked = false;
     for (let i = 0; i < selectedFiles.length; i++) {
       if (fileId === selectedFiles[i].id) {
@@ -37,8 +24,8 @@ function FileList(props) {
   };
 
   useEffect(() => {
-    fetchFolderFiles();
-  }, [currentFolder.id]);
+    fetchFolderFiles("root");
+  }, []);
 
   FileList.propTypes = {
     isDetail: PropTypes.bool,
@@ -51,7 +38,7 @@ function FileList(props) {
       <div className="folder-list row border overflow-auto">
         {!isDetail ? (
           children.map((file) => {
-            const isChecked = getChecked(file.id);
+            const isChecked = getInputChecked(file.id);
             return (
               <File
                 key={file.id}
@@ -73,7 +60,7 @@ function FileList(props) {
             </thead>
             <tbody>
               {children.map((file) => {
-                const isChecked = getChecked(file.id);
+                const isChecked = getInputChecked(file.id);
                 return (
                   <File
                     key={file.id}

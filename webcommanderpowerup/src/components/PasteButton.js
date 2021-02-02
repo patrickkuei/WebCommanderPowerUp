@@ -8,7 +8,6 @@ export default function PasteButton() {
   const { currentFolder } = useFilesContext();
   const handlePasteClick = () => {
     pasteFiles(copiedFiles);
-    console.log("copiedFiles", copiedFiles);
     resetCopiedFiles();
   };
 
