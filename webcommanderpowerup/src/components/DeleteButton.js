@@ -8,7 +8,7 @@ import filesAPI from "../api/filesAPI";
 export default function DeleteButton(props) {
   const { btnDisabled } = props;
   const { selectedFiles, resetSelecetedFiles } = useSelectedFilesContext();
-  const { setCurrentFolder } = useFilesContext();
+  const { deleteFile } = useFilesContext();
 
   const handleDeleteClick = () => {
     if (selectedFiles.length === 1) {
@@ -17,17 +17,6 @@ export default function DeleteButton(props) {
       console.log("can only delete single file");
     }
     resetSelecetedFiles();
-  };
-
-  const deleteFile = async (fileId) => {
-    await filesAPI.deleteFileById(fileId);
-
-    setCurrentFolder((prev) => {
-      return {
-        ...prev,
-        children: prev.children.filter((file) => file.id !== fileId),
-      };
-    });
   };
 
   DeleteButton.propTypes = {

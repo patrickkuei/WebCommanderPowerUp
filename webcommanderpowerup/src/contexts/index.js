@@ -1,42 +1,38 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useReducer } from "react";
 
 import { FilesInfoContext } from "../contexts/FilesInfoContext";
 import { SelectedFilesContext } from "../contexts/SelectedFilesContext";
 import { CreateFilesContext } from "./CreateFilesContext";
 import filesAPI from "../api/filesAPI";
+import { CurrentFileReducer, getCurrentFolderDefault } from "./Reducer";
+import actions from "./actions";
 
 export const useFilesContext = () => useContext(FilesInfoContext);
 
 export function FilesProvider(props) {
-  const [currentFolder, setCurrentFolder] = useState({
-    isLoading: true,
-    id: "",
-    children: [],
-  });
   const [pathArray, setPathArray] = useState([{ id: "root", name: "root" }]);
+  const [currentFolder, currentFolderDispatch] = useReducer(
+    CurrentFileReducer,
+    getCurrentFolderDefault()
+  );
 
   const fetchFolderFiles = async (id) => {
-    setCurrentFolder((prev) => {
-      return { ...prev, isLoading: true };
-    });
-
+    currentFolderDispatch(actions.dataLoaing());
     const { data } = await filesAPI.getFilesById(id);
+    currentFolderDispatch(actions.updateCurrentFolder(data));
+  };
 
-    setCurrentFolder(() => {
-      return {
-        isLoading: false,
-        id: data.id,
-        children: data.children,
-      };
-    });
+  const deleteFile = async (id) => {
+    await filesAPI.deleteFileById(id);
+    currentFolderDispatch(actions.deleteFile(id));
   };
 
   return (
     <FilesInfoContext.Provider
       value={{
-        fetchFolderFiles,
         currentFolder,
-        setCurrentFolder,
+        fetchFolderFiles,
+        deleteFile,
         pathArray,
         setPathArray,
       }}
