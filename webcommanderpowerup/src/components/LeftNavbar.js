@@ -57,6 +57,7 @@ function LeftNavbar() {
     setCurrentFolder((prev) => {
       return {
         ...prev,
+        isLoading: true,
         id: clickedFolderId,
       };
     });
