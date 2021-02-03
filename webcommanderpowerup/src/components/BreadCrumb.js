@@ -2,15 +2,25 @@ import React from "react";
 
 import {
   useFilesContext,
+  useFilesDispatch,
   usePathArrayContext,
   usePathArrayDispatch,
 } from "../contexts";
-import { pathActions } from "../contexts/actions";
+import { fileActions, pathActions } from "../contexts/actions";
+
+import filesAPI from "../api/filesAPI";
 
 function BreadCrumb() {
-  const { currentFolder, fetchFolderFiles } = useFilesContext();
+  const { currentFolder } = useFilesContext();
+  const { currentFolderDispatch } = useFilesDispatch();
   const { pathArray } = usePathArrayContext();
   const { pathArrayDispatch } = usePathArrayDispatch();
+
+  const fetchFolderFiles = async (id) => {
+    currentFolderDispatch(fileActions.dataLoaing());
+    const { data } = await filesAPI.getFilesById(id);
+    currentFolderDispatch(fileActions.updateCurrentFolder(data));
+  };
 
   const handlePathLinkClick = (index) => {
     fetchFolderFiles(pathArray[index].id);

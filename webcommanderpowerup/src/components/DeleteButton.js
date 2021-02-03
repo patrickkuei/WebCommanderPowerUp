@@ -1,14 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { useSelectedFilesContext, useFilesContext } from "../contexts";
+import { useSelectedFilesContext, useFilesDispatch } from "../contexts";
+import { fileActions } from "../contexts/actions";
 
 import filesAPI from "../api/filesAPI";
 
 export default function DeleteButton(props) {
   const { btnDisabled } = props;
   const { selectedFiles, resetSelecetedFiles } = useSelectedFilesContext();
-  const { deleteFile } = useFilesContext();
+  const { currentFolderDispatch } = useFilesDispatch();
+
+  const deleteFile = async (id) => {
+    await filesAPI.deleteFileById(id);
+    currentFolderDispatch(fileActions.deleteFile(id));
+  };
 
   const handleDeleteClick = () => {
     if (selectedFiles.length === 1) {

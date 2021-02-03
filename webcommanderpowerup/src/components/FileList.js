@@ -1,13 +1,21 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
+import LoadingFolderList from "./loadingPage/LoadingFolderList";
 import File from "./File";
 
-import { useFilesContext, useSelectedFilesContext } from "../contexts";
-import LoadingFolderList from "./loadingPage/LoadingFolderList";
+import {
+  useFilesContext,
+  useFilesDispatch,
+  useSelectedFilesContext,
+} from "../contexts";
+import { fileActions, pathActions } from "../contexts/actions";
+
+import filesAPI from "../api/filesAPI";
 
 function FileList(props) {
-  const { currentFolder, fetchFolderFiles } = useFilesContext();
+  const { currentFolder } = useFilesContext();
+  const { currentFolderDispatch } = useFilesDispatch();
   const { selectedFiles } = useSelectedFilesContext();
   const { children } = currentFolder;
   const { isDetail } = props;
@@ -21,6 +29,12 @@ function FileList(props) {
       }
     }
     return checked;
+  };
+
+  const fetchFolderFiles = async (id) => {
+    currentFolderDispatch(fileActions.dataLoaing());
+    const { data } = await filesAPI.getFilesById(id);
+    currentFolderDispatch(fileActions.updateCurrentFolder(data));
   };
 
   useEffect(() => {

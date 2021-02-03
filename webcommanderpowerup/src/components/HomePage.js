@@ -3,15 +3,17 @@ import React from "react";
 import FolderView from "./FolderView";
 import BreadCrumb from "./BreadCrumb";
 
-import { FilesProvider } from "../contexts";
+import { FilesProvider, PathArrayProvider } from "../contexts";
 
 function HomePage() {
   return (
     <FilesProvider>
-      <div className="home-page-container container-fluid border overflow-hidden">
-        <BreadCrumb />
-        <FolderView />
-      </div>
+      <PathArrayProvider>
+        <div className="home-page-container container-fluid border overflow-hidden">
+          <BreadCrumb />
+          <FolderView />
+        </div>
+      </PathArrayProvider>
     </FilesProvider>
   );
 }

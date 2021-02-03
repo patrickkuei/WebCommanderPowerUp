@@ -2,21 +2,36 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import {
-  useFilesContext,
+  useFilesDispatch,
   usePathArrayDispatch,
   useSelectedFilesContext,
 } from "../contexts";
 import { useIcon } from "../constants/icons";
 import { useTypeName } from "../constants/typeName";
-import { pathActions } from "../contexts/actions";
+import { fileActions, pathActions } from "../contexts/actions";
+
+import filesAPI from "../api/filesAPI";
 
 function File(props) {
   const { file, isDetail, isChecked } = props;
-  const { setSelectedFiles } = useSelectedFilesContext();
-  const { fetchFolderFiles } = useFilesContext();
+  const { currentFolderDispatch } = useFilesDispatch();
   const { pathArrayDispatch } = usePathArrayDispatch();
+  const { setSelectedFiles } = useSelectedFilesContext();
   const typeName = useTypeName(file.type);
   const icon = useIcon(typeName);
+
+  const fetchFolderFiles = async (id) => {
+    currentFolderDispatch(fileActions.dataLoaing());
+    const { data } = await filesAPI.getFilesById(id);
+    currentFolderDispatch(fileActions.updateCurrentFolder(data));
+  };
+
+  const handleFolderCardDbClick = (folderId, folderName) => {
+    if (typeName === "folder") {
+      fetchFolderFiles(folderId);
+      pathArrayDispatch(pathActions.appendFolder(folderId, folderName));
+    }
+  };
 
   const handleCheckBoxClick = (e, fileId, fileName, fileType) => {
     if (e.target.checked) {
@@ -28,13 +43,6 @@ function File(props) {
       setSelectedFiles((prev) => {
         return prev.filter((selectedFile) => selectedFile.id !== fileId);
       });
-    }
-  };
-
-  const handleFolderCardDbClick = (folderId, folderName) => {
-    if (typeName === "folder") {
-      fetchFolderFiles(folderId);
-      pathArrayDispatch(pathActions.appendFolder(folderId, folderName));
     }
   };
 
