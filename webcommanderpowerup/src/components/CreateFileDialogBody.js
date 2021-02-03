@@ -1,22 +1,20 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import PropTypes from "prop-types";
-import { useCreateFilesContext } from "../contexts";
 
 export default function CreateFileDialogBody(props) {
-  const { isFolder } = props;
-
   const {
+    isFolder,
     newFolderState,
-    setNewFolderState,
+    updateNewFolderState,
     newFiles,
-    setNewFiles,
+    updateNewFiles,
     newFilesRef,
-  } = useCreateFilesContext();
+  } = props.value;
 
   const handleFolderNameInput = (e) => {
     const isFolderNameValid = checkFolderNameValidation(e.target.value);
-    setNewFolderState({
+    updateNewFolderState({
       isValid: isFolderNameValid,
       value: e.target.value,
     });
@@ -37,7 +35,7 @@ export default function CreateFileDialogBody(props) {
         size: e.target.files[i].size,
       });
     }
-    setNewFiles(files);
+    updateNewFiles(files);
   };
 
   CreateFileDialogBody.propTypes = {

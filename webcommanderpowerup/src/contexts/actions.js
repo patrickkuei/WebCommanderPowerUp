@@ -1,6 +1,6 @@
 import actionTypes from "../constants/actionTypes";
 
-const actions = {
+export const fileActions = {
   dataLoaing: () => ({
     type: actionTypes.DATA_LOADING,
   }),
@@ -14,4 +14,18 @@ const actions = {
   }),
 };
 
-export default actions;
+export const pathActions = {
+  slicePath: (index) => ({
+    type: actionTypes.SLICE_PATH,
+    index,
+  }),
+  appendFolder: (id, name) => ({
+    type: actionTypes.APPEND_FOLDER,
+    id,
+    name,
+  }),
+  getNewPathArray: (dataset) => ({
+    type: actionTypes.GET_NEW_PATH,
+    dataset,
+  }),
+};

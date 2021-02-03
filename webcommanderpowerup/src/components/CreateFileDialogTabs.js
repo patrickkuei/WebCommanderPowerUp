@@ -1,25 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useCreateFilesContext } from "../contexts";
 
 export default function CreateFileDialogTabs(props) {
-  const { isFolder, setIsFolder } = props;
-
-  const { resetNewFolderState, resetFile } = useCreateFilesContext();
+  const {
+    isFolder,
+    toggleIsFolder,
+    resetNewFolderState,
+    resetFile,
+  } = props.value;
 
   const handleFolderTabClick = () => {
     resetFile();
-    setIsFolder(true);
+    toggleIsFolder();
   };
 
   const handleFileTabClick = () => {
     resetNewFolderState();
-    setIsFolder(false);
+    toggleIsFolder();
   };
 
   CreateFileDialogTabs.propTypes = {
     isFolder: PropTypes.bool,
-    setIsFolder: PropTypes.func,
+    toggleIsFolder: PropTypes.func,
   };
   return (
     <div className="modal-header nav-tabs">

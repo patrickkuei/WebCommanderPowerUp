@@ -1,30 +1,42 @@
-import React, { useState, useContext, useRef, useReducer } from "react";
+import React, { useState, useContext, useReducer } from "react";
 
 import { FilesInfoContext } from "../contexts/FilesInfoContext";
 import { SelectedFilesContext } from "../contexts/SelectedFilesContext";
 import { CreateFilesContext } from "./CreateFilesContext";
 import filesAPI from "../api/filesAPI";
-import { CurrentFileReducer, getCurrentFolderDefault } from "./Reducer";
-import actions from "./actions";
+import {
+  CurrentFileReducer,
+  getCurrentFolderDefault,
+  PathArrayReducer,
+  getPathArrayDefault,
+} from "./Reducer";
+import { fileActions } from "./actions";
+import { PathArrayContext, PathArrayDispatchContext } from "./PathArrayContext";
 
 export const useFilesContext = () => useContext(FilesInfoContext);
 
+export const usePathArrayContext = () => useContext(PathArrayContext);
+export const usePathArrayDispatch = () => useContext(PathArrayDispatchContext);
+
 export function FilesProvider(props) {
-  const [pathArray, setPathArray] = useState([{ id: "root", name: "root" }]);
+  const [pathArray, pathArrayDispatch] = useReducer(
+    PathArrayReducer,
+    getPathArrayDefault()
+  );
   const [currentFolder, currentFolderDispatch] = useReducer(
     CurrentFileReducer,
     getCurrentFolderDefault()
   );
 
   const fetchFolderFiles = async (id) => {
-    currentFolderDispatch(actions.dataLoaing());
+    currentFolderDispatch(fileActions.dataLoaing());
     const { data } = await filesAPI.getFilesById(id);
-    currentFolderDispatch(actions.updateCurrentFolder(data));
+    currentFolderDispatch(fileActions.updateCurrentFolder(data));
   };
 
   const deleteFile = async (id) => {
     await filesAPI.deleteFileById(id);
-    currentFolderDispatch(actions.deleteFile(id));
+    currentFolderDispatch(fileActions.deleteFile(id));
   };
 
   return (
@@ -33,11 +45,21 @@ export function FilesProvider(props) {
         currentFolder,
         fetchFolderFiles,
         deleteFile,
-        pathArray,
-        setPathArray,
       }}
     >
-      {props.children}
+      <PathArrayContext.Provider
+        value={{
+          pathArray,
+        }}
+      >
+        <PathArrayDispatchContext.Provider
+          value={{
+            pathArrayDispatch,
+          }}
+        >
+          {props.children}
+        </PathArrayDispatchContext.Provider>
+      </PathArrayContext.Provider>
     </FilesInfoContext.Provider>
   );
 }
@@ -71,44 +93,5 @@ export function SelectedFileProvider(props) {
     >
       {props.children}
     </SelectedFilesContext.Provider>
-  );
-}
-
-export const useCreateFilesContext = () => useContext(CreateFilesContext);
-
-export function CreateFilesProvider(props) {
-  const [newFolderState, setNewFolderState] = useState({
-    isValid: false,
-    value: "",
-  });
-  const [newFiles, setNewFiles] = useState([]);
-
-  const newFilesRef = useRef(null);
-
-  const resetNewFolderState = () => {
-    setNewFolderState({
-      isValid: false,
-      value: "",
-    });
-  };
-  const resetFile = () => {
-    setNewFiles([]);
-    newFilesRef.current.value = "";
-  };
-
-  return (
-    <CreateFilesContext.Provider
-      value={{
-        newFolderState,
-        setNewFolderState,
-        newFiles,
-        setNewFiles,
-        newFilesRef,
-        resetNewFolderState,
-        resetFile,
-      }}
-    >
-      {props.children}
-    </CreateFilesContext.Provider>
   );
 }

@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 
-import { useFilesContext, useSelectedFilesContext } from "../contexts";
+import {
+  useFilesContext,
+  usePathArrayDispatch,
+  useSelectedFilesContext,
+} from "../contexts";
 import filesAPI from "../api/filesAPI";
 import LoadingLeftBar from "./loadingPage/LoadingLeftBar";
+import { pathActions } from "../contexts/actions";
 
 function LeftNavbar() {
-  const { currentFolder, fetchFolderFiles, setPathArray } = useFilesContext();
+  const { currentFolder, fetchFolderFiles } = useFilesContext();
   const { resetSelecetedFiles } = useSelectedFilesContext();
+  const { pathArrayDispatch } = usePathArrayDispatch();
   const [folderHierarchy, setFolderHierarchy] = useState({
     isLoading: true,
     root: {},
@@ -22,19 +28,8 @@ function LeftNavbar() {
 
   const handleFolderClick = (clickedFolderId, e) => {
     fetchFolderFiles(clickedFolderId);
-    setPathArray(getNewPathArray(e));
+    pathArrayDispatch(pathActions.getNewPathArray(e.target.dataset));
     resetSelecetedFiles();
-  };
-
-  const getNewPathArray = (e) => {
-    const result = [];
-    const idArray = e.target.dataset.idpath.split("/");
-    const nameArray = e.target.dataset.namepath.split("/");
-
-    for (let i = 0; i < idArray.length; i++) {
-      result.push({ id: idArray[i], name: nameArray[i] });
-    }
-    return result;
   };
 
   useEffect(() => {

@@ -9,6 +9,10 @@ import { SelectedFileProvider } from "../contexts";
 function FolderView() {
   const [isDetail, setIsDetail] = useState(false);
 
+  const toggleDetailView = () => {
+    setIsDetail((prev) => !prev);
+  };
+
   return (
     <div className="folder-view row">
       <SelectedFileProvider>
@@ -16,7 +20,7 @@ function FolderView() {
           <LeftNavbar />
         </div>
         <div className="col-10">
-          <Toolbar isDetail={isDetail} setIsDetail={setIsDetail} />
+          <Toolbar isDetail={isDetail} toggleDetailView={toggleDetailView} />
           <FileList isDetail={isDetail} />
         </div>
       </SelectedFileProvider>

@@ -1,14 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { useFilesContext, useSelectedFilesContext } from "../contexts";
+import {
+  useFilesContext,
+  usePathArrayDispatch,
+  useSelectedFilesContext,
+} from "../contexts";
 import { useIcon } from "../constants/icons";
 import { useTypeName } from "../constants/typeName";
+import { pathActions } from "../contexts/actions";
 
 function File(props) {
   const { file, isDetail, isChecked } = props;
   const { setSelectedFiles } = useSelectedFilesContext();
-  const { fetchFolderFiles, setPathArray } = useFilesContext();
+  const { fetchFolderFiles } = useFilesContext();
+  const { pathArrayDispatch } = usePathArrayDispatch();
   const typeName = useTypeName(file.type);
   const icon = useIcon(typeName);
 
@@ -28,7 +34,7 @@ function File(props) {
   const handleFolderCardDbClick = (folderId, folderName) => {
     if (typeName === "folder") {
       fetchFolderFiles(folderId);
-      setPathArray((prev) => [...prev, { id: folderId, name: folderName }]);
+      pathArrayDispatch(pathActions.appendFolder(folderId, folderName));
     }
   };
 

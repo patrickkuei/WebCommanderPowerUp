@@ -7,8 +7,12 @@ export default function CreateButton(props) {
   const { btnDisabled } = props;
   const [isShowed, setIsShowed] = useState(false);
 
+  const toggleShowDialog = () => {
+    setIsShowed((prev) => !prev);
+  };
+
   const handleCreateClick = () => {
-    setIsShowed(true);
+    toggleShowDialog();
   };
 
   CreateButton.propTypes = {
@@ -24,7 +28,10 @@ export default function CreateButton(props) {
         Create
       </button>
 
-      <CreateFileDialog isShowed={isShowed} setIsShowed={setIsShowed} />
+      <CreateFileDialog
+        isShowed={isShowed}
+        toggleShowDialog={toggleShowDialog}
+      />
     </>
   );
 }

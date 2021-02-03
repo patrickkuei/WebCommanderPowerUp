@@ -1,20 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { useCreateFilesContext, useFilesContext } from "../contexts";
+import { useFilesContext } from "../contexts";
 
 import filesAPI from "../api/filesAPI";
 
 export default function CreateFileDialogFooter(props) {
-  const { isFolder, setIsFolder, setIsShowed } = props;
-  const { currentFolder } = useFilesContext();
   const {
+    isFolder,
+    toggleIsFolder,
+    toggleShowDialog,
     newFolderState,
     newFiles,
     newFilesRef,
     resetNewFolderState,
     resetFile,
-  } = useCreateFilesContext();
+  } = props.value;
+  const { currentFolder } = useFilesContext();
 
   const handleCreateFileClick = () => {
     if (isFolder) {
@@ -43,14 +45,14 @@ export default function CreateFileDialogFooter(props) {
     } else {
       resetFile();
     }
-    setIsFolder(true);
-    setIsShowed(false);
+    toggleIsFolder();
+    toggleShowDialog();
   };
 
   CreateFileDialogFooter.propTypes = {
     isFolder: PropTypes.bool,
-    setIsFolder: PropTypes.func,
-    setIsShowed: PropTypes.func,
+    toggleIsFolder: PropTypes.func,
+    toggleShowDialog: PropTypes.func,
   };
 
   return (

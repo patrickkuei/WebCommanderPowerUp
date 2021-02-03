@@ -1,18 +1,20 @@
 import React from "react";
 
-import { useFilesContext } from "../contexts";
+import {
+  useFilesContext,
+  usePathArrayContext,
+  usePathArrayDispatch,
+} from "../contexts";
+import { pathActions } from "../contexts/actions";
 
 function BreadCrumb() {
-  const {
-    currentFolder,
-    pathArray,
-    setPathArray,
-    fetchFolderFiles,
-  } = useFilesContext();
+  const { currentFolder, fetchFolderFiles } = useFilesContext();
+  const { pathArray } = usePathArrayContext();
+  const { pathArrayDispatch } = usePathArrayDispatch();
 
   const handlePathLinkClick = (index) => {
     fetchFolderFiles(pathArray[index].id);
-    setPathArray((prev) => prev.slice(0, index + 1));
+    pathArrayDispatch(pathActions.slicePath(index));
   };
   const renderedPath = pathArray.map((pathPart, index) => {
     return (

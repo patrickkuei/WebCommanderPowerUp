@@ -9,7 +9,7 @@ import DeleteButton from "./DeleteButton";
 import ResetSelectButton from "./ResetSelectButton";
 
 function Toolbar(props) {
-  const { isDetail, setIsDetail } = props;
+  const { isDetail, toggleDetailView } = props;
   const {
     selectedFiles,
     resetSelecetedFiles,
@@ -21,7 +21,7 @@ function Toolbar(props) {
   const [btnDisabled, setBtnDisabled] = useState(true);
 
   const handleDetailSwitch = () => {
-    setIsDetail((prev) => !prev);
+    toggleDetailView();
   };
 
   useEffect(() => {
@@ -34,7 +34,7 @@ function Toolbar(props) {
 
   Toolbar.propTypes = {
     isDetail: PropTypes.bool,
-    setIsDetail: PropTypes.func,
+    toggleDetailView: PropTypes.func,
   };
 
   return (
