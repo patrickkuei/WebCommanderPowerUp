@@ -1,14 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { useSelectedFilesContext, useFilesDispatch } from "../contexts";
-import { fileActions } from "../contexts/actions";
+import { useFilesDispatch } from "../contexts/filesInfoContext/";
+
+import {
+  useSelectedFilesContext,
+  useSelectedFilesDispatch,
+} from "../contexts/selectedFilesContext";
+
+import fileActions from "../contexts/filesInfoContext/actions";
+import { resetSelecetedFiles } from "../utilities";
 
 import filesAPI from "../api/filesAPI";
 
 export default function DeleteButton(props) {
   const { btnDisabled } = props;
-  const { selectedFiles, resetSelecetedFiles } = useSelectedFilesContext();
+  const { selectedFiles } = useSelectedFilesContext();
+  const { selectedFilesDispatch } = useSelectedFilesDispatch();
   const { currentFolderDispatch } = useFilesDispatch();
 
   const deleteFile = async (id) => {
@@ -22,7 +30,7 @@ export default function DeleteButton(props) {
     } else {
       console.log("can only delete single file");
     }
-    resetSelecetedFiles();
+    resetSelecetedFiles(selectedFilesDispatch);
   };
 
   DeleteButton.propTypes = {

@@ -1,5 +1,7 @@
 import React from "react";
-import { useSelectedFilesContext, useFilesContext } from "../contexts";
+import { useFilesContext } from "../contexts/filesInfoContext/";
+
+import { useSelectedFilesContext } from "../contexts/selectedFilesContext";
 
 import filesAPI from "../api/filesAPI";
 

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import { useSelectedFilesContext, useFilesContext } from "../contexts";
+import { useFilesContext } from "../contexts/filesInfoContext/";
+import { useSelectedFilesContext } from "../contexts/selectedFilesContext";
 import CreateButton from "./CreateButton";
 import CopyButton from "./CopyButton";
 import PasteButton from "./PasteButton";
@@ -10,12 +11,7 @@ import ResetSelectButton from "./ResetSelectButton";
 
 function Toolbar(props) {
   const { isDetail, toggleDetailView } = props;
-  const {
-    selectedFiles,
-    resetSelecetedFiles,
-    copiedFiles,
-    setisCopied,
-  } = useSelectedFilesContext();
+  const { selectedFiles, copiedFiles, setisCopied } = useSelectedFilesContext();
   const { currentFolder } = useFilesContext();
 
   const [btnDisabled, setBtnDisabled] = useState(true);
@@ -44,10 +40,7 @@ function Toolbar(props) {
         <CopyButton btnDisabled={btnDisabled} />
         <PasteButton />
         <DeleteButton btnDisabled={btnDisabled} />
-        <ResetSelectButton
-          resetSelecetedFiles={resetSelecetedFiles}
-          btnDisabled={btnDisabled}
-        />
+        <ResetSelectButton btnDisabled={btnDisabled} />
         <button
           type="button"
           className={

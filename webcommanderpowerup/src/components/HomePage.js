@@ -2,8 +2,9 @@ import React from "react";
 
 import FolderView from "./FolderView";
 import BreadCrumb from "./BreadCrumb";
+import { FilesProvider } from "../contexts/filesInfoContext/";
 
-import { FilesProvider, PathArrayProvider } from "../contexts";
+import { PathArrayProvider } from "../contexts/pathArrayContext";
 
 function HomePage() {
   return (

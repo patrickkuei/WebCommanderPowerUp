@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { useFilesContext } from "../contexts";
+import { useFilesContext } from "../contexts/filesInfoContext/";
 
 import filesAPI from "../api/filesAPI";
 

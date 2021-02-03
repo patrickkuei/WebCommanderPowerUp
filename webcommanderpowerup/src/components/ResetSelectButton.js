@@ -1,15 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { resetSelecetedFiles } from "../utilities";
+import { useSelectedFilesDispatch } from "../contexts/selectedFilesContext";
 
 export default function ResetSelectButton(props) {
-  const { resetSelecetedFiles, btnDisabled } = props;
+  const { btnDisabled } = props;
+
+  const { selectedFilesDispatch } = useSelectedFilesDispatch();
 
   const handleResetClick = () => {
-    resetSelecetedFiles();
+    resetSelecetedFiles(selectedFilesDispatch);
   };
 
   ResetSelectButton.propTypes = {
-    resetSelecetedFiles: PropTypes.func,
     btnDisabled: PropTypes.bool,
   };
 

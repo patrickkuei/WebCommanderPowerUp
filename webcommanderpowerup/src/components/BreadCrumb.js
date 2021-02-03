@@ -3,10 +3,15 @@ import React from "react";
 import {
   useFilesContext,
   useFilesDispatch,
+} from "../contexts/filesInfoContext/";
+
+import {
   usePathArrayContext,
   usePathArrayDispatch,
-} from "../contexts";
-import { fileActions, pathActions } from "../contexts/actions";
+} from "../contexts/pathArrayContext";
+
+import fileActions from "../contexts/filesInfoContext/actions";
+import pathActions from "../contexts/pathArrayContext/actions";
 
 import filesAPI from "../api/filesAPI";
 

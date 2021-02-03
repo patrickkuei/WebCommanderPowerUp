@@ -7,9 +7,11 @@ import File from "./File";
 import {
   useFilesContext,
   useFilesDispatch,
-  useSelectedFilesContext,
-} from "../contexts";
-import { fileActions, pathActions } from "../contexts/actions";
+} from "../contexts/filesInfoContext/";
+
+import { useSelectedFilesContext } from "../contexts/selectedFilesContext";
+
+import fileActions from "../contexts/filesInfoContext/actions";
 
 import filesAPI from "../api/filesAPI";
 

@@ -3,18 +3,24 @@ import React, { useEffect, useState } from "react";
 import {
   useFilesContext,
   useFilesDispatch,
-  usePathArrayDispatch,
-  useSelectedFilesContext,
-} from "../contexts";
+} from "../contexts/filesInfoContext/";
+
+import { usePathArrayDispatch } from "../contexts/pathArrayContext";
+
+import { useSelectedFilesDispatch } from "../contexts/selectedFilesContext";
+
 import LoadingLeftBar from "./loadingPage/LoadingLeftBar";
-import { fileActions, pathActions } from "../contexts/actions";
+
+import fileActions from "../contexts/filesInfoContext/actions";
+import pathActions from "../contexts/pathArrayContext/actions";
+import { resetSelecetedFiles } from "../utilities";
 
 import filesAPI from "../api/filesAPI";
 
 function LeftNavbar() {
   const { currentFolder } = useFilesContext();
   const { currentFolderDispatch } = useFilesDispatch();
-  const { resetSelecetedFiles } = useSelectedFilesContext();
+  const { selectedFilesDispatch } = useSelectedFilesDispatch();
   const { pathArrayDispatch } = usePathArrayDispatch();
   const [folderHierarchy, setFolderHierarchy] = useState({
     isLoading: true,
@@ -38,7 +44,7 @@ function LeftNavbar() {
   const handleFolderClick = (clickedFolderId, e) => {
     fetchFolderFiles(clickedFolderId);
     pathArrayDispatch(pathActions.getNewPathArray(e.target.dataset));
-    resetSelecetedFiles();
+    resetSelecetedFiles(selectedFilesDispatch);
   };
 
   useEffect(() => {

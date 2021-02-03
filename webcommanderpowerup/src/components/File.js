@@ -1,14 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import {
-  useFilesDispatch,
-  usePathArrayDispatch,
-  useSelectedFilesContext,
-} from "../contexts";
+import { useFilesDispatch } from "../contexts/filesInfoContext/";
+
+import { usePathArrayDispatch } from "../contexts/pathArrayContext";
+
+import { useSelectedFilesDispatch } from "../contexts/selectedFilesContext";
+
 import { useIcon } from "../constants/icons";
 import { useTypeName } from "../constants/typeName";
-import { fileActions, pathActions } from "../contexts/actions";
+import fileActions from "../contexts/filesInfoContext/actions";
+import pathActions from "../contexts/pathArrayContext/actions";
+import selectedFilesActions from "../contexts/selectedFilesContext/actions";
 
 import filesAPI from "../api/filesAPI";
 
@@ -16,7 +19,7 @@ function File(props) {
   const { file, isDetail, isChecked } = props;
   const { currentFolderDispatch } = useFilesDispatch();
   const { pathArrayDispatch } = usePathArrayDispatch();
-  const { setSelectedFiles } = useSelectedFilesContext();
+  const { selectedFilesDispatch } = useSelectedFilesDispatch();
   const typeName = useTypeName(file.type);
   const icon = useIcon(typeName);
 
@@ -35,14 +38,11 @@ function File(props) {
 
   const handleCheckBoxClick = (e, fileId, fileName, fileType) => {
     if (e.target.checked) {
-      setSelectedFiles((prev) => [
-        ...prev,
-        { id: fileId, name: fileName, type: fileType },
-      ]);
+      selectedFilesDispatch(
+        selectedFilesActions.appendSelectedFile(fileId, fileName, fileType)
+      );
     } else {
-      setSelectedFiles((prev) => {
-        return prev.filter((selectedFile) => selectedFile.id !== fileId);
-      });
+      selectedFilesDispatch(selectedFilesActions.deselectFile(fileId));
     }
   };
 
