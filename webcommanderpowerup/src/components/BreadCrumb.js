@@ -4,16 +4,13 @@ import {
   useFilesContext,
   useFilesDispatch,
 } from "../contexts/filesInfoContext/";
-
 import {
   usePathArrayContext,
   usePathArrayDispatch,
 } from "../contexts/pathArrayContext";
-
-import fileActions from "../contexts/filesInfoContext/actions";
 import pathActions from "../contexts/pathArrayContext/actions";
 
-import filesAPI from "../api/filesAPI";
+import { fetchFolderFiles } from "../utilities";
 
 function BreadCrumb() {
   const { currentFolder } = useFilesContext();
@@ -21,14 +18,8 @@ function BreadCrumb() {
   const { pathArray } = usePathArrayContext();
   const { pathArrayDispatch } = usePathArrayDispatch();
 
-  const fetchFolderFiles = async (id) => {
-    currentFolderDispatch(fileActions.dataLoaing());
-    const { data } = await filesAPI.getFilesById(id);
-    currentFolderDispatch(fileActions.updateCurrentFolder(data));
-  };
-
   const handlePathLinkClick = (index) => {
-    fetchFolderFiles(pathArray[index].id);
+    fetchFolderFiles(currentFolderDispatch, pathArray[index].id);
     pathArrayDispatch(pathActions.slicePath(index));
   };
   const renderedPath = pathArray.map((pathPart, index) => {

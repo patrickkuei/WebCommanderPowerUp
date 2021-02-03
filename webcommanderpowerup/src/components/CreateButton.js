@@ -5,6 +5,7 @@ import CreateFileDialog from "./CreateFileDialog";
 
 export default function CreateButton(props) {
   const { btnDisabled } = props;
+
   const [isShowed, setIsShowed] = useState(false);
 
   const toggleShowDialog = () => {

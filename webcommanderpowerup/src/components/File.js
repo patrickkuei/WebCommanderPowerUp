@@ -9,11 +9,10 @@ import { useSelectedFilesDispatch } from "../contexts/selectedFilesContext";
 
 import { useIcon } from "../constants/icons";
 import { useTypeName } from "../constants/typeName";
-import fileActions from "../contexts/filesInfoContext/actions";
 import pathActions from "../contexts/pathArrayContext/actions";
 import selectedFilesActions from "../contexts/selectedFilesContext/actions";
 
-import filesAPI from "../api/filesAPI";
+import { fetchFolderFiles } from "../utilities";
 
 function File(props) {
   const { file, isDetail, isChecked } = props;
@@ -23,15 +22,9 @@ function File(props) {
   const typeName = useTypeName(file.type);
   const icon = useIcon(typeName);
 
-  const fetchFolderFiles = async (id) => {
-    currentFolderDispatch(fileActions.dataLoaing());
-    const { data } = await filesAPI.getFilesById(id);
-    currentFolderDispatch(fileActions.updateCurrentFolder(data));
-  };
-
   const handleFolderCardDbClick = (folderId, folderName) => {
     if (typeName === "folder") {
-      fetchFolderFiles(folderId);
+      fetchFolderFiles(currentFolderDispatch, folderId);
       pathArrayDispatch(pathActions.appendFolder(folderId, folderName));
     }
   };
@@ -49,6 +42,7 @@ function File(props) {
   File.propTypes = {
     file: PropTypes.object,
     isDetail: PropTypes.bool,
+    isChecked: PropTypes.bool,
   };
 
   if (!isDetail) {

@@ -2,11 +2,10 @@ import actionTypes from "./actionTypes";
 
 export const getSelectedFilesDefault = () => [];
 export function SelectedFilesReducer(prevState, action) {
-  console.log("reducer");
   switch (action.type) {
     case actionTypes.APPEND_SELECTED_FILE: {
-      const { id, name, type } = action;
-      return [...prevState, { id: id, name: name, type: type }];
+      const { id, name, fileType } = action;
+      return [...prevState, { id: id, name: name, type: fileType }];
     }
     case actionTypes.DESELECT_FILE: {
       const { id } = action;

@@ -22,6 +22,8 @@ export default function CreateFileDialogTabs(props) {
   CreateFileDialogTabs.propTypes = {
     isFolder: PropTypes.bool,
     toggleIsFolder: PropTypes.func,
+    resetNewFolderState: PropTypes.func,
+    resetFile: PropTypes.func,
   };
   return (
     <div className="modal-header nav-tabs">

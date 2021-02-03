@@ -2,13 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { useFilesDispatch } from "../contexts/filesInfoContext/";
-
 import {
   useSelectedFilesContext,
   useSelectedFilesDispatch,
 } from "../contexts/selectedFilesContext";
-
 import fileActions from "../contexts/filesInfoContext/actions";
+
 import { resetSelecetedFiles } from "../utilities";
 
 import filesAPI from "../api/filesAPI";

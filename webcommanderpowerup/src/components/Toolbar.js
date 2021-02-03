@@ -1,20 +1,31 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import { useFilesContext } from "../contexts/filesInfoContext/";
-import { useSelectedFilesContext } from "../contexts/selectedFilesContext";
 import CreateButton from "./CreateButton";
 import CopyButton from "./CopyButton";
 import PasteButton from "./PasteButton";
 import DeleteButton from "./DeleteButton";
 import ResetSelectButton from "./ResetSelectButton";
 
+import { useFilesContext } from "../contexts/filesInfoContext/";
+import { useSelectedFilesContext } from "../contexts/selectedFilesContext";
+
 function Toolbar(props) {
   const { isDetail, toggleDetailView } = props;
-  const { selectedFiles, copiedFiles, setisCopied } = useSelectedFilesContext();
+  const { selectedFiles } = useSelectedFilesContext();
   const { currentFolder } = useFilesContext();
 
   const [btnDisabled, setBtnDisabled] = useState(true);
+  const [copiedFiles, setCopiedFiles] = useState([]);
+  const [isCopied, setIsCopied] = useState(false);
+
+  const resetCopiedFiles = () => {
+    setCopiedFiles([]);
+  };
+
+  const updateCopiedFiles = (newState) => {
+    setCopiedFiles(newState);
+  };
 
   const handleDetailSwitch = () => {
     toggleDetailView();
@@ -25,7 +36,7 @@ function Toolbar(props) {
   }, [selectedFiles.length, currentFolder.isLoading]);
 
   useEffect(() => {
-    setisCopied(copiedFiles.length > 0);
+    setIsCopied(copiedFiles.length > 0);
   }, [copiedFiles.length]);
 
   Toolbar.propTypes = {
@@ -37,8 +48,16 @@ function Toolbar(props) {
     <div className="tool-bar row">
       <div className="col-12">
         <CreateButton btnDisabled={btnDisabled} />
-        <CopyButton btnDisabled={btnDisabled} />
-        <PasteButton />
+        <CopyButton
+          btnDisabled={btnDisabled}
+          updateCopiedFiles={updateCopiedFiles}
+          isCopied={isCopied}
+        />
+        <PasteButton
+          isCopied={isCopied}
+          copiedFiles={copiedFiles}
+          resetCopiedFiles={resetCopiedFiles}
+        />
         <DeleteButton btnDisabled={btnDisabled} />
         <ResetSelectButton btnDisabled={btnDisabled} />
         <button

@@ -1,27 +1,24 @@
 import React, { useEffect, useState } from "react";
 
+import LoadingLeftBar from "./loadingPage/LoadingLeftBar";
+
 import {
   useFilesContext,
   useFilesDispatch,
 } from "../contexts/filesInfoContext/";
-
 import { usePathArrayDispatch } from "../contexts/pathArrayContext";
-
 import { useSelectedFilesDispatch } from "../contexts/selectedFilesContext";
-
-import LoadingLeftBar from "./loadingPage/LoadingLeftBar";
-
-import fileActions from "../contexts/filesInfoContext/actions";
 import pathActions from "../contexts/pathArrayContext/actions";
-import { resetSelecetedFiles } from "../utilities";
 
 import filesAPI from "../api/filesAPI";
+import { fetchFolderFiles, resetSelecetedFiles } from "../utilities";
 
 function LeftNavbar() {
   const { currentFolder } = useFilesContext();
   const { currentFolderDispatch } = useFilesDispatch();
   const { selectedFilesDispatch } = useSelectedFilesDispatch();
   const { pathArrayDispatch } = usePathArrayDispatch();
+
   const [folderHierarchy, setFolderHierarchy] = useState({
     isLoading: true,
     root: {},
@@ -35,14 +32,8 @@ function LeftNavbar() {
     });
   };
 
-  const fetchFolderFiles = async (id) => {
-    currentFolderDispatch(fileActions.dataLoaing());
-    const { data } = await filesAPI.getFilesById(id);
-    currentFolderDispatch(fileActions.updateCurrentFolder(data));
-  };
-
   const handleFolderClick = (clickedFolderId, e) => {
-    fetchFolderFiles(clickedFolderId);
+    fetchFolderFiles(currentFolderDispatch, clickedFolderId);
     pathArrayDispatch(pathActions.getNewPathArray(e.target.dataset));
     resetSelecetedFiles(selectedFilesDispatch);
   };

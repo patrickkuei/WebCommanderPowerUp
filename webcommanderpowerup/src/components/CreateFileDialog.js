@@ -7,13 +7,13 @@ import CreateFileDialogTabs from "./CreateFileDialogTabs";
 
 function CreateFileDialog(props) {
   const { isShowed, toggleShowDialog } = props;
+
   const [isFolder, setIsFolder] = useState(true);
   const [newFolderState, setNewFolderState] = useState({
     isValid: false,
     value: "",
   });
   const [newFiles, setNewFiles] = useState([]);
-
   const newFilesRef = useRef(null);
 
   const updateNewFolderState = (newState) => {

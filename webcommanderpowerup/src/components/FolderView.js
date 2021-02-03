@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import FileList from "./FileList";
 import LeftNavbar from "./LeftNavbar";
 import Toolbar from "./Toolbar";
+
 import { SelectedFileProvider } from "../contexts/selectedFilesContext";
 
 function FolderView() {

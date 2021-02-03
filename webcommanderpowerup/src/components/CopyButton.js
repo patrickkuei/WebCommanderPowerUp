@@ -6,25 +6,25 @@ import {
   useSelectedFilesDispatch,
 } from "../contexts/selectedFilesContext";
 
-import selectedFilesActions from "../contexts/selectedFilesContext/actions";
-
 import { resetSelecetedFiles } from "../utilities";
 
 export default function CopyButton(props) {
-  const { btnDisabled } = props;
+  const { btnDisabled, updateCopiedFiles, isCopied } = props;
 
-  const { selectedFiles, setCopiedFiles, isCopied } = useSelectedFilesContext();
+  const { selectedFiles } = useSelectedFilesContext();
 
   const { selectedFilesDispatch } = useSelectedFilesDispatch();
 
   const handleCopyClick = () => {
     const selectedFileIds = selectedFiles.map((file) => file.id);
-    setCopiedFiles([...selectedFileIds]);
-    resetSelecetedFiles(selectedFilesDispatch, selectedFilesActions);
+    updateCopiedFiles([...selectedFileIds]);
+    resetSelecetedFiles(selectedFilesDispatch);
   };
 
   CopyButton.propTypes = {
     btnDisabled: PropTypes.bool,
+    updateCopiedFiles: PropTypes.func,
+    isCopied: PropTypes.bool,
   };
   return (
     <button

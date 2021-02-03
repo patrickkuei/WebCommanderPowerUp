@@ -8,19 +8,17 @@ import {
   useFilesContext,
   useFilesDispatch,
 } from "../contexts/filesInfoContext/";
-
 import { useSelectedFilesContext } from "../contexts/selectedFilesContext";
 
-import fileActions from "../contexts/filesInfoContext/actions";
-
-import filesAPI from "../api/filesAPI";
+import { fetchFolderFiles } from "../utilities";
 
 function FileList(props) {
+  const { isDetail } = props;
   const { currentFolder } = useFilesContext();
   const { currentFolderDispatch } = useFilesDispatch();
   const { selectedFiles } = useSelectedFilesContext();
+
   const { children } = currentFolder;
-  const { isDetail } = props;
 
   const getInputChecked = (fileId) => {
     let checked = false;
@@ -33,14 +31,8 @@ function FileList(props) {
     return checked;
   };
 
-  const fetchFolderFiles = async (id) => {
-    currentFolderDispatch(fileActions.dataLoaing());
-    const { data } = await filesAPI.getFilesById(id);
-    currentFolderDispatch(fileActions.updateCurrentFolder(data));
-  };
-
   useEffect(() => {
-    fetchFolderFiles("root");
+    fetchFolderFiles(currentFolderDispatch, "root");
   }, []);
 
   FileList.propTypes = {

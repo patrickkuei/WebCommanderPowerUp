@@ -1,13 +1,12 @@
 import actionTypes from "./actionTypes";
 
 const selectedFilesActions = {
-  appendSelectedFile: (id, name, type) => {
-    console.log("actions");
+  appendSelectedFile: (id, name, fileType) => {
     return {
       type: actionTypes.APPEND_SELECTED_FILE,
       id,
       name,
-      type,
+      fileType,
     };
   },
   deselectFile: (id) => ({

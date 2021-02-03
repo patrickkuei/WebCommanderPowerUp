@@ -1,12 +1,13 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useFilesContext } from "../contexts/filesInfoContext/";
 
 import { useSelectedFilesContext } from "../contexts/selectedFilesContext";
 
 import filesAPI from "../api/filesAPI";
 
-export default function PasteButton() {
-  const { copiedFiles, resetCopiedFiles, isCopied } = useSelectedFilesContext();
+export default function PasteButton(props) {
+  const { copiedFiles, isCopied, resetCopiedFiles } = props;
   const { currentFolder } = useFilesContext();
   const handlePasteClick = () => {
     pasteFiles(copiedFiles);
@@ -16,6 +17,13 @@ export default function PasteButton() {
   const pasteFiles = async (files) => {
     await filesAPI.pasteFilesById(currentFolder, files);
   };
+
+  PasteButton.propTypes = {
+    copiedFiles: PropTypes.array,
+    isCopied: PropTypes.bool,
+    resetCopiedFiles: PropTypes.func,
+  };
+
   return (
     <button
       type="button"

@@ -40,6 +40,11 @@ export default function CreateFileDialogBody(props) {
 
   CreateFileDialogBody.propTypes = {
     isFolder: PropTypes.bool,
+    newFolderState: PropTypes.object,
+    updateNewFolderState: PropTypes.func,
+    newFiles: PropTypes.array,
+    updateNewFiles: PropTypes.func,
+    newFilesRef: PropTypes.object,
   };
 
   return isFolder ? (

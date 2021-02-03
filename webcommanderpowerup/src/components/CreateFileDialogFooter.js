@@ -53,6 +53,11 @@ export default function CreateFileDialogFooter(props) {
     isFolder: PropTypes.bool,
     toggleIsFolder: PropTypes.func,
     toggleShowDialog: PropTypes.func,
+    newFolderState: PropTypes.object,
+    newFiles: PropTypes.array,
+    newFilesRef: PropTypes.object,
+    resetNewFolderState: PropTypes.func,
+    resetFile: PropTypes.func,
   };
 
   return (
