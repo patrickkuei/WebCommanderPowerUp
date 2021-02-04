@@ -18,12 +18,6 @@ export default function PasteButton(props) {
     await filesAPI.pasteFilesById(currentFolder, files);
   };
 
-  PasteButton.propTypes = {
-    copiedFiles: PropTypes.array,
-    isCopied: PropTypes.bool,
-    resetCopiedFiles: PropTypes.func,
-  };
-
   return (
     <button
       type="button"
@@ -35,3 +29,9 @@ export default function PasteButton(props) {
     </button>
   );
 }
+
+PasteButton.propTypes = {
+  copiedFiles: PropTypes.array,
+  isCopied: PropTypes.bool,
+  resetCopiedFiles: PropTypes.func,
+};

@@ -25,9 +25,6 @@ export default function CreateButton(props) {
         )
       : null;
 
-  CreateButton.propTypes = {
-    btnDisabled: PropTypes.bool,
-  };
   return (
     <>
       <button
@@ -42,3 +39,7 @@ export default function CreateButton(props) {
     </>
   );
 }
+
+CreateButton.propTypes = {
+  btnDisabled: PropTypes.bool,
+};

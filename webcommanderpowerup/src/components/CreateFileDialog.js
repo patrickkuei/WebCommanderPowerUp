@@ -40,9 +40,6 @@ function CreateFileDialog(props) {
     setIsFolder((prev) => !prev);
   };
 
-  CreateFileDialog.propTypes = {
-    toggleShowDialog: PropTypes.func,
-  };
   return (
     <div className="show-modal modal" tabIndex="-1">
       <div className="modal-dialog">
@@ -87,3 +84,7 @@ function CreateFileDialog(props) {
 }
 
 export default CreateFileDialog;
+
+CreateFileDialog.propTypes = {
+  toggleShowDialog: PropTypes.func,
+};

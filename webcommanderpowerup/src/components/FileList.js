@@ -35,10 +35,6 @@ function FileList(props) {
     fetchFolderFiles(currentFolderDispatch, "root");
   }, []);
 
-  FileList.propTypes = {
-    isDetail: PropTypes.bool,
-  };
-
   if (currentFolder.isLoading) {
     return <LoadingFolderList />;
   } else {
@@ -87,3 +83,6 @@ function FileList(props) {
 }
 
 export default FileList;
+FileList.propTypes = {
+  isDetail: PropTypes.bool,
+};

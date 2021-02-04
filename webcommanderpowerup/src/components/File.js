@@ -39,12 +39,6 @@ function File(props) {
     }
   };
 
-  File.propTypes = {
-    file: PropTypes.object,
-    isDetail: PropTypes.bool,
-    isChecked: PropTypes.bool,
-  };
-
   if (!isDetail) {
     return (
       <div
@@ -87,3 +81,8 @@ function File(props) {
 }
 
 export default File;
+File.propTypes = {
+  file: PropTypes.object,
+  isDetail: PropTypes.bool,
+  isChecked: PropTypes.bool,
+};

@@ -49,17 +49,6 @@ export default function CreateFileDialogFooter(props) {
     toggleShowDialog();
   };
 
-  CreateFileDialogFooter.propTypes = {
-    isFolder: PropTypes.bool,
-    toggleIsFolder: PropTypes.func,
-    toggleShowDialog: PropTypes.func,
-    newFolderState: PropTypes.object,
-    newFiles: PropTypes.array,
-    newFilesRef: PropTypes.object,
-    resetNewFolderState: PropTypes.func,
-    resetFile: PropTypes.func,
-  };
-
   return (
     <div className="modal-footer">
       <button
@@ -80,3 +69,14 @@ export default function CreateFileDialogFooter(props) {
     </div>
   );
 }
+
+CreateFileDialogFooter.propTypes = {
+  isFolder: PropTypes.bool,
+  toggleIsFolder: PropTypes.func,
+  toggleShowDialog: PropTypes.func,
+  newFolderState: PropTypes.object,
+  newFiles: PropTypes.array,
+  newFilesRef: PropTypes.object,
+  resetNewFolderState: PropTypes.func,
+  resetFile: PropTypes.func,
+};

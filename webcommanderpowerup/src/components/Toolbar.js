@@ -39,11 +39,6 @@ function Toolbar(props) {
     setIsCopied(copiedFiles.length > 0);
   }, [copiedFiles.length]);
 
-  Toolbar.propTypes = {
-    isDetail: PropTypes.bool,
-    toggleDetailView: PropTypes.func,
-  };
-
   return (
     <div className="tool-bar row">
       <div className="col-12">
@@ -78,3 +73,7 @@ function Toolbar(props) {
 }
 
 export default Toolbar;
+Toolbar.propTypes = {
+  isDetail: PropTypes.bool,
+  toggleDetailView: PropTypes.func,
+};

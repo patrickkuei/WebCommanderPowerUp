@@ -21,11 +21,6 @@ export default function CopyButton(props) {
     resetSelecetedFiles(selectedFilesDispatch);
   };
 
-  CopyButton.propTypes = {
-    btnDisabled: PropTypes.bool,
-    updateCopiedFiles: PropTypes.func,
-    isCopied: PropTypes.bool,
-  };
   return (
     <button
       type="button"
@@ -41,3 +36,9 @@ export default function CopyButton(props) {
     </button>
   );
 }
+
+CopyButton.propTypes = {
+  btnDisabled: PropTypes.bool,
+  updateCopiedFiles: PropTypes.func,
+  isCopied: PropTypes.bool,
+};

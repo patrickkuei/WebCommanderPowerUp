@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import PropTypes from "prop-types";
 
@@ -36,15 +36,6 @@ export default function CreateFileDialogBody(props) {
       });
     }
     updateNewFiles(files);
-  };
-
-  CreateFileDialogBody.propTypes = {
-    isFolder: PropTypes.bool,
-    newFolderState: PropTypes.object,
-    updateNewFolderState: PropTypes.func,
-    newFiles: PropTypes.array,
-    updateNewFiles: PropTypes.func,
-    newFilesRef: PropTypes.object,
   };
 
   return isFolder ? (
@@ -108,3 +99,12 @@ export default function CreateFileDialogBody(props) {
     </div>
   );
 }
+
+CreateFileDialogBody.propTypes = {
+  isFolder: PropTypes.bool,
+  newFolderState: PropTypes.object,
+  updateNewFolderState: PropTypes.func,
+  newFiles: PropTypes.array,
+  updateNewFiles: PropTypes.func,
+  newFilesRef: PropTypes.object,
+};

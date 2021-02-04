@@ -13,10 +13,6 @@ export default function ResetSelectButton(props) {
     resetSelecetedFiles(selectedFilesDispatch);
   };
 
-  ResetSelectButton.propTypes = {
-    btnDisabled: PropTypes.bool,
-  };
-
   return (
     <button
       type="button"
@@ -28,3 +24,7 @@ export default function ResetSelectButton(props) {
     </button>
   );
 }
+
+ResetSelectButton.propTypes = {
+  btnDisabled: PropTypes.bool,
+};

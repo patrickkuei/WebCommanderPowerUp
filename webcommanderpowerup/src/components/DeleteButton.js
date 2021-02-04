@@ -32,10 +32,6 @@ export default function DeleteButton(props) {
     resetSelecetedFiles(selectedFilesDispatch);
   };
 
-  DeleteButton.propTypes = {
-    btnDisabled: PropTypes.bool,
-  };
-
   return (
     <button
       type="button"
@@ -47,3 +43,7 @@ export default function DeleteButton(props) {
     </button>
   );
 }
+
+DeleteButton.propTypes = {
+  btnDisabled: PropTypes.bool,
+};
