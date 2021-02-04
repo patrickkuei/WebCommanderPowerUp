@@ -6,7 +6,7 @@ import CreateFileDialogFooter from "./CreateFileDialogFooter";
 import CreateFileDialogTabs from "./CreateFileDialogTabs";
 
 function CreateFileDialog(props) {
-  const { isShowed, toggleShowDialog } = props;
+  const { toggleShowDialog } = props;
 
   const [isFolder, setIsFolder] = useState(true);
   const [newFolderState, setNewFolderState] = useState({
@@ -41,11 +41,10 @@ function CreateFileDialog(props) {
   };
 
   CreateFileDialog.propTypes = {
-    isShowed: PropTypes.bool,
     toggleShowDialog: PropTypes.func,
   };
   return (
-    <div className={isShowed ? "show-modal modal" : "modal"} tabIndex="-1">
+    <div className="show-modal modal" tabIndex="-1">
       <div className="modal-dialog">
         <div className="modal-content shadow">
           <div className="modal-header">

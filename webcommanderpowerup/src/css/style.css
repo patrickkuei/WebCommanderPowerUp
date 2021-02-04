@@ -29,27 +29,28 @@
   height: 10%; }
   .tool-bar .tool-bar__button {
     margin: 6px 10px; }
-  .tool-bar .show-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1050;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    outline: 0;
-    display: block; }
-    .tool-bar .show-modal .nav-tabs {
-      padding-bottom: 0; }
-      .tool-bar .show-modal .nav-tabs .nav-tab {
-        border: none !important; }
-      .tool-bar .show-modal .nav-tabs .nav-link:hover {
-        cursor: pointer; }
-    .tool-bar .show-modal [class*="col-"] {
-      padding: 0; }
-    .tool-bar .show-modal .form-control:focus {
-      outline: none;
-      box-shadow: none; }
+
+.show-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  outline: 0;
+  display: block; }
+  .show-modal .nav-tabs {
+    padding-bottom: 0; }
+    .show-modal .nav-tabs .nav-tab {
+      border: none !important; }
+    .show-modal .nav-tabs .nav-link:hover {
+      cursor: pointer; }
+  .show-modal [class*="col-"] {
+    padding: 0; }
+  .show-modal .form-control:focus {
+    outline: none;
+    box-shadow: none; }
 
 .folder-list {
   height: 90%; }

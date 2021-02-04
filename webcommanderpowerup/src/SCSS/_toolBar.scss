@@ -4,35 +4,34 @@
   .tool-bar__button {
     margin: 6px 10px;
   }
-
-  .show-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1050;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    outline: 0;
-    display: block;
-    
-    .nav-tabs{
-      padding-bottom: 0;
-      .nav-tab{
-        border: none !important;
-      }
-      .nav-link:hover{
-        cursor: pointer;
-      }
+}
+.show-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  outline: 0;
+  display: block;
+  
+  .nav-tabs{
+    padding-bottom: 0;
+    .nav-tab{
+      border: none !important;
     }
-
-    [class*="col-"]{
-      padding: 0;
+    .nav-link:hover{
+      cursor: pointer;
+    }
   }
 
-    .form-control:focus {
-      outline: none;
-      box-shadow: none;
-    }
+  [class*="col-"]{
+    padding: 0;
+}
+
+  .form-control:focus {
+    outline: none;
+    box-shadow: none;
   }
 }

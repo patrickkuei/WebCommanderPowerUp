@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
 import CreateFileDialog from "./CreateFileDialog";
@@ -16,6 +17,14 @@ export default function CreateButton(props) {
     toggleShowDialog();
   };
 
+  const DialogPortal = () =>
+    isShowed
+      ? ReactDOM.createPortal(
+          <CreateFileDialog toggleShowDialog={toggleShowDialog} />,
+          document.body
+        )
+      : null;
+
   CreateButton.propTypes = {
     btnDisabled: PropTypes.bool,
   };
@@ -29,10 +38,7 @@ export default function CreateButton(props) {
         Create
       </button>
 
-      <CreateFileDialog
-        isShowed={isShowed}
-        toggleShowDialog={toggleShowDialog}
-      />
+      <DialogPortal />
     </>
   );
 }
