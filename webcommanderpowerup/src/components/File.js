@@ -32,7 +32,11 @@ function File(props) {
   const handleCheckBoxClick = (e, fileId, fileName, fileType) => {
     if (e.target.checked) {
       selectedFilesDispatch(
-        selectedFilesActions.appendSelectedFile(fileId, fileName, fileType)
+        selectedFilesActions.appendSelectedFile({
+          id: fileId,
+          name: fileName,
+          type: fileType,
+        })
       );
     } else {
       selectedFilesDispatch(selectedFilesActions.deselectFile(fileId));
