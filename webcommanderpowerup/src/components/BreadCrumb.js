@@ -39,7 +39,7 @@ function BreadCrumb() {
 
   return (
     <div className="breadcrumb-screen row align-items-center justify-content-center border-bottom">
-      <div className="col-8 border rounded shadow-sm">
+      <div className="breadcrumb-container col-8 border rounded shadow-sm">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb-screen__list breadcrumb">{renderedPath}</ol>
         </nav>

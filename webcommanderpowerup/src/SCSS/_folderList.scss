@@ -3,10 +3,13 @@
 
   .card {
     height: 50%;
+    justify-content: center;
     &:hover {
       cursor: pointer;
       background-color: #d6feff;
-      transition: 0.1s;
+      z-index: 100;
+      box-shadow: 0 5px 5px -3px gray, 0 8px 10px 1px gray, 0 3px 14px 2px gray;
+      transition: 0.3s;
     }
   }
   .table-hover td {

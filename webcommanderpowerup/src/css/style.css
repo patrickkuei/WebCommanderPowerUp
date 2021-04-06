@@ -1,7 +1,10 @@
 .breadcrumb-screen {
-  height: 10%; }
+  height: 10%;
+  background: #7df1ff; }
+  .breadcrumb-screen .breadcrumb-container {
+    background: #ffffff; }
   .breadcrumb-screen .breadcrumb-screen__list {
-    background-color: #ffffff; }
+    background: #ffffff; }
   .breadcrumb-screen .breadcrumb {
     margin: 0;
     padding: 0; }
@@ -55,11 +58,14 @@
 .folder-list {
   height: 90%; }
   .folder-list .card {
-    height: 50%; }
+    height: 50%;
+    justify-content: center; }
     .folder-list .card:hover {
       cursor: pointer;
       background-color: #d6feff;
-      transition: 0.1s; }
+      z-index: 100;
+      box-shadow: 0 5px 5px -3px gray, 0 8px 10px 1px gray, 0 3px 14px 2px gray;
+      transition: 0.3s; }
   .folder-list .table-hover td {
     cursor: pointer; }
   .folder-list .folder__checkbox {

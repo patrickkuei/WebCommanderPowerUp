@@ -1,10 +1,12 @@
 .breadcrumb-screen {
   height: 10%;
-
-  .breadcrumb-screen__list {
-    background-color: #ffffff;
+  background: #7df1ff;
+  .breadcrumb-container{
+    background: #ffffff;
   }
-
+  .breadcrumb-screen__list {
+    background: #ffffff;
+  }
   .breadcrumb {
     margin: 0;
     padding: 0;
